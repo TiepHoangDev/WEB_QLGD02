@@ -1,0 +1,113 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.AccountObject>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table" id="lesson-category-table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassWord)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isdeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassWord)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isdeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleId)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Account", new { Id = item.UserId })" class="btn btn-info">Edit</a>
+                <a onclick="Delete('@item.UserId','@item.FullName',event)" class="btn btn-danger">Delete</a>
+
+                
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+    <script type="text/javascript" src="~/Content/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#lesson-category-table').dataTable();
+        });
+
+        debugger
+        function Delete(id, name, event) {
+            var sender = event.currentTarget; //chưa hiểu lắm.
+            var answer = confirm("Bạn có muốn xóa danh mục: " + name + " ?");
+            if (answer) {
+                $.ajax({
+                    url: '@Url.Action("Account_Delete", "Account")',
+                    data: { UserId: id },
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (!data.result) {
+                            alert(data.message);
+                        } else {
+                            $(sender).closest("tr").remove(); //chưa hiểu
+                            alert(data.message);
+                            //location.reload();
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+
+
+

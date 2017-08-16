@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@model WCF.BussinessObject.Objects.FeaIdObject
+
+@using (Html.BeginForm("Create", "FeatId", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="register-form" action="index.html" method="post">
+
+        <p class="hint">
+            Enter your FeatId details below:
+        </p>
+
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Fead Name</label>
+            @Html.TextBoxFor(q => q.FeaId, new { @class = "form-control", @id = "FeaId", placeholder = "FeaId" })
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Fead Name</label>
+            @Html.TextBoxFor(q => q.FeaName, new { @class = "form-control", @id = "FeaName", placeholder = "FeaName" })
+        </div>
+
+        <div class="form-actions">
+            @Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-default" })
+            <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+        </div>
+    </div>
+}

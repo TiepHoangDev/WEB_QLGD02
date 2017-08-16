@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WCF.BussinessObject.Objects.PermisstionObject
+
+@using (Html.BeginForm("Create", "Permission", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="register-form" action="index.html" method="post">
+
+        <p class="hint">
+            Enter your Permission details below:
+        </p>
+
+        <h3>Thêm</h3>
+
+        @{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+         {
+             Text = "True",
+             Value = "true",
+         });
+    listItems.Add(new SelectListItem
+         {
+             Text = "False",
+             Value = "false",
+
+         });
+    listItems.Add(new SelectListItem
+        {
+            Text = "",
+            Value = "",
+            Selected = true
+        });
+        }
+        @Html.DropDownListFor(m => m.F_ADD, listItems, new { @class = "form-control" })
+
+        <h3>Sửa</h3>
+
+        @{
+    List<SelectListItem> listItems1 = new List<SelectListItem>();
+    listItems1.Add(new SelectListItem
+         {
+             Text = "True",
+             Value = "true",
+         });
+    listItems1.Add(new SelectListItem
+         {
+             Text = "False",
+             Value = "false",
+
+         });
+    listItems1.Add(new SelectListItem
+        {
+            Text = "",
+            Value = "",
+            Selected = true
+        });
+        }
+        @Html.DropDownListFor(m => m.F_EDIT, listItems, new { @class = "form-control" })
+
+        <h3>Xoá</h3>
+
+        @{
+    List<SelectListItem> listItems2 = new List<SelectListItem>();
+    listItems2.Add(new SelectListItem
+         {
+             Text = "True",
+             Value = "true",
+         });
+    listItems2.Add(new SelectListItem
+         {
+             Text = "False",
+             Value = "false",
+
+         });
+    listItems2.Add(new SelectListItem
+        {
+            Text = "",
+            Value = "",
+            Selected = true
+        });
+        }
+        @Html.DropDownListFor(m => m.F_DELETE, listItems, new { @class = "form-control" })
+
+        <h3>Tìm kiếm</h3>
+
+        @{
+    List<SelectListItem> listItems3 = new List<SelectListItem>();
+    listItems3.Add(new SelectListItem
+         {
+             Text = "True",
+             Value = "true",
+         });
+    listItems3.Add(new SelectListItem
+         {
+             Text = "False",
+             Value = "false",
+
+         });
+    listItems3.Add(new SelectListItem
+        {
+            Text = "",
+            Value = "",
+            Selected = true
+        });
+        }
+        @Html.DropDownListFor(m => m.F_SEARCH, listItems, new { @class = "form-control" })
+
+        <h3>Phân hệ</h3>
+
+        @{
+    List<WCF.BussinessObject.Objects.FeaIdObject> lisFeat = ViewBag.ListFeat as List<WCF.BussinessObject.Objects.FeaIdObject>;
+    List<SelectListItem> listItem = new List<SelectListItem>();
+    foreach (var item in lisFeat)
+    {
+        listItem.Add(new SelectListItem()
+        {
+            Value = "" + item.FeaId,
+            Text = item.FeaName
+        });
+    }
+        }
+        @Html.DropDownListFor(m => m.FeaId, listItem, new { @class = "form-control" })
+
+
+        <h3>Người dùng</h3>
+        @{
+    List<WCF.BussinessObject.Objects.AccountObject> lisUser = ViewBag.ListUser as List<WCF.BussinessObject.Objects.AccountObject>;
+    List<SelectListItem> listItem1 = new List<SelectListItem>();
+    foreach (var item in lisUser)
+    {
+        listItem1.Add(new SelectListItem()
+        {
+            Value = "" + item.UserId,
+            Text = item.FullName,
+        });
+    }
+        }
+        @Html.DropDownListFor(m => m.UserId, listItem1, new { @class = "form-control" })    
+
+
+        <div class="form-actions">
+            @Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-default" })
+            <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+        </div>
+    </div>
+}
+

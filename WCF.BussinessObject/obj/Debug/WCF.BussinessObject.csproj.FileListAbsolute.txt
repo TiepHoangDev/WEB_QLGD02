@@ -1,0 +1,5 @@
+E:\HPT\imic\web\WEB_QLGD01_SVN\WCF.BussinessObject\bin\Debug\WCF.BussinessObject.dll
+E:\HPT\imic\web\WEB_QLGD01_SVN\WCF.BussinessObject\bin\Debug\WCF.BussinessObject.pdb
+E:\HPT\imic\web\WEB_QLGD01_SVN\WCF.BussinessObject\obj\Debug\WCF.BussinessObject.csprojResolveAssemblyReference.cache
+E:\HPT\imic\web\WEB_QLGD01_SVN\WCF.BussinessObject\obj\Debug\WCF.BussinessObject.dll
+E:\HPT\imic\web\WEB_QLGD01_SVN\WCF.BussinessObject\obj\Debug\WCF.BussinessObject.pdb

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@model WCF.BussinessObject.Objects.FeaIdObject
+@using (Html.BeginForm("Edit", "FeatId", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="register-form" action="index.html" method="post">
+        <h3>Edit</h3>
+
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Role Name</label>
+            <h4>&nbsp;RoleName:</h4>
+            @Html.TextBoxFor(q => q.FeaId, new { @class = "form-control", @id = "FeaId" })
+        </div>
+
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Role Name</label>
+            <h4>&nbsp;RoleName:</h4>
+            @Html.TextBoxFor(q => q.FeaName, new { @class = "form-control", @id = "FeaName" })
+        </div>
+
+
+        <div class="form-group">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label visible-ie8 visible-ie9">IsDeleted</label>
+            <h4>&nbsp;IsDeleted</h4>
+            @Html.TextBoxFor(q => q.Isdeleted, new { @class = "form-control", @id = "Isdeleted" })
+        </div>
+
+        <div class="form-actions">
+            <button type="button" id="register-back-btn" class="btn btn-default">Back</button>
+            <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Edit</button>
+        </div>
+    </div>
+}

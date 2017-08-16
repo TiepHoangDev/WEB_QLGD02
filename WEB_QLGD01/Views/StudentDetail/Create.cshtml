@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@model WCF.BussinessObject.Objects.StudentDetailtObjects
+
+@using (Html.BeginForm("Create", "StudentDetail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="register-form" action="index.html" method="post">
+
+        <p class="hint">
+            Enter your StudentDetail details below:
+        </p>     
+
+     
+      
+     
+
+        <h3>Tên Học Viên</h3>
+
+        @{
+    List<WCF.BussinessObject.Objects.StudentObjects> lisStu = ViewBag.ListStudent as List<WCF.BussinessObject.Objects.StudentObjects>;
+    List<SelectListItem> listItem = new List<SelectListItem>();
+    foreach (var item in lisStu)
+    {
+        listItem.Add(new SelectListItem()
+        {
+            Value = "" + item.StudetId,
+            Text = item.FullName
+        });
+    }
+        }
+        @Html.DropDownListFor(m => m.StudetId, listItem, new { @class = "form-control" })
+
+
+        <h3>Mã Lớp Học</h3>
+        @{
+    List<WCF.BussinessObject.Objects.CoursesObjects> lisCourses = ViewBag.ListCourses as List<WCF.BussinessObject.Objects.CoursesObjects>;
+    List<SelectListItem> listItem1 = new List<SelectListItem>();
+    foreach (var item in lisCourses)
+    {
+        listItem1.Add(new SelectListItem()
+        {
+            Value = "" + item.CoId,
+            Text = item.CourseId,
+        });
+    }
+        }
+        @Html.DropDownListFor(m => m.CoId, listItem1, new { @class = "form-control" })
+
+        <h3>Mô tả</h3>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Description</label>
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Description", rows = "4" })
+
+        </div>
+
+        <div class="form-actions">
+            @Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-default" })
+            <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+        </div>
+    </div>
+}
+

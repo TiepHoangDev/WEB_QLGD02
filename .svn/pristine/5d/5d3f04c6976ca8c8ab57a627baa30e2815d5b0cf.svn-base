@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="354px" height="225px" viewBox="0 0 354 225" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>search-ide</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0,5.99352852 C0,2.68339412 2.68579224,0 6.00001696,0 L344.999983,0 C348.313701,0 351,2.67947817 351,5.99352852 L351,217.006471 C351,220.316606 348.314208,223 344.999983,223 L6.00001696,223 C2.6862991,223 0,220.320522 0,217.006471 L0,5.99352852 Z" id="path-1"></path>
+        <path d="M0,6.00173126 C0,2.68706661 2.68679772,0 6.00226318,0 L345.12914,0 C348.444098,0 351.131403,2.68642909 351.131403,6.00173126 L351.131403,24.3429131 L131.520932,24.3429131 L131.520932,15.4672215 C131.520932,14.3661896 130.616293,13.4736269 129.521746,13.4736269 L75.9277264,13.4736269 C74.8236068,13.4736269 73.9285411,14.3631062 73.9285411,15.4672215 L73.9285411,24.3429131 L0,24.3429131 L0,6.00173126 Z" id="path-2"></path>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="search-ide" transform="translate(1.000000, 1.000000)">
+            <g id="Rectangle-9">
+                <use fill="#2B2A2D" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <path stroke="#807D83" stroke-width="1" d="M-0.5,5.99352852 L-0.5,217.006471 C-0.5,220.595484 2.40897367,223.5 6.00001696,223.5 L344.999983,223.5 C348.590061,223.5 351.5,220.593038 351.5,217.006471 L351.5,5.99352852 C351.5,2.40451648 348.591026,-0.5 344.999983,-0.5 L6.00001696,-0.5 C2.40993943,-0.5 -0.5,2.40696223 -0.5,5.99352852 Z"></path>
+            </g>
+            <path d="M77.5414108,56.4657371 L249.649361,56.4657371" id="Path-9" stroke="#FFFFFF" stroke-linecap="round"></path>
+            <path d="M77.5414108,69.477763 L170.871793,69.477763" id="Path-9-Copy" stroke="#FFFFFF" stroke-linecap="round"></path>
+            <path d="M97.5551351,141.973336 L166.288314,141.973336" id="Path-9-Copy-3" stroke="#FFFFFF" stroke-linecap="round"></path>
+            <path d="M97.5551351,111.973336 L176.288314,111.973336" id="Path-9-Copy-11" stroke="#2796DB" stroke-linecap="round"></path>
+            <text id="{" font-family="FiraMono-Regular, Fira Mono" font-size="14" font-weight="normal" fill="#FFFFFF">
+                <tspan x="75" y="97.2683588">{</tspan>
+            </text>
+            <text id="}" font-family="FiraMono-Regular, Fira Mono" font-size="14" font-weight="normal" fill="#FFFFFF">
+                <tspan x="75" y="179.892468">}</tspan>
+            </text>
+            <path d="M97.5551351,154.365742 L119.451438,154.365742" id="Path-9-Copy-2" stroke="#FFFFFF" stroke-linecap="round"></path>
+            <g id="Rectangle-9-Copy">
+                <use fill="#2B2A2D" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <path stroke="#807D83" stroke-width="1" d="M-0.5,6.00173126 L-0.5,24.3429131 L-0.5,24.8429131 L0,24.8429131 L73.9285411,24.8429131 L74.4285411,24.8429131 L74.4285411,24.3429131 L74.4285411,15.4672215 C74.4285411,14.6407475 75.098248,13.9736269 75.9277264,13.9736269 L129.521746,13.9736269 C130.344137,13.9736269 131.020932,14.6463035 131.020932,15.4672215 L131.020932,24.3429131 L131.020932,24.8429131 L131.520932,24.8429131 L351.131403,24.8429131 L351.631403,24.8429131 L351.631403,24.3429131 L351.631403,6.00173126 C351.631403,2.41048876 348.720443,-0.5 345.12914,-0.5 L6.00226318,-0.5 C2.41083385,-0.5 -0.5,2.41074573 -0.5,6.00173126 Z"></path>
+            </g>
+            <path d="M55.9464362,32.8552353 L55.9464362,214.045808" id="Path-5" stroke="#FFFFFF" opacity="0.200000003"></path>
+            <path d="M9.30760065,35.0482862 L46.431242,35.0482862" id="Path-5-Copy" stroke="#FFFFFF" opacity="0.5" stroke-linecap="round"></path>
+            <path d="M9.30760065,47.4406919 L46.431242,47.4406919" id="Path-5-Copy-2" stroke="#FFFFFF" opacity="0.5" stroke-linecap="round"></path>
+            <path d="M19.0019925,59.8330976 L46.431242,59.8330976" id="Path-5-Copy-3" stroke="#FFFFFF" opacity="0.5" stroke-linecap="round"></path>
+            <path d="M19.0019925,72.2255033 L46.431242,72.2255033" id="Path-5-Copy-4" stroke="#FFFFFF" opacity="0.5" stroke-linecap="round"></path>
+            <path d="M19.0019925,84.617909 L46.431242,84.617909" id="Path-5-Copy-5" stroke="#FFFFFF" opacity="0.5" stroke-linecap="round"></path>
+            <ellipse id="Oval-4" fill="#FF7F77" opacity="0.5" cx="12.2795631" cy="11.1531651" rx="2.58517117" ry="2.47848114"></ellipse>
+            <ellipse id="Oval-4-Copy" fill="#FFCE4D" opacity="0.5" cx="22.6202477" cy="11.1531651" rx="2.58517117" ry="2.47848114"></ellipse>
+            <ellipse id="Oval-4-Copy-2" fill="#4CD763" opacity="0.5" cx="32.9609324" cy="11.1531651" rx="2.58517117" ry="2.47848114"></ellipse>
+        </g>
+    </g>
+</svg>

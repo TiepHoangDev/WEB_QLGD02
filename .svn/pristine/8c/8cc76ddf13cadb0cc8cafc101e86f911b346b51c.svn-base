@@ -1,0 +1,55 @@
+table {
+    width: 100%;
+    overflow: hidden;
+    background: #F9F1BA;
+}
+
+    table thead {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+        table thead tr {
+            height: 100%;
+        }
+
+    table tbody .ca-hocs {
+        /*text-align: center;*/
+        background: #B7E0DB;
+    }
+
+        table tbody .ca-hocs:hover {
+            background: #94D2CB;
+        }
+
+        table tbody .ca-hocs .ca-hocs-heads {
+            width: calc( 100% / 7 - 66px);
+            background: #8A7CCF;
+            height: 100%;
+        }
+
+        table tbody .ca-hocs .ca-hoc-items {
+            height: 111px;
+            width: calc( 100% / 7 - 66px);
+        }
+
+            table tbody .ca-hocs .ca-hoc-items:hover {
+                background: #83E983;
+            }
+
+            table tbody .ca-hocs .ca-hoc-items ul {
+                margin: 0px;
+                padding: 5px;
+            }
+
+                table tbody .ca-hocs .ca-hoc-items ul li {
+                    list-style-type: none;
+                    margin: 11px 0px;
+                }
+
+        .border-dashed, table thead tr .ngay-hoc-heads, table tbody .ca-hocs .ca-hocs-heads, table tbody .ca-hocs .ca-hoc-items {
+            border: 1px #0D6913 dashed;
+        }
+
+/*# sourceMappingURL=lich-giang-day.css.map */

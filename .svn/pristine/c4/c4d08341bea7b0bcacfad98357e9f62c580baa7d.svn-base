@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<repositories>
+  <repository path="..\..\..\..\..\Desktop\HPT\imic\win form\QL_LichGiang\DATA_ACCESS_LAYER\packages.config" />
+  <repository path="..\DataAccessLayer\packages.config" />
+  <repository path="..\WEB_QLGD01\packages.config" />
+</repositories>

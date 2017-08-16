@@ -1,0 +1,48 @@
+﻿@using WEB_QLGD01.Models;
+@{
+    var PerOfAcc = new Login().GetPermission();
+    var lstFea = new List<WCF.BussinessObject.Objects.FeaIdObject>();
+    var isSA = PerOfAcc.GetRole() == eRole.SuperAdmin;
+    if (PerOfAcc.GetRole() == eRole.SuperAdmin)
+    {
+        lstFea = new WCF.BussinessController.BCL.FeaIdBCL().GetAll();
+    }
+    else if (PerOfAcc.Account != null)
+    {
+        lstFea = PerOfAcc.ListPermission.Select(q => q.FeaJoin).ToList();
+    }
+}
+<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    @if (PerOfAcc != null)
+    {
+        foreach (var item in lstFea)
+        {
+            <li>
+                <a href="javascript:;">
+                    <i class="icon-docs"></i>
+                    <span class="title">@item.FeaName.Replace("Quản Lý","")</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    @if (isSA || PerOfAcc.ListPermission.Any(q => q.F_SEARCH == true))
+                    {
+                        <li>
+                            <a href="@Url.Action("Redirect", "Menu", new { sAction = WEB_QLGD01.Models.eAction.Search.ToString(), Fea = @item.FeaId })">
+                            <i class="icon-paper-plane"></i>
+                            <span class="badge badge-warning">2</span>Quản lí
+                            </a>
+                        </li>
+                    }
+                    @if (isSA || PerOfAcc.ListPermission.Any(q => q.F_ADD == true))
+                    {                        <li>
+                            <a href="@Url.Action("Redirect", "Menu", new { sAction = WEB_QLGD01.Models.eAction.Add.ToString(), Fea = @item.FeaId })">
+                                <i class="icon-paper-plane"></i>
+                                <span class="badge badge-warning">2</span>Thêm mới
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    }
+</ul>

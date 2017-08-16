@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.RoleObject>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table" id="lesson-category-table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.RName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isdeleted)
+        </th>
+
+        <th></th>
+       
+   
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.RName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isdeleted)
+            </td>              
+            
+            
+            <td>
+                <a href="@Url.Action("Edit", "Role", new { Id = item.RoleId })" class="btn btn-info">Edit</a>
+                <a onclick="Delete('@item.RoleId','@item.RName',event)" class="btn btn-danger">Delete</a>
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript" src="~/Content/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#lesson-category-table').dataTable();
+    });
+
+    debugger
+    function Delete(id, name, event) {
+        var sender = event.currentTarget; //chưa hiểu lắm.
+        var answer = confirm("Bạn có muốn xóa danh mục: " + name + " ?");
+        if (answer) {
+            $.ajax({
+                url: '@Url.Action("Role_Delete", "Role")',
+                data: { UserId: id },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (!data.result) {
+                        alert(data.message);
+                    } else {
+                        $(sender).closest("tr").remove(); //chưa hiểu
+                        alert(data.message);
+                        //location.reload();
+                    }
+                }
+            });
+        }
+    }
+</script>

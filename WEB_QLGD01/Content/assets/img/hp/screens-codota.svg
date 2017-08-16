@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="16px" viewBox="0 0 19 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>screens-codota</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="screens-codota" transform="translate(1.000000, 0.000000)">
+            <path d="M6.24667423,3.69151204 L1.1291678,6.25122305 C0.719302609,6.45623235 0.387041227,6.25620633 0.387041227,5.78363255 L0.387041227,0.768025909" id="Rectangle-Copy-4" stroke="#2796DB" transform="translate(3.316858, 3.549683) scale(-1, -1) translate(-3.316858, -3.549683) "></path>
+            <path d="M0.387041227,7.74378393 C0.387041227,7.28660362 0.711398267,6.74678129 1.13242028,6.52715045 L7.11196477,3.4078543 L7.11196477,11.8802815 L1.13242028,14.9995776 C0.720758796,15.2143254 0.387041227,15.0243633 0.387041227,14.5606148 L0.387041227,7.74378393 Z" id="Rectangle-Copy-5" stroke="#22D3C3" transform="translate(3.749503, 9.247756) scale(-1, 1) translate(-3.749503, -9.247756) "></path>
+            <path d="M16.7716516,12.4574997 L11.6541452,15.0172107 C11.24428,15.2222201 10.9120186,15.022194 10.9120186,14.5496202 L10.9120186,9.53401361" id="Rectangle-Copy-4" stroke="#2796DB"></path>
+            <path d="M10.0467281,5.11362624 C10.0467281,4.65644594 10.3710851,4.1166236 10.7921071,3.89699276 L16.7716516,0.777696612 L16.7716516,9.25012378 L10.7921071,12.3694199 C10.3804456,12.5841677 10.0467281,12.3942056 10.0467281,11.9304571 L10.0467281,5.11362624 Z" id="Rectangle-Copy-5" stroke="#22D3C3" transform="translate(13.409190, 6.617598) scale(1, -1) translate(-13.409190, -6.617598) "></path>
+        </g>
+    </g>
+</svg>

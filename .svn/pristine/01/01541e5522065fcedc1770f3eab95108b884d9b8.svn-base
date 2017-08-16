@@ -1,0 +1,110 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.PermisstionObject>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table" id="lesson-category-table">
+    <tr>
+
+        
+        <th>
+            @Html.DisplayNameFor(model => model.F_ADD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.F_EDIT)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.F_DELETE)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.F_SEARCH)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.FeaJoin.FeaName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.AccountJoin.FullName)
+        </th>
+
+        <th></th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.F_ADD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.F_EDIT)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.F_DELETE)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.F_SEARCH)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FeaJoin.FeaName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountJoin.FullName)
+            </td>
+
+
+            <td>
+                <a href="@Url.Action("Edit", "Permission", new { PerId = item.PerID })" class="btn btn-info">Edit</a>
+                <a onclick="Delete('@item.PerID','@item.UserId',event)" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript" src="~/Content/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#lesson-category-table').dataTable();
+    });
+
+    debugger
+    function Delete(id, name, event) {
+        var sender = event.currentTarget; //chưa hiểu lắm.
+        var answer = confirm("Bạn có muốn xóa danh mục: " + name + " ?");
+        if (answer) {
+            $.ajax({
+                url: '@Url.Action("Permission_Delete", "Permission")',
+                data: { FeatId: id },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (!data.result) {
+                        alert(data.message);
+                    } else {
+                        $(sender).closest("tr").remove(); //chưa hiểu
+                        alert(data.message);
+                        //location.reload();
+                    }
+                }
+            });
+        }
+    }
+</script>
+

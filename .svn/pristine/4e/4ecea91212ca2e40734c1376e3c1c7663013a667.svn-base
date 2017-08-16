@@ -1,0 +1,76 @@
+﻿@model WCF.BussinessObject.Objects.ExpertsDetailtObjects
+@using WCF.BussinessObject.Objects
+@using WCF.BussinessController.BCL
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var lstCourse = new CoursesBCL().GetAll();
+    var lstExpert = new ExpertsBCL().GetAll();
+
+    var selectCourse = new List<SelectListItem>();
+    var selectExpert = new List<SelectListItem>();
+
+    foreach (var item in lstCourse)
+    {
+        selectCourse.Add(new SelectListItem()
+        {
+            Text = item.CourseId.ToString() + " - " + item.CourseName,
+            Value = item.CoId.ToString()
+        });
+    }
+
+    foreach (var item in lstExpert)
+    {
+        selectExpert.Add(new SelectListItem()
+        {
+            Text = item.FullName,
+            Value = item.ExpertId.ToString()
+        });
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Sửa Chuyên gia @Model.ExpertsJoin.FullName giảng dạy lớp @Model.CoursesJoin.CourseId</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ExId, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ExpertId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ExpertId, selectExpert, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ExpertId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CoId, selectCourse, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control ckeditor" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+                @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

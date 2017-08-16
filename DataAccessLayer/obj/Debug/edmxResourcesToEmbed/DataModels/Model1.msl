@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="eTrainingScheduleModelStoreContainer" CdmEntityContainer="eTrainingScheduleEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Account">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_Account">
+        <MappingFragment StoreEntitySet="tbl_Account">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_FeaId">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_FeaId">
+        <MappingFragment StoreEntitySet="tbl_FeaId">
+          <ScalarProperty Name="FeaId" ColumnName="FeaId" />
+          <ScalarProperty Name="FeaName" ColumnName="FeaName" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Permisstion">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_Permisstion">
+        <MappingFragment StoreEntitySet="tbl_Permisstion">
+          <ScalarProperty Name="PerID" ColumnName="PerID" />
+          <ScalarProperty Name="F_ADD" ColumnName="F_ADD" />
+          <ScalarProperty Name="F_EDIT" ColumnName="F_EDIT" />
+          <ScalarProperty Name="F_DELETE" ColumnName="F_DELETE" />
+          <ScalarProperty Name="F_SEARCH" ColumnName="F_SEARCH" />
+          <ScalarProperty Name="FeaId" ColumnName="FeaId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Role">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_Role">
+        <MappingFragment StoreEntitySet="tbl_Role">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RName" ColumnName="RName" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_Courses">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_Courses">
+        <MappingFragment StoreEntitySet="tbl_S07_Courses">
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_CoursesJournal">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_CoursesJournal">
+        <MappingFragment StoreEntitySet="tbl_S07_CoursesJournal">
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DayOf" ColumnName="DayOf" />
+          <ScalarProperty Name="Contents" ColumnName="Contents" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_CoursesStudentDetailt">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_CoursesStudentDetailt">
+        <MappingFragment StoreEntitySet="tbl_S07_CoursesStudentDetailt">
+          <ScalarProperty Name="ScsId" ColumnName="ScsId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_Experts">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_Experts">
+        <MappingFragment StoreEntitySet="tbl_S07_Experts">
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Specialize" ColumnName="Specialize" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_ExpertsDetailt">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_ExpertsDetailt">
+        <MappingFragment StoreEntitySet="tbl_S07_ExpertsDetailt">
+          <ScalarProperty Name="ExId" ColumnName="ExId" />
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_Schedulers">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_Schedulers">
+        <MappingFragment StoreEntitySet="tbl_S07_Schedulers">
+          <ScalarProperty Name="ScId" ColumnName="ScId" />
+          <ScalarProperty Name="WeId" ColumnName="WeId" />
+          <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_ShiftDay">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_ShiftDay">
+        <MappingFragment StoreEntitySet="tbl_S07_ShiftDay">
+          <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+          <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_Student">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_Student">
+        <MappingFragment StoreEntitySet="tbl_S07_Student">
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_StudentDetailt">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_StudentDetailt">
+        <MappingFragment StoreEntitySet="tbl_S07_StudentDetailt">
+          <ScalarProperty Name="StdId" ColumnName="StdId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_S07_Weekdays">
+      <EntityTypeMapping TypeName="eTrainingScheduleModel.tbl_S07_Weekdays">
+        <MappingFragment StoreEntitySet="tbl_S07_Weekdays">
+          <ScalarProperty Name="WeId" ColumnName="WeId" />
+          <ScalarProperty Name="WeName" ColumnName="WeName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CoursesStudentDetail_Join" FunctionName="eTrainingScheduleModel.Store.CoursesStudentDetail_Join">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.CoursesStudentDetail_Join_Result">
+          <ScalarProperty Name="ScsId" ColumnName="ScsId" />
+          <ScalarProperty Name="Description_CoursesStudentDetailt" ColumnName="Description_CoursesStudentDetailt" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DayOf" ColumnName="DayOf" />
+          <ScalarProperty Name="Contents" ColumnName="Contents" />
+          <ScalarProperty Name="Description_CoursesJournal" ColumnName="Description_CoursesJournal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Account_CheckLogin" FunctionName="eTrainingScheduleModel.Store.sp_Account_CheckLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_Account_CheckLogin_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="eTrainingScheduleModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_CoursesJournal_Join" FunctionName="eTrainingScheduleModel.Store.sp_CoursesJournal_Join">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_CoursesJournal_Join_Result">
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DayOf" ColumnName="DayOf" />
+          <ScalarProperty Name="Contents" ColumnName="Contents" />
+          <ScalarProperty Name="DescriptionCoursesJournal" ColumnName="DescriptionCoursesJournal" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DescriptionCourses" ColumnName="DescriptionCourses" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="eTrainingScheduleModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="eTrainingScheduleModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_ExpertsDetailt_Join" FunctionName="eTrainingScheduleModel.Store.sp_ExpertsDetailt_Join">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_ExpertsDetailt_Join_Result">
+          <ScalarProperty Name="ExId" ColumnName="ExId" />
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DescriptionExpertsDetailt" ColumnName="DescriptionExpertsDetailt" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Specialize" ColumnName="Specialize" />
+          <ScalarProperty Name="StartDateExperts" ColumnName="StartDateExperts" />
+          <ScalarProperty Name="StatusExperts" ColumnName="StatusExperts" />
+          <ScalarProperty Name="DescriptionExperts" ColumnName="DescriptionExperts" />
+          <ScalarProperty Name="DeletedExperts" ColumnName="DeletedExperts" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
+          <ScalarProperty Name="StartDateCourses" ColumnName="StartDateCourses" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StatusCourses" ColumnName="StatusCourses" />
+          <ScalarProperty Name="DescriptionCourses" ColumnName="DescriptionCourses" />
+          <ScalarProperty Name="DeletedCourses" ColumnName="DeletedCourses" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="eTrainingScheduleModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="eTrainingScheduleModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="eTrainingScheduleModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_Schedulers_Join" FunctionName="eTrainingScheduleModel.Store.sp_Schedulers_Join">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_Schedulers_Join_Result">
+          <ScalarProperty Name="ScId" ColumnName="ScId" />
+          <ScalarProperty Name="WeId" ColumnName="WeId" />
+          <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DescriptionSchedulers" ColumnName="DescriptionSchedulers" />
+          <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+          <ScalarProperty Name="DescriptionShift" ColumnName="DescriptionShift" />
+          <ScalarProperty Name="WeName" ColumnName="WeName" />
+          <ScalarProperty Name="DescriptionWeekday" ColumnName="DescriptionWeekday" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DescriptionCourses" ColumnName="DescriptionCourses" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_StudentDetailt_Join" FunctionName="eTrainingScheduleModel.Store.sp_StudentDetailt_Join">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_StudentDetailt_Join_Result">
+          <ScalarProperty Name="StdId" ColumnName="StdId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DescriptionStudent" ColumnName="DescriptionStudent" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="StatusStudent" ColumnName="StatusStudent" />
+          <ScalarProperty Name="DeletedStudent" ColumnName="DeletedStudent" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StatusCourses" ColumnName="StatusCourses" />
+          <ScalarProperty Name="DescriptionCourses" ColumnName="DescriptionCourses" />
+          <ScalarProperty Name="DeletedCourses" ColumnName="DeletedCourses" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_Account_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Account_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_Account_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Account_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_Account_GetAll_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_Account_GetByUserId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Account_GetByUserId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_Account_GetByUserId_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_Account_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Account_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_Account_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Account_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_FeaId_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_FeaId_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_FeaId_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_FeaId_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_FeaId_GetAll_Result">
+          <ScalarProperty Name="FeaId" ColumnName="FeaId" />
+          <ScalarProperty Name="FeaName" ColumnName="FeaName" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_FeaId_GetByFeaId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_FeaId_GetByFeaId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_FeaId_GetByFeaId_Result">
+          <ScalarProperty Name="FeaId" ColumnName="FeaId" />
+          <ScalarProperty Name="FeaName" ColumnName="FeaName" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_FeaId_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_FeaId_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_FeaId_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_FeaId_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_Permisstion_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Permisstion_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_Permisstion_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Permisstion_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_Permisstion_GetAll_Result">
+          <ScalarProperty Name="PerID" ColumnName="PerID" />
+          <ScalarProperty Name="F_ADD" ColumnName="F_ADD" />
+          <ScalarProperty Name="F_EDIT" ColumnName="F_EDIT" />
+          <ScalarProperty Name="F_DELETE" ColumnName="F_DELETE" />
+          <ScalarProperty Name="F_SEARCH" ColumnName="F_SEARCH" />
+          <ScalarProperty Name="FeaId" ColumnName="FeaId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_Permisstion_GetByPerID" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Permisstion_GetByPerID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_Permisstion_GetByPerID_Result">
+          <ScalarProperty Name="PerID" ColumnName="PerID" />
+          <ScalarProperty Name="F_ADD" ColumnName="F_ADD" />
+          <ScalarProperty Name="F_EDIT" ColumnName="F_EDIT" />
+          <ScalarProperty Name="F_DELETE" ColumnName="F_DELETE" />
+          <ScalarProperty Name="F_SEARCH" ColumnName="F_SEARCH" />
+          <ScalarProperty Name="FeaId" ColumnName="FeaId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_Permisstion_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Permisstion_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_Permisstion_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Permisstion_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_Role_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Role_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_Role_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Role_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_Role_GetAll_Result">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RName" ColumnName="RName" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_Role_GetByRoleId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Role_GetByRoleId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_Role_GetByRoleId_Result">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RName" ColumnName="RName" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_Role_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Role_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_Role_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_Role_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Courses_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Courses_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Courses_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Courses_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Courses_GetAll_Result">
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Courses_GetByCoId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Courses_GetByCoId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Courses_GetByCoId_Result">
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Courses_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Courses_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Courses_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Courses_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesJournal_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesJournal_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesJournal_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesJournal_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_CoursesJournal_GetAll_Result">
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DayOf" ColumnName="DayOf" />
+          <ScalarProperty Name="Contents" ColumnName="Contents" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesJournal_GetByCJId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesJournal_GetByCJId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_CoursesJournal_GetByCJId_Result">
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DayOf" ColumnName="DayOf" />
+          <ScalarProperty Name="Contents" ColumnName="Contents" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesJournal_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesJournal_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesJournal_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesJournal_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesStudentDetailt_Delete" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesStudentDetailt_Delete" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesStudentDetailt_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesStudentDetailt_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_CoursesStudentDetailt_GetAll_Result">
+          <ScalarProperty Name="ScsId" ColumnName="ScsId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesStudentDetailt_GetByCJId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesStudentDetailt_GetByCJId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_CoursesStudentDetailt_GetByCJId_Result">
+          <ScalarProperty Name="ScsId" ColumnName="ScsId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesStudentDetailt_GetByScsId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesStudentDetailt_GetByScsId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_CoursesStudentDetailt_GetByScsId_Result">
+          <ScalarProperty Name="ScsId" ColumnName="ScsId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesStudentDetailt_GetByStudetId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesStudentDetailt_GetByStudetId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_CoursesStudentDetailt_GetByStudetId_Result">
+          <ScalarProperty Name="ScsId" ColumnName="ScsId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CJId" ColumnName="CJId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesStudentDetailt_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesStudentDetailt_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_CoursesStudentDetailt_Update" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_CoursesStudentDetailt_Update" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Experts_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Experts_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Experts_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Experts_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Experts_GetAll_Result">
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Specialize" ColumnName="Specialize" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Experts_GetByExpertId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Experts_GetByExpertId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Experts_GetByExpertId_Result">
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Specialize" ColumnName="Specialize" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Experts_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Experts_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Experts_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Experts_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ExpertsDetailt_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ExpertsDetailt_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ExpertsDetailt_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ExpertsDetailt_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_ExpertsDetailt_GetAll_Result">
+          <ScalarProperty Name="ExId" ColumnName="ExId" />
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ExpertsDetailt_GetByExId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ExpertsDetailt_GetByExId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_ExpertsDetailt_GetByExId_Result">
+          <ScalarProperty Name="ExId" ColumnName="ExId" />
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ExpertsDetailt_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ExpertsDetailt_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ExpertsDetailt_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ExpertsDetailt_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Schedulers_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Schedulers_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Schedulers_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Schedulers_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Schedulers_GetAll_Result">
+          <ScalarProperty Name="ScId" ColumnName="ScId" />
+          <ScalarProperty Name="WeId" ColumnName="WeId" />
+          <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Schedulers_GetByScId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Schedulers_GetByScId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Schedulers_GetByScId_Result">
+          <ScalarProperty Name="ScId" ColumnName="ScId" />
+          <ScalarProperty Name="WeId" ColumnName="WeId" />
+          <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Schedulers_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Schedulers_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Schedulers_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Schedulers_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ShiftDay_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ShiftDay_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ShiftDay_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ShiftDay_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_ShiftDay_GetAll_Result">
+          <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+          <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ShiftDay_GetByShiftId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ShiftDay_GetByShiftId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_ShiftDay_GetByShiftId_Result">
+          <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+          <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ShiftDay_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ShiftDay_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_ShiftDay_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_ShiftDay_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Student_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Student_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Student_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Student_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Student_GetAll_Result">
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Student_GetByStudetId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Student_GetByStudetId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Student_GetByStudetId_Result">
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Student_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Student_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Student_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Student_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_StudentDetailt_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_StudentDetailt_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_StudentDetailt_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_StudentDetailt_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_StudentDetailt_GetAll_Result">
+          <ScalarProperty Name="StdId" ColumnName="StdId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_StudentDetailt_GetByStdId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_StudentDetailt_GetByStdId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_StudentDetailt_GetByStdId_Result">
+          <ScalarProperty Name="StdId" ColumnName="StdId" />
+          <ScalarProperty Name="StudetId" ColumnName="StudetId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_StudentDetailt_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_StudentDetailt_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_StudentDetailt_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_StudentDetailt_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Weekdays_DELETE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Weekdays_DELETE" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Weekdays_GetAll" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Weekdays_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Weekdays_GetAll_Result">
+          <ScalarProperty Name="WeId" ColumnName="WeId" />
+          <ScalarProperty Name="WeName" ColumnName="WeName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Weekdays_GetByWeId" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Weekdays_GetByWeId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.sp_tbl_S07_Weekdays_GetByWeId_Result">
+          <ScalarProperty Name="WeId" ColumnName="WeId" />
+          <ScalarProperty Name="WeName" ColumnName="WeName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Weekdays_INSERT" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Weekdays_INSERT" />
+    <FunctionImportMapping FunctionImportName="sp_tbl_S07_Weekdays_UPDATE" FunctionName="eTrainingScheduleModel.Store.sp_tbl_S07_Weekdays_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="eTrainingScheduleModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="WEB_QLGD01_sp_Account_GetJoin" FunctionName="eTrainingScheduleModel.Store.WEB_QLGD01_sp_Account_GetJoin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.WEB_QLGD01_sp_Account_GetJoin_Result">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RName" ColumnName="RName" />
+          <ScalarProperty Name="IsdeletedRole" ColumnName="IsdeletedRole" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsdeletedAccount" ColumnName="IsdeletedAccount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_QLGD01_sp_Permission_GetJoin" FunctionName="eTrainingScheduleModel.Store.WEB_QLGD01_sp_Permission_GetJoin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.WEB_QLGD01_sp_Permission_GetJoin_Result">
+          <ScalarProperty Name="FeaName" ColumnName="FeaName" />
+          <ScalarProperty Name="IsdeletedFedId" ColumnName="IsdeletedFedId" />
+          <ScalarProperty Name="PerID" ColumnName="PerID" />
+          <ScalarProperty Name="F_ADD" ColumnName="F_ADD" />
+          <ScalarProperty Name="F_EDIT" ColumnName="F_EDIT" />
+          <ScalarProperty Name="F_DELETE" ColumnName="F_DELETE" />
+          <ScalarProperty Name="F_SEARCH" ColumnName="F_SEARCH" />
+          <ScalarProperty Name="FeaId" ColumnName="FeaId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsdeletedAccount" ColumnName="IsdeletedAccount" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_QLGD01_sp_ExpertsDetailt_GetByCoId" FunctionName="eTrainingScheduleModel.Store.WEB_QLGD01_sp_ExpertsDetailt_GetByCoId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="eTrainingScheduleModel.WEB_QLGD01_sp_ExpertsDetailt_GetByCoId_Result">
+          <ScalarProperty Name="ExId" ColumnName="ExId" />
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="CoId" ColumnName="CoId" />
+          <ScalarProperty Name="DescriptionExpertsDetailt" ColumnName="DescriptionExpertsDetailt" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Specialize" ColumnName="Specialize" />
+          <ScalarProperty Name="StartDateExperts" ColumnName="StartDateExperts" />
+          <ScalarProperty Name="StatusExperts" ColumnName="StatusExperts" />
+          <ScalarProperty Name="DescriptionExperts" ColumnName="DescriptionExperts" />
+          <ScalarProperty Name="DeletedExperts" ColumnName="DeletedExperts" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
+          <ScalarProperty Name="StartDateCourses" ColumnName="StartDateCourses" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StatusCourses" ColumnName="StatusCourses" />
+          <ScalarProperty Name="DescriptionCourses" ColumnName="DescriptionCourses" />
+          <ScalarProperty Name="DeletedCourses" ColumnName="DeletedCourses" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

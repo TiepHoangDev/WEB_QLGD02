@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessController.BCL;
+using WCF.BussinessObject.Objects;
+using WEB_QLGD01.Models;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class PermissionController : Controller
+    {
+        // GET: Permission
+        public ActionResult Index()
+        {
+            return View(new PermisstionBCL().GetJoin());
+        }
+
+        [HttpPost]
+        public ActionResult Index(FormCollection f)
+        {
+            var result = new PermisstionBCL().GetJoin();
+            Guid UserId = new Guid();
+            string FeaId = null;
+            if (Guid.TryParse(f["UserId"].ToString(), out UserId))
+            {
+                ViewBag.UserId = UserId;
+                result = result.Where(q => q.UserId == UserId).ToList();
+            }
+            if (f["FeaId"] != null && !string.IsNullOrWhiteSpace(f["FeaId"].ToString()))
+            {
+                FeaId = f["FeaId"].ToString();
+                ViewBag.FeaId = FeaId;
+                result = result.Where(q => q.FeaId.Trim().ToLower() == FeaId.Trim().ToLower()).ToList();
+            }
+            return View(result);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            List<FeaIdObject> LisFeat = new FeaIdBCL().GetAll();
+            /*FeaIdObject objFeat = LisFeat.Single(x => x.FeaId.Equals(0));
+            LisFeat.Remove(objFeat);*/
+            ViewBag.ListFeat = LisFeat;
+
+            List<AccountObject> lisUser = new AccountBCL().GetAll();
+            /* AccountObject objAccount = lisFeat.Single(x => x.FeaId.Equals(0));
+             lisFeat.Remove(objFeat);*/
+            ViewBag.ListUser = lisUser;
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult Create(PermisstionObject ob, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                if (ob != null)
+                {
+                    ob.PerID = Guid.NewGuid();
+                    if (new PermisstionBCL().Insert(ob))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            catch
+            {
+            }
+            return View();
+        }
+
+        public ActionResult Edit(Guid ID)
+        {
+            var ob = new PermisstionBCL().GetByPerID(ID);
+            ob.AccountJoin = new AccountBCL().GetByUserId((Guid)ob.UserId);
+            ob.FeaJoin = new FeaIdBCL().GetByFeaId(ob.FeaId);
+            return PartialView(ob);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(PermisstionObject ob, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                if (ob != null && new PermisstionBCL().Update(ob))
+                    return RedirectToAction("Index");
+            }
+            catch
+            {
+            }
+            return View();
+        }
+
+        // POST: Weekday/Delete/5
+        [HttpPost]
+        public ActionResult Delete(Guid ID, FormCollection collection)
+        {
+            return Json(new PermisstionBCL().Delete(ID));
+        }
+    }
+}

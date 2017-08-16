@@ -1,0 +1,197 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.SchedulersObjects>
+@{
+    ViewBag.Title = "Home Page";
+    var listShift = new WCF.BussinessController.BCL.ShiftDayBCL().GetAll();
+    var listWeekday = new WEB_QLGD01.Models.Weekday().GetAll();
+}
+@helper ItemLichHoc(WCF.BussinessObject.Objects.SchedulersObjects ob)
+{
+    <td class="ca-hoc-items">
+        <ul>
+            <li>Mã lớp: <label class="label label-success btn-ajax" data-name="MaLop" data-value="@ob.CoursesJoin.CoId">@ob.CoursesJoin.CourseId</label></li>
+            <li>Khóa học: <label class="label label-success btn-ajax" data-name="KhoaHoc" data-value="@ob.CoursesJoin.CoId">@ob.CoursesJoin.CourseName</label></li>
+            <li>Giáo viên: <label class="label label-info btn-ajax" data-name="GiaoVien" data-value="@ob.CoursesJoin.CoId">Chi tiết</label></li>
+        </ul>
+    </td>
+}
+<link href="/Content/lich-giang-day.css" rel="stylesheet" />
+<style>
+    .ca-hoc-items {
+        width: @string.Format("{0}% !important", 100 / listWeekday.Count);
+    }
+</style>
+
+@*popup*@
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Chi tiết</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <img src="~/Source/img/loading.gif" alt="Loading..." class="img-thumbnail imgLoadAjax" />
+                </p>
+                <div class="modal-body-contents">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    function setModal(loadimg, header, body) {
+        if ($('#myModal')) {
+            let img = $('.imgLoadAjax');
+            if (img) {
+                if (loadimg) img.show();
+                else img.hide();
+            }
+
+            let mheader = $('#myModal .modal-title');
+            if (mheader) mheader.html(header);
+
+            let mbody = $('#myModal .modal-body-contents');
+            if (mbody) mbody.html(body);
+        }
+    }
+
+    $(function () {
+        $('.btn-ajax').click(function () {
+            let name = $(this).data('name');
+            let value = $(this).data('value');
+            if (name && value) {
+                $('#myModal').modal('show');
+                setModal(true, "Chi tiết", "Vui lòng chờ trong ít phút");
+                try {
+                    myAjax('@Url.Action("GetData","Home")', { n: name, v: value }, function (d) {
+                        let html = '';
+                        html += '<div class="center">';
+                        switch (name) {
+                            case "MaLop":
+                            case "KhoaHoc":
+                                html += '<h4>Thông tin lớp </h4>';
+                                break;
+                            case "GiaoVien":
+                                html += '<h4>Danh sách giáo viên</h4>';
+                                break;
+                            default:
+                        }
+                        switch (name) {
+                            case "MaLop":
+                            case "KhoaHoc":
+                                html += '<table class="table table-hover">\
+		<thead>\
+			<tr>\
+				<th>Mã lớp</th>\
+				<th>Tên lớp</th>\
+				<th>Số học viên</th>\
+				<th>Status</th>\
+				<th>Ngày khai giảng</th>\
+				<th>Ngày kết thúc</th>\
+				<th>Miêu tả</th>\
+			</tr>\
+		</thead>\
+		<tbody>';
+                                html += '<tr>';
+                                html += '<td>' + d.CourseId + '</td>';
+                                html += '<td>' + d.CourseName + '</td>';
+                                html += '<td>' + d.TotalNumber + '</td>';
+                                html += '<td>' + d.Status + '</td>';
+                                html += '<td>' + ToJavaScriptDate(d.StartDate) + '</td>';
+                                html += '<td>' + ToJavaScriptDate(d.EndDate) + '</td>';
+                                html += '<td>' + d.Description + '</td>';
+                                html += '</tr>';
+                                break;
+                            case "GiaoVien":
+                                html += '<table class="table table-hover">\
+		<thead>\
+			<tr>\
+				<th>STT</th>\
+				<th>Họ tên</th>\
+				<th>Địa chỉ</th>\
+				<th>SĐT</th>\
+				<th>Status</th>\
+			</tr>\
+		</thead>\
+		<tbody>';
+                                for (var i = 0; i < d.length; i++) {
+                                    html += '<tr>';
+                                    html += '<td>' + (i + 1) + '</td>';
+                                    html += '<td>' + d[i].FullName + '</td>';
+                                    html += '<td>' + d[i].Address + '</td>';
+                                    html += '<td>' + d[i].Mobile + '</td>';
+                                    html += '<td>' + d[i].Status + '</td>';
+                                    html += '</tr>';
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        html += '</tbody>\
+	</table>\
+</div>'
+                        setModal(false, "Kết quả", html);
+                    }, function (d, a, s) {
+                        setModal(false, "Lỗi", "Rất tiếc đã xảy ra lỗi!");
+                    });
+                } catch (e) {
+                    setModal(false, "Lỗi", "Rất tiếc đã xảy ra lỗi trang!");
+                }
+            }
+        });
+    });
+</script>
+
+<div>
+    @{
+        List<WCF.BussinessObject.Objects.ExpertsObjects> lst = new WCF.BussinessController.BCL.ExpertsBCL().GetAll();
+    }
+    <h3>Lịch giảng dạy theo giáo viên</h3>
+    @using (Html.BeginForm("",""))
+    {
+        //Html.ListBoxFor(m=>m.ElementAt(0). , lst )
+    }
+    <table>
+        <thead>
+            <tr>
+                <td class="ngay-hoc-heads">---</td>
+                @foreach (var item in listWeekday)
+                {
+                    <td class="ngay-hoc-heads">@item.WeName</td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ca in listShift)
+            {
+                <tr class="ca-hocs">
+                    <td class="ca-hocs-heads">@ca.ShiftName</td>
+                    @foreach (var item in listWeekday)
+                    {
+                        var obj = Model.FirstOrDefault(q => q.WeId == item.WeId && q.ShiftId == ca.ShiftId);
+                        if (obj != null)
+                        {
+                            @ItemLichHoc(obj)
+                        }
+                        else
+                        {
+                            <td class="ca-hoc-items"></td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

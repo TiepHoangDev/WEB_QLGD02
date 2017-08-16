@@ -1,0 +1,1523 @@
+.module {
+    word-wrap: break-word;
+}
+a {
+    color: #07C;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.question-hyperlink:visited, .answer-hyperlink:visited, #hot-network-questions ul a:visited {
+    color: #005999;
+}
+.module {
+    margin-bottom: 1.5em;
+}
+
+#hot-network-questions h4 a {
+    font-weight: inherit;
+    font-size: inherit;
+    width: inherit;
+}
+
+#hot-network-questions a {
+    font-weight: normal;
+    font-size: 12px;
+    white-space: normal;
+    width: 90%;
+}
+
+#hot-network-questions .favicon, #hot-network-questions a, #hot-network-questions img {
+    display: inline-block;
+    vertical-align: top;
+}
+#hot-network-questions .favicon, #hot-network-questions img {
+    margin: 2px 6px 0 0;
+}
+
+#hot-network-questions .favicon, #hot-network-questions a, #hot-network-questions img {
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.favicon {
+    display: inline-block;
+}
+
+.favicon-workplace {
+    background-position: 0 -6480px;
+}
+
+.favicon {
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url(../images/favicons-sprite16.png);
+}
+
+.question-hyperlink:visited, .answer-hyperlink:visited, #hot-network-questions ul a:visited {
+    color: #005999;
+}
+
+#hot-network-questions a {
+    font-weight: normal;
+    font-size: 12px;
+    white-space: normal;
+    width: 90%;
+}
+
+#hot-network-questions .favicon, #hot-network-questions a, #hot-network-questions img {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.layout__sidebar h4 {
+    color: #242729;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.layout__sidebar h4, .sidebar h4 {
+    margin-bottom: 1em;
+}
+
+.module h4 {
+    font-size: 14px;
+    color: #3b4045;
+    font-weight: normal;
+}
+.show-votes .sidebar-linked .spacer>a:first-child .answer-votes, .show-votes .sidebar-related .spacer>a:first-child .answer-votes {
+    padding: 3px 0;
+    white-space: nowrap;
+    width: 38px;
+    text-align: center;
+    box-sizing: border-box;
+    height: auto;
+    float: none;
+    border-radius: 2px;
+    font-size: 90%;
+    background-color: #eff0f1;
+    color: #3b4045;
+    transform: translateY(-1px);
+}
+
+.answer-votes {
+    cursor: pointer;
+}
+
+.answer-votes {
+    color: #535a60;
+    text-align: center;
+    float: left;
+    padding: 3px;
+    min-width: 36px;
+    min-height: 15px;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.layout__sidebar .related a, .layout__sidebar .linked a {
+    font-size: 13px;
+}
+
+.show-votes .sidebar-linked .spacer>a:first-child, .show-votes .sidebar-related .spacer>a:first-child {
+    padding-right: 10px;
+}
+
+.related a {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.favicon {
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url('../images/favicons-sprite16.png')
+}
+div.favicon {
+    display: inline-block
+}
+@media only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+    .favicon {
+        background-image: url('../images/favicons-sprite16.png')
+    }
+}
+@media only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+    .favicon {
+        -moz-background-size: 16px 6552px;
+        -o-background-size: 16px 6552px;
+        -webkit-background-size: 16px 6552px;
+        background-size: 16px 6552px
+    }
+}
+.favicon-3dprinting {
+    background-position: 0 0
+}
+.favicon-3dprintingmeta {
+    background-position: 0 -18px
+}
+.favicon-academia {
+    background-position: 0 -36px
+}
+.favicon-academiameta {
+    background-position: 0 -54px
+}
+.favicon-ai {
+    background-position: 0 -72px
+}
+.favicon-aimeta {
+    background-position: 0 -90px
+}
+.favicon-alcohol {
+    background-position: 0 -108px
+}
+.favicon-alcoholmeta {
+    background-position: 0 -126px
+}
+.favicon-android {
+    background-position: 0 -144px
+}
+.favicon-androidmeta {
+    background-position: 0 -162px
+}
+.favicon-anime {
+    background-position: 0 -180px
+}
+.favicon-animemeta {
+    background-position: 0 -198px
+}
+.favicon-apple {
+    background-position: 0 -216px
+}
+.favicon-applemeta {
+    background-position: 0 -234px
+}
+.favicon-arabic {
+    background-position: 0 -252px
+}
+.favicon-arabicmeta {
+    background-position: 0 -270px
+}
+.favicon-arduino {
+    background-position: 0 -288px
+}
+.favicon-arduinometa {
+    background-position: 0 -306px
+}
+.favicon-area51 {
+    background-position: 0 -324px
+}
+.favicon-area51discuss {
+    background-position: 0 -342px
+}
+.favicon-askubuntu {
+    background-position: 0 -360px
+}
+.favicon-askubuntumeta {
+    background-position: 0 -378px
+}
+.favicon-astronomy {
+    background-position: 0 -396px
+}
+.favicon-astronomymeta {
+    background-position: 0 -414px
+}
+.favicon-aviation {
+    background-position: 0 -432px
+}
+.favicon-aviationmeta {
+    background-position: 0 -450px
+}
+.favicon-avp {
+    background-position: 0 -468px
+}
+.favicon-avpmeta {
+    background-position: 0 -486px
+}
+.favicon-beta {
+    background-position: 0 -504px
+}
+.favicon-betameta {
+    background-position: 0 -522px
+}
+.favicon-bicycles {
+    background-position: 0 -540px
+}
+.favicon-bicyclesmeta {
+    background-position: 0 -558px
+}
+.favicon-bioinformatics {
+    background-position: 0 -576px
+}
+.favicon-bioinformaticsmeta {
+    background-position: 0 -594px
+}
+.favicon-biology {
+    background-position: 0 -612px
+}
+.favicon-biologymeta {
+    background-position: 0 -630px
+}
+.favicon-bitcoin {
+    background-position: 0 -648px
+}
+.favicon-bitcoinmeta {
+    background-position: 0 -666px
+}
+.favicon-blender {
+    background-position: 0 -684px
+}
+.favicon-blendermeta {
+    background-position: 0 -702px
+}
+.favicon-boardgames {
+    background-position: 0 -720px
+}
+.favicon-boardgamesmeta {
+    background-position: 0 -738px
+}
+.favicon-br {
+    background-position: 0 -756px
+}
+.favicon-bricks {
+    background-position: 0 -774px
+}
+.favicon-bricksmeta {
+    background-position: 0 -792px
+}
+.favicon-brmeta {
+    background-position: 0 -810px
+}
+.favicon-buddhism {
+    background-position: 0 -828px
+}
+.favicon-buddhismmeta {
+    background-position: 0 -846px
+}
+.favicon-careers {
+    background-position: 0 -864px
+}
+.favicon-chemistry {
+    background-position: 0 -882px
+}
+.favicon-chemistrymeta {
+    background-position: 0 -900px
+}
+.favicon-chess {
+    background-position: 0 -918px
+}
+.favicon-chessmeta {
+    background-position: 0 -936px
+}
+.favicon-chinese {
+    background-position: 0 -954px
+}
+.favicon-chinesemeta {
+    background-position: 0 -972px
+}
+.favicon-christianity {
+    background-position: 0 -990px
+}
+.favicon-christianitymeta {
+    background-position: 0 -1008px
+}
+.favicon-civicrm {
+    background-position: 0 -1026px
+}
+.favicon-civicrmmeta {
+    background-position: 0 -1044px
+}
+.favicon-codegolf {
+    background-position: 0 -1062px
+}
+.favicon-codegolfmeta {
+    background-position: 0 -1080px
+}
+.favicon-codereview {
+    background-position: 0 -1098px
+}
+.favicon-codereviewmeta {
+    background-position: 0 -1116px
+}
+.favicon-coffee {
+    background-position: 0 -1134px
+}
+.favicon-coffeemeta {
+    background-position: 0 -1152px
+}
+.favicon-cogsci {
+    background-position: 0 -1170px
+}
+.favicon-cogscimeta {
+    background-position: 0 -1188px
+}
+.favicon-communitybuilding {
+    background-position: 0 -1206px
+}
+.favicon-communitybuildingmeta {
+    background-position: 0 -1224px
+}
+.favicon-computergraphics {
+    background-position: 0 -1242px
+}
+.favicon-computergraphicsmeta {
+    background-position: 0 -1260px
+}
+.favicon-cooking {
+    background-position: 0 -1278px
+}
+.favicon-cookingmeta {
+    background-position: 0 -1296px
+}
+.favicon-craftcms {
+    background-position: 0 -1314px
+}
+.favicon-craftcmsmeta {
+    background-position: 0 -1332px
+}
+.favicon-crafts {
+    background-position: 0 -1350px
+}
+.favicon-craftsmeta {
+    background-position: 0 -1368px
+}
+.favicon-crypto {
+    background-position: 0 -1386px
+}
+.favicon-cryptometa {
+    background-position: 0 -1404px
+}
+.favicon-cs {
+    background-position: 0 -1422px
+}
+.favicon-cs50 {
+    background-position: 0 -1440px
+}
+.favicon-cs50meta {
+    background-position: 0 -1458px
+}
+.favicon-cseducators {
+    background-position: 0 -1476px
+}
+.favicon-cseducatorsmeta {
+    background-position: 0 -1494px
+}
+.favicon-csmeta {
+    background-position: 0 -1512px
+}
+.favicon-cstheory {
+    background-position: 0 -1530px
+}
+.favicon-cstheorymeta {
+    background-position: 0 -1548px
+}
+.favicon-datascience {
+    background-position: 0 -1566px
+}
+.favicon-datasciencemeta {
+    background-position: 0 -1584px
+}
+.favicon-dba {
+    background-position: 0 -1602px
+}
+.favicon-dbameta {
+    background-position: 0 -1620px
+}
+.favicon-deepweb {
+    background-position: 0 -1638px
+}
+.favicon-deepwebmeta {
+    background-position: 0 -1656px
+}
+.favicon-devops {
+    background-position: 0 -1674px
+}
+.favicon-devopsmeta {
+    background-position: 0 -1692px
+}
+.favicon-diy {
+    background-position: 0 -1710px
+}
+.favicon-diymeta {
+    background-position: 0 -1728px
+}
+.favicon-docs-beta {
+    background-position: 0 -1746px
+}
+.favicon-drupal {
+    background-position: 0 -1764px
+}
+.favicon-drupalmeta {
+    background-position: 0 -1782px
+}
+.favicon-dsp {
+    background-position: 0 -1800px
+}
+.favicon-dspmeta {
+    background-position: 0 -1818px
+}
+.favicon-earthscience {
+    background-position: 0 -1836px
+}
+.favicon-earthsciencemeta {
+    background-position: 0 -1854px
+}
+.favicon-ebooks {
+    background-position: 0 -1872px
+}
+.favicon-ebooksmeta {
+    background-position: 0 -1890px
+}
+.favicon-economics {
+    background-position: 0 -1908px
+}
+.favicon-economicsmeta {
+    background-position: 0 -1926px
+}
+.favicon-edx-cs169-1x {
+    background-position: 0 -1944px
+}
+.favicon-edx-cs169-1xmeta {
+    background-position: 0 -1962px
+}
+.favicon-electronics {
+    background-position: 0 -1980px
+}
+.favicon-electronicsmeta {
+    background-position: 0 -1998px
+}
+.favicon-elementaryos {
+    background-position: 0 -2016px
+}
+.favicon-elementaryosmeta {
+    background-position: 0 -2034px
+}
+.favicon-ell {
+    background-position: 0 -2052px
+}
+.favicon-ellmeta {
+    background-position: 0 -2070px
+}
+.favicon-emacs {
+    background-position: 0 -2088px
+}
+.favicon-emacsmeta {
+    background-position: 0 -2106px
+}
+.favicon-embedded {
+    background-position: 0 -2124px
+}
+.favicon-embeddedmeta {
+    background-position: 0 -2142px
+}
+.favicon-engineering {
+    background-position: 0 -2160px
+}
+.favicon-engineeringmeta {
+    background-position: 0 -2178px
+}
+.favicon-english {
+    background-position: 0 -2196px
+}
+.favicon-englishmeta {
+    background-position: 0 -2214px
+}
+.favicon-es {
+    background-position: 0 -2232px
+}
+.favicon-esmeta {
+    background-position: 0 -2250px
+}
+.favicon-esperanto {
+    background-position: 0 -2268px
+}
+.favicon-esperantometa {
+    background-position: 0 -2286px
+}
+.favicon-ethereum {
+    background-position: 0 -2304px
+}
+.favicon-ethereummeta {
+    background-position: 0 -2322px
+}
+.favicon-expatriates {
+    background-position: 0 -2340px
+}
+.favicon-expatriatesmeta {
+    background-position: 0 -2358px
+}
+.favicon-expressionengine {
+    background-position: 0 -2376px
+}
+.favicon-expressionenginemeta {
+    background-position: 0 -2394px
+}
+.favicon-fitness {
+    background-position: 0 -2412px
+}
+.favicon-fitnessmeta {
+    background-position: 0 -2430px
+}
+.favicon-freelancing {
+    background-position: 0 -2448px
+}
+.favicon-freelancingmeta {
+    background-position: 0 -2466px
+}
+.favicon-french {
+    background-position: 0 -2484px
+}
+.favicon-frenchmeta {
+    background-position: 0 -2502px
+}
+.favicon-gamedev {
+    background-position: 0 -2520px
+}
+.favicon-gamedevmeta {
+    background-position: 0 -2538px
+}
+.favicon-gamification {
+    background-position: 0 -2556px
+}
+.favicon-gamificationmeta {
+    background-position: 0 -2574px
+}
+.favicon-gaming {
+    background-position: 0 -2592px
+}
+.favicon-gamingmeta {
+    background-position: 0 -2610px
+}
+.favicon-gardening {
+    background-position: 0 -2628px
+}
+.favicon-gardeningmeta {
+    background-position: 0 -2646px
+}
+.favicon-genealogy {
+    background-position: 0 -2664px
+}
+.favicon-genealogymeta {
+    background-position: 0 -2682px
+}
+.favicon-german {
+    background-position: 0 -2700px
+}
+.favicon-germanmeta {
+    background-position: 0 -2718px
+}
+.favicon-gis {
+    background-position: 0 -2736px
+}
+.favicon-gismeta {
+    background-position: 0 -2754px
+}
+.favicon-graphicdesign {
+    background-position: 0 -2772px
+}
+.favicon-graphicdesignmeta {
+    background-position: 0 -2790px
+}
+.favicon-ham {
+    background-position: 0 -2808px
+}
+.favicon-hammeta {
+    background-position: 0 -2826px
+}
+.favicon-hardwarerecs {
+    background-position: 0 -2844px
+}
+.favicon-hardwarerecsmeta {
+    background-position: 0 -2862px
+}
+.favicon-health {
+    background-position: 0 -2880px
+}
+.favicon-healthmeta {
+    background-position: 0 -2898px
+}
+.favicon-hermeneutics {
+    background-position: 0 -2916px
+}
+.favicon-hermeneuticsmeta {
+    background-position: 0 -2934px
+}
+.favicon-hinduism {
+    background-position: 0 -2952px
+}
+.favicon-hinduismmeta {
+    background-position: 0 -2970px
+}
+.favicon-history {
+    background-position: 0 -2988px
+}
+.favicon-historymeta {
+    background-position: 0 -3006px
+}
+.favicon-homebrew {
+    background-position: 0 -3024px
+}
+.favicon-homebrewmeta {
+    background-position: 0 -3042px
+}
+.favicon-hsm {
+    background-position: 0 -3060px
+}
+.favicon-hsmmeta {
+    background-position: 0 -3078px
+}
+.favicon-i2p {
+    background-position: 0 -3096px
+}
+.favicon-i2pmeta {
+    background-position: 0 -3114px
+}
+.favicon-iot {
+    background-position: 0 -3132px
+}
+.favicon-iotmeta {
+    background-position: 0 -3150px
+}
+.favicon-islam {
+    background-position: 0 -3168px
+}
+.favicon-islammeta {
+    background-position: 0 -3186px
+}
+.favicon-italian {
+    background-position: 0 -3204px
+}
+.favicon-italianmeta {
+    background-position: 0 -3222px
+}
+.favicon-ja {
+    background-position: 0 -3240px
+}
+.favicon-jameta {
+    background-position: 0 -3258px
+}
+.favicon-japanese {
+    background-position: 0 -3276px
+}
+.favicon-japanesemeta {
+    background-position: 0 -3294px
+}
+.favicon-joomla {
+    background-position: 0 -3312px
+}
+.favicon-joomlameta {
+    background-position: 0 -3330px
+}
+.favicon-judaism {
+    background-position: 0 -3348px
+}
+.favicon-judaismmeta {
+    background-position: 0 -3366px
+}
+.favicon-korean {
+    background-position: 0 -3384px
+}
+.favicon-koreanmeta {
+    background-position: 0 -3402px
+}
+.favicon-languagelearning {
+    background-position: 0 -3420px
+}
+.favicon-languagelearningmeta {
+    background-position: 0 -3438px
+}
+.favicon-latin {
+    background-position: 0 -3456px
+}
+.favicon-latinmeta {
+    background-position: 0 -3474px
+}
+.favicon-law {
+    background-position: 0 -3492px
+}
+.favicon-lawmeta {
+    background-position: 0 -3510px
+}
+.favicon-lifehacks {
+    background-position: 0 -3528px
+}
+.favicon-lifehacksmeta {
+    background-position: 0 -3546px
+}
+.favicon-linguistics {
+    background-position: 0 -3564px
+}
+.favicon-linguisticsmeta {
+    background-position: 0 -3582px
+}
+.favicon-literature {
+    background-position: 0 -3600px
+}
+.favicon-literaturemeta {
+    background-position: 0 -3618px
+}
+.favicon-magento {
+    background-position: 0 -3636px
+}
+.favicon-magentometa {
+    background-position: 0 -3654px
+}
+.favicon-martialarts {
+    background-position: 0 -3672px
+}
+.favicon-martialartsmeta {
+    background-position: 0 -3690px
+}
+.favicon-math {
+    background-position: 0 -3708px
+}
+.favicon-matheducators {
+    background-position: 0 -3726px
+}
+.favicon-matheducatorsmeta {
+    background-position: 0 -3744px
+}
+.favicon-mathematica {
+    background-position: 0 -3762px
+}
+.favicon-mathematicameta {
+    background-position: 0 -3780px
+}
+.favicon-mathmeta {
+    background-position: 0 -3798px
+}
+.favicon-mathoverflow {
+    background-position: 0 -3816px
+}
+.favicon-mathoverflowmeta {
+    background-position: 0 -3834px
+}
+.favicon-mechanics {
+    background-position: 0 -3852px
+}
+.favicon-mechanicsmeta {
+    background-position: 0 -3870px
+}
+.favicon-moderators {
+    background-position: 0 -3888px
+}
+.favicon-moderatorsmeta {
+    background-position: 0 -3906px
+}
+.favicon-monero {
+    background-position: 0 -3924px
+}
+.favicon-monerometa {
+    background-position: 0 -3942px
+}
+.favicon-money {
+    background-position: 0 -3960px
+}
+.favicon-moneymeta {
+    background-position: 0 -3978px
+}
+.favicon-movies {
+    background-position: 0 -3996px
+}
+.favicon-moviesmeta {
+    background-position: 0 -4014px
+}
+.favicon-music {
+    background-position: 0 -4032px
+}
+.favicon-musicfans {
+    background-position: 0 -4050px
+}
+.favicon-musicfansmeta {
+    background-position: 0 -4068px
+}
+.favicon-musicmeta {
+    background-position: 0 -4086px
+}
+.favicon-mythology {
+    background-position: 0 -4104px
+}
+.favicon-mythologymeta {
+    background-position: 0 -4122px
+}
+.favicon-networkengineering {
+    background-position: 0 -4140px
+}
+.favicon-networkengineeringmeta {
+    background-position: 0 -4158px
+}
+.favicon-opendata {
+    background-position: 0 -4176px
+}
+.favicon-opendatameta {
+    background-position: 0 -4194px
+}
+.favicon-openscience {
+    background-position: 0 -4212px
+}
+.favicon-opensciencemeta {
+    background-position: 0 -4230px
+}
+.favicon-opensource {
+    background-position: 0 -4248px
+}
+.favicon-opensourcemeta {
+    background-position: 0 -4266px
+}
+.favicon-outdoors {
+    background-position: 0 -4284px
+}
+.favicon-outdoorsmeta {
+    background-position: 0 -4302px
+}
+.favicon-parenting {
+    background-position: 0 -4320px
+}
+.favicon-parentingmeta {
+    background-position: 0 -4338px
+}
+.favicon-patents {
+    background-position: 0 -4356px
+}
+.favicon-patentsmeta {
+    background-position: 0 -4374px
+}
+.favicon-pets {
+    background-position: 0 -4392px
+}
+.favicon-petsmeta {
+    background-position: 0 -4410px
+}
+.favicon-philosophy {
+    background-position: 0 -4428px
+}
+.favicon-philosophymeta {
+    background-position: 0 -4446px
+}
+.favicon-photo {
+    background-position: 0 -4464px
+}
+.favicon-photometa {
+    background-position: 0 -4482px
+}
+.favicon-physics {
+    background-position: 0 -4500px
+}
+.favicon-physicsmeta {
+    background-position: 0 -4518px
+}
+.favicon-pm {
+    background-position: 0 -4536px
+}
+.favicon-pmmeta {
+    background-position: 0 -4554px
+}
+.favicon-poker {
+    background-position: 0 -4572px
+}
+.favicon-pokermeta {
+    background-position: 0 -4590px
+}
+.favicon-politics {
+    background-position: 0 -4608px
+}
+.favicon-politicsmeta {
+    background-position: 0 -4626px
+}
+.favicon-portuguese {
+    background-position: 0 -4644px
+}
+.favicon-portuguesemeta {
+    background-position: 0 -4662px
+}
+.favicon-productivity {
+    background-position: 0 -4680px
+}
+.favicon-productivitymeta {
+    background-position: 0 -4698px
+}
+.favicon-puzzling {
+    background-position: 0 -4716px
+}
+.favicon-puzzlingmeta {
+    background-position: 0 -4734px
+}
+.favicon-quant {
+    background-position: 0 -4752px
+}
+.favicon-quantmeta {
+    background-position: 0 -4770px
+}
+.favicon-raspberrypi {
+    background-position: 0 -4788px
+}
+.favicon-raspberrypimeta {
+    background-position: 0 -4806px
+}
+.favicon-retrocomputing {
+    background-position: 0 -4824px
+}
+.favicon-retrocomputingmeta {
+    background-position: 0 -4842px
+}
+.favicon-reverseengineering {
+    background-position: 0 -4860px
+}
+.favicon-reverseengineeringmeta {
+    background-position: 0 -4878px
+}
+.favicon-robotics {
+    background-position: 0 -4896px
+}
+.favicon-roboticsmeta {
+    background-position: 0 -4914px
+}
+.favicon-rpg {
+    background-position: 0 -4932px
+}
+.favicon-rpgmeta {
+    background-position: 0 -4950px
+}
+.favicon-ru {
+    background-position: 0 -4968px
+}
+.favicon-rumeta {
+    background-position: 0 -4986px
+}
+.favicon-rus {
+    background-position: 0 -5004px
+}
+.favicon-rusmeta {
+    background-position: 0 -5022px
+}
+.favicon-russian {
+    background-position: 0 -5040px
+}
+.favicon-russianmeta {
+    background-position: 0 -5058px
+}
+.favicon-salesforce {
+    background-position: 0 -5076px
+}
+.favicon-salesforcemeta {
+    background-position: 0 -5094px
+}
+.favicon-scicomp {
+    background-position: 0 -5112px
+}
+.favicon-scicompmeta {
+    background-position: 0 -5130px
+}
+.favicon-scifi {
+    background-position: 0 -5148px
+}
+.favicon-scifimeta {
+    background-position: 0 -5166px
+}
+.favicon-security {
+    background-position: 0 -5184px
+}
+.favicon-securitymeta {
+    background-position: 0 -5202px
+}
+.favicon-serverfault {
+    background-position: 0 -5220px
+}
+.favicon-serverfaultmeta {
+    background-position: 0 -5238px
+}
+.favicon-sexuality {
+    background-position: 0 -5256px
+}
+.favicon-sexualitymeta {
+    background-position: 0 -5274px
+}
+.favicon-sharepoint {
+    background-position: 0 -5292px
+}
+.favicon-sharepointmeta {
+    background-position: 0 -5310px
+}
+.favicon-sitecore {
+    background-position: 0 -5328px
+}
+.favicon-sitecoremeta {
+    background-position: 0 -5346px
+}
+.favicon-skeptics {
+    background-position: 0 -5364px
+}
+.favicon-skepticsmeta {
+    background-position: 0 -5382px
+}
+.favicon-softwareengineering {
+    background-position: 0 -5400px
+}
+.favicon-softwareengineeringmeta {
+    background-position: 0 -5418px
+}
+.favicon-softwarerecs {
+    background-position: 0 -5436px
+}
+.favicon-softwarerecsmeta {
+    background-position: 0 -5454px
+}
+.favicon-sound {
+    background-position: 0 -5472px
+}
+.favicon-soundmeta {
+    background-position: 0 -5490px
+}
+.favicon-space {
+    background-position: 0 -5508px
+}
+.favicon-spacemeta {
+    background-position: 0 -5526px
+}
+.favicon-spanish {
+    background-position: 0 -5544px
+}
+.favicon-spanishmeta {
+    background-position: 0 -5562px
+}
+.favicon-sports {
+    background-position: 0 -5580px
+}
+.favicon-sportsmeta {
+    background-position: 0 -5598px
+}
+.favicon-sqa {
+    background-position: 0 -5616px
+}
+.favicon-sqameta {
+    background-position: 0 -5634px
+}
+.favicon-stackapps {
+    background-position: 0 -5652px
+}
+.favicon-stackexchange {
+    background-position: 0 -5670px
+}
+.favicon-stackexchangemeta {
+    background-position: 0 -5688px
+}
+.favicon-stackoverflow {
+    background-position: 0 -5706px
+}
+.favicon-stackoverflowmeta {
+    background-position: 0 -5724px
+}
+.favicon-stackoverflowstaging {
+    background-position: 0 -5742px
+}
+.favicon-startups {
+    background-position: 0 -5760px
+}
+.favicon-startupsmeta {
+    background-position: 0 -5778px
+}
+.favicon-stats {
+    background-position: 0 -5796px
+}
+.favicon-statsmeta {
+    background-position: 0 -5814px
+}
+.favicon-superuser {
+    background-position: 0 -5832px
+}
+.favicon-superusermeta {
+    background-position: 0 -5850px
+}
+.favicon-sustainability {
+    background-position: 0 -5868px
+}
+.favicon-sustainabilitymeta {
+    background-position: 0 -5886px
+}
+.favicon-tex {
+    background-position: 0 -5904px
+}
+.favicon-texmeta {
+    background-position: 0 -5922px
+}
+.favicon-tor {
+    background-position: 0 -5940px
+}
+.favicon-tormeta {
+    background-position: 0 -5958px
+}
+.favicon-travel {
+    background-position: 0 -5976px
+}
+.favicon-travelmeta {
+    background-position: 0 -5994px
+}
+.favicon-tridion {
+    background-position: 0 -6012px
+}
+.favicon-tridionmeta {
+    background-position: 0 -6030px
+}
+.favicon-ukrainian {
+    background-position: 0 -6048px
+}
+.favicon-ukrainianmeta {
+    background-position: 0 -6066px
+}
+.favicon-unix {
+    background-position: 0 -6084px
+}
+.favicon-unixmeta {
+    background-position: 0 -6102px
+}
+.favicon-ux {
+    background-position: 0 -6120px
+}
+.favicon-uxmeta {
+    background-position: 0 -6138px
+}
+.favicon-vegetarianism {
+    background-position: 0 -6156px
+}
+.favicon-vegetarianismmeta {
+    background-position: 0 -6174px
+}
+.favicon-vi {
+    background-position: 0 -6192px
+}
+.favicon-video {
+    background-position: 0 -6210px
+}
+.favicon-videometa {
+    background-position: 0 -6228px
+}
+.favicon-vimeta {
+    background-position: 0 -6246px
+}
+.favicon-webapps {
+    background-position: 0 -6264px
+}
+.favicon-webappsmeta {
+    background-position: 0 -6282px
+}
+.favicon-webmasters {
+    background-position: 0 -6300px
+}
+.favicon-webmastersmeta {
+    background-position: 0 -6318px
+}
+.favicon-windowsphone {
+    background-position: 0 -6336px
+}
+.favicon-windowsphonemeta {
+    background-position: 0 -6354px
+}
+.favicon-woodworking {
+    background-position: 0 -6372px
+}
+.favicon-woodworkingmeta {
+    background-position: 0 -6390px
+}
+.favicon-wordpress {
+    background-position: 0 -6408px
+}
+.favicon-wordpressmeta {
+    background-position: 0 -6426px
+}
+.favicon-workplace {
+    background-position: 0 -6444px
+}
+.favicon-workplacemeta {
+    background-position: 0 -6462px
+}
+.favicon-worldbuilding {
+    background-position: 0 -6480px
+}
+.favicon-worldbuildingmeta {
+    background-position: 0 -6498px
+}
+.favicon-writers {
+    background-position: 0 -6516px
+}
+.favicon-writersmeta {
+    background-position: 0 -6534px
+}
+.svg-icon {
+    vertical-align: bottom
+}
+
+.layout__sidebar h4 {
+    color: #242729;
+    font-size: 18px;
+    font-weight: 400
+}
+.layout__sidebar .related,
+.layout__sidebar .linked {
+    font-size: 13px
+}
+.layout__sidebar .related a,
+.layout__sidebar .linked a {
+    font-size: 13px
+}
+.layout__sidebar .aside-cta {
+    margin-bottom: 1em;
+    text-align: right
+}
+.layout__sidebar #questions-count {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between
+}
+.layout__sidebar #questions-count .-main-cta {
+    padding-left: 20px
+}
+.layout__sidebar #questions-count .-main-cta .btn {
+    white-space: nowrap
+}
+
+.show-votes .sidebar-linked .spacer, .show-votes .sidebar-related .spacer {
+    margin-bottom: 12px;
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+}
+.show-votes .sidebar-linked .spacer>a:first-child .answer-votes.answered-accepted, .show-votes .sidebar-related .spacer>a:first-child .answer-votes.answered-accepted {
+    color: #FFF;
+    background-color: #5fba7d;
+}
+.module .spacer {
+    margin-bottom: 8px;
+}
+div.clc-jobs-multi>a.top {
+    width: 100%;
+    line-height: 45px;
+    display: block;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    line-height: 42px;
+    text-decoration: none;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap:first-child {
+    border-top: none;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap {
+    overflow: hidden;
+    margin: 0;
+    padding: 6px 12px;
+    position: relative;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap .title {
+    font-weight: 700;
+    font-size: 13px;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    color: #07c;
+    padding-right: 12px;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap div {
+    margin: 3px 0;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap .company {
+    font-weight: 700;
+    color: #848a91;
+    margin-right: 7px;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap .location {
+    color: #848a91;
+    font-style: italic;
+    display: inline-block;
+    position: relative;
+    padding-left: 16px;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap .opts {
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap div {
+    margin: 3px 0;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap .opts .salary {
+    font-weight: 700;
+    font-size: 11px;
+    color: #64a05e;
+    white-space: nowrap;
+    padding-left: 0;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap .opts span {
+    background-repeat: no-repeat;
+    font-weight: 700;
+    position: relative;
+    padding-left: 16px;
+    margin-right: 7px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap .opts .remote {
+    color: #dbb027;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap .opts span {
+    background-repeat: no-repeat;
+    font-weight: 700;
+    position: relative;
+    padding-left: 16px;
+    margin-right: 7px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap span.post-tag {
+    text-align: center;
+    color: #39739d;
+    background-color: #e1ecf4;
+    padding: .25em .5em;
+    margin: 0 2px 2px 0;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: nowrap;
+    display: inline-block;
+    border-radius: 0;
+    border: 1px solid #e1ecf4;
+    float: none;
+    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+}
+
+.post-tag, .geo-tag, .container .chosen-choices .search-choice, .container .chosen-container-multi .chosen-choices li.search-choice {
+    font-size: 12px;
+}
+
+.post-tag, .geo-tag, .container .chosen-choices .search-choice, .container .chosen-container-multi .chosen-choices li.search-choice {
+    color: #39739d;
+    background-color: #E1ECF4;
+    border-color: transparent;
+}
+
+.post-tag, .moderator-tag, .required-tag, .disliked-tag, .favorite-tag, .company-tag, .geo-tag, .geo-tag, .container .chosen-choices .search-choice, .container .chosen-container-multi .chosen-choices li.search-choice {
+    position: relative;
+    display: inline-block;
+    padding: .4em .5em;
+    margin: 2px 2px 2px 0;
+    font-size: 15px;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0;
+    transition: all .15s ease-in-out;
+}
+
+div.clc-jobs-multi.tagged {
+    line-height: 140%;
+}
+
+div.clc-jobs-multi.blue {
+    background-color: #07c;
+    background-position: center 3px;
+}
+
+div.clc-jobs-multi.blue, div.clc-jobs-multi.orange {
+    background-image: none!important;
+}
+
+div.clc-jobs-multi {
+    color: #333;
+    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    font-size: 12px;
+    text-align: left;
+    line-height: 130%;
+    padding: 2px;
+    margin: 12px 0 1.5em;
+    clear: both;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    box-sizing: border-box;
+}
+
+
+.tagged {
+    margin-top: 5px;
+}
+div.clc-jobs-multi>.middle>ul .job-wrap:first-child {
+    border-top: none;
+}
+
+div.clc-jobs-multi>.middle>ul .job-wrap {
+    overflow: hidden;
+    margin: 0;
+    padding: 6px 12px;
+    position: relative;
+}
+
+div.clc-jobs-multi>.middle {
+    background: #fff;
+}
+div.clc-jobs-multi>.middle>ul .clc-dismiss {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    cursor: pointer;
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    display: block;
+    background-color: #fff;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMy42IDEzLjYiPjxwYXRoIGZpbGw9IiM2QTcxNzciIGQ9Ik0xMS40IDIuM0M4LjktLjIgNC44LS4yIDIuMyAyLjNzLTIuNSA2LjYgMCA5LjEgNi42IDIuNSA5LjEgMCAyLjUtNi42IDAtOS4xek04LjYgOS41TDYuOCA3LjcgNSA5LjVsLS45LS45IDEuOC0xLjhMNC4xIDVsLjktLjkgMS44IDEuOCAxLjgtMS44LjkuOS0xLjggMS44IDEuOCAxLjgtLjkuOXoiLz48L3N2Zz4=);
+    border-radius: 8px;
+}
+
+div.clc-jobs-multi>.middle>ul>li:first-child {
+    border-top: none;
+}
+
+div.clc-jobs-multi>.middle>ul>li {
+    border-top: 1px solid #eff0f1;
+    position: relative;
+}
+
+div.clc-jobs-multi .clc-tooltip.above-left {
+    right: 0;
+    transform: translateY(-100%);
+    top: -5px;
+}
+
+div.clc-jobs-multi .clc-tooltip {
+    display: inline-block;
+    position: absolute;
+    background-color: #52575c;
+    color: #fff;
+    border-radius: 2px;
+    padding: 3px 5px;
+    visibility: hidden;
+    white-space: nowrap;
+    cursor: default;
+}
+.svgIcon {
+    fill: #02b875;
+}
+
+

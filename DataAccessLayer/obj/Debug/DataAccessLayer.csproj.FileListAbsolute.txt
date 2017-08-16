@@ -1,0 +1,12 @@
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\DataAccessLayer.dll.config
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\EntityFramework.dll
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\WCF.BussinessObject.dll
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\WCF.BussinessObject.pdb
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\EntityFramework.xml
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+E:\HPT\imic\web\WEB_QLGD01_SVN\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

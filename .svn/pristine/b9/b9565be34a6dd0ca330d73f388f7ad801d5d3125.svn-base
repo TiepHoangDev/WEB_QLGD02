@@ -1,0 +1,79 @@
+﻿@model WCF.BussinessObject.Objects.ExpertsDetailtObjects
+@using WCF.BussinessObject.Objects
+@using WCF.BussinessController.BCL
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var lstCourse = new CoursesBCL().GetAll();
+    var lstExpert = new ExpertsBCL().GetAll();
+
+    var selectCourse = new List<SelectListItem>();
+    var selectExpert = new List<SelectListItem>();
+
+    foreach (var item in lstCourse)
+    {
+        selectCourse.Add(new SelectListItem()
+        {
+            Text = item.CourseId.ToString() + " - " + item.CourseName,
+            Value = item.CoId.ToString()
+        });
+    }
+
+    foreach (var item in lstExpert)
+    {
+        selectExpert.Add(new SelectListItem()
+        {
+            Text = item.FullName,
+            Value = item.ExpertId.ToString()
+        });
+    }
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ExpertsDetailtObjects</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ExpertId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ExpertId, selectExpert, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ExpertId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CoId, selectCourse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,18 @@
+﻿@model  WCF.BussinessObject.Objects.PermisstionObject
+
+@using (Html.BeginForm("Edit", "Permission"))
+{
+    @Html.HiddenFor(q => q.PerID);
+    @Html.HiddenFor(q => q.UserId);
+    @Html.HiddenFor(q => q.FeaId);
+    <td>@Model.AccountJoin.FullName</td>
+    <td>@Model.FeaId - @Model.FeaJoin.FeaName</td>
+    <td>@Html.CheckBoxFor(q => q.F_SEARCH)</td>
+    <td>@Html.CheckBoxFor(q => q.F_ADD)</td>
+    <td>@Html.CheckBoxFor(q => q.F_EDIT)</td>
+    <td>@Html.CheckBoxFor(q => q.F_DELETE)</td>
+    <td>
+        <input type="submit" name="submit_@Model.PerID" value="Save" class="btn btn-default" />
+        <span class="btn btn-warning btn-delete" data-toggle="modal" data-target="#myModal" data-value="@Model.PerID">Xóa</span>
+    </td>
+}

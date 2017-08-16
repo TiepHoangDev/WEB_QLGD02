@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-190.579726%" y1="255.006285%" x2="50%" y2="44.6976422%" id="linearGradient-1">
+            <stop stop-color="#2DD7C9" offset="0%"></stop>
+            <stop stop-color="#1B80AA" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="64.9819942%" x2="94.7726801%" y2="2.21049749%" id="linearGradient-2">
+            <stop stop-color="#42D9CC" offset="0%"></stop>
+            <stop stop-color="#32F3B4" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="LOGO" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+            <g id="Group-2" transform="translate(0.000000, 2.000000)">
+                <g id="Group-Copy-3" transform="translate(39.071345, 22.916667) scale(1, -1) translate(-39.071345, -22.916667) translate(28.299999, 0.000000)">
+                    <path d="M2.76977475,12.4672378 C2.76977475,10.8447454 3.94308083,8.94322575 5.39754197,8.21652011 L21.5263227,0.157950848 L21.5263227,27.2482752 L5.39754197,35.3068445 C3.94626621,36.0319586 2.76977475,35.3131571 2.76977475,33.6819972 L2.76977475,12.4672378 Z" id="Rectangle-Copy-4" fill="url(#linearGradient-1)" transform="translate(12.148049, 17.848480) scale(1, -1) translate(-12.148049, -17.848480) "></path>
+                    <path d="M0,22.6036102 C0,20.9811178 1.17263569,19.0547795 2.60729445,18.3071938 L21.5263227,8.44868568 L21.5263227,35.5390101 L2.60729445,45.3975182 C1.16732549,46.147871 0,45.4495295 0,43.8183696 L0,22.6036102 Z" id="Rectangle-Copy-5" fill="url(#linearGradient-2)"></path>
+                </g>
+                <g id="Group-Copy" transform="translate(10.843373, 22.916667) scale(-1, 1) translate(-10.843373, -22.916667) ">
+                    <path d="M2.76977475,12.4672378 C2.76977475,10.8447454 3.94308083,8.94322575 5.39754197,8.21652011 L21.5263227,0.157950848 L21.5263227,27.2482752 L5.39754197,35.3068445 C3.94626621,36.0319586 2.76977475,35.3131571 2.76977475,33.6819972 L2.76977475,12.4672378 Z" id="Rectangle-Copy-4" fill="url(#linearGradient-1)" transform="translate(12.148049, 17.848480) scale(1, -1) translate(-12.148049, -17.848480) "></path>
+                    <path d="M0,22.6036102 C0,20.9811178 1.17263569,19.0547795 2.60729445,18.3071938 L21.5263227,8.44868568 L21.5263227,35.5390101 L2.60729445,45.3975182 C1.16732549,46.147871 0,45.4495295 0,43.8183696 L0,22.6036102 Z" id="Rectangle-Copy-5" fill="url(#linearGradient-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

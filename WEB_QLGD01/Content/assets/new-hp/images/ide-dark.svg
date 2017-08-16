@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1092px" height="716px" viewBox="0 0 1092 716" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>ide-dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.400000006">
+        <g id="ide-dark" transform="translate(1.000000, 1.000000)">
+            <rect id="Path" stroke="#807D83" stroke-linecap="round" x="0" y="0" width="1090" height="714" rx="10"></rect>
+            <path d="M0,10.0028507 C0,4.47842881 4.47771535,0 10.0094102,0 L1079.99059,0 C1085.51863,0 1090,4.48711164 1090,10.0028507 L1090,47.9248228 L235.304395,47.9248228 L235.304395,31.6237803 C235.304395,29.970449 233.957053,28.6301592 232.308934,28.6301592 L160.674011,28.6301592 C159.019663,28.6301592 157.67855,29.9716036 157.67855,31.6237803 L157.67855,47.9248228 L0,47.9248228 L0,10.0028507 Z" id="Rectangle-9-Copy" stroke="#807D83"></path>
+            <path d="M165.384262,123.5 L298.500019,123.5" id="Path-9" stroke="#807D83" stroke-linecap="round"></path>
+            <path d="M185.384262,143.5 L337.049577,143.5" id="Path-9-Copy" stroke="#B54A91" stroke-linecap="round"></path>
+            <path d="M205.384262,163.5 L337.049577,163.5" id="Path-9-Copy-12" stroke="#2796DB" stroke-linecap="round"></path>
+            <path d="M195,186.941155 L272.926125,186.941155" id="Path-9-Copy-3" stroke="#EBB430" stroke-linecap="round"></path>
+            <path d="M165,238.5 L211.701549,238.5" id="Path-9-Copy-2" stroke="#807D83" stroke-linecap="round"></path>
+            <circle id="Oval-4" stroke="#807D83" stroke-width="0.82944" cx="23" cy="24" r="5"></circle>
+            <circle id="Oval-4-Copy" stroke="#807D83" stroke-width="0.82944" cx="41.1167204" cy="24" r="5"></circle>
+            <circle id="Oval-4-Copy-2" stroke="#807D83" stroke-width="0.82944" cx="59.2334407" cy="24" r="5"></circle>
+            <path d="M120,62.9569997 L120,688.365867" id="Path-5" stroke="#807D83"></path>
+            <path d="M1035.5,62.0059604 L1035.5,687.414828" id="Path-5-Copy-6" stroke="#807D83"></path>
+            <rect id="Rectangle-4" stroke="#807D83" fill="#FFFFFF" x="115.789474" y="95.0951276" width="8.27067669" height="8.26914153" rx="1"></rect>
+            <path d="M115.789474,125.039126 C115.789474,124.485735 116.234141,124.037123 116.787111,124.037123 L123.062514,124.037123 C123.613493,124.037123 124.06015,124.489258 124.06015,125.039126 L124.06015,130.928074 L119.901141,134.874266 L115.789474,130.928074 L115.789474,125.039126 Z" id="Rectangle-4-Copy" stroke="#807D83" fill="#FFFFFF" stroke-linejoin="round"></path>
+            <path d="M115.789474,280.774625 C115.789474,280.221234 116.234141,279.772622 116.787111,279.772622 L123.062514,279.772622 C123.613493,279.772622 124.06015,280.224756 124.06015,280.774625 L124.06015,286.663573 L119.901141,290.609765 L115.789474,286.663573 L115.789474,280.774625 Z" id="Rectangle-4-Copy-2" stroke="#807D83" fill="#FFFFFF" stroke-linejoin="round" transform="translate(119.924812, 285.191193) scale(1, -1) translate(-119.924812, -285.191193) "></path>
+            <path d="M19.8517237,78.5641251 L99.0309129,78.5641251" id="Path-5-Copy" stroke="#807D83" stroke-linecap="round"></path>
+            <path d="M19.8517237,106.12793 L99.0309129,106.12793" id="Path-5-Copy-2" stroke="#807D83" stroke-linecap="round"></path>
+            <path d="M40.5284155,133.691735 L99.0309129,133.691735" id="Path-5-Copy-3" stroke="#807D83" stroke-linecap="round"></path>
+            <path d="M40.5284155,161.25554 L99.0309129,161.25554" id="Path-5-Copy-4" stroke="#807D83" stroke-linecap="round"></path>
+            <path d="M40.5284155,188.819346 L99.0309129,188.819346" id="Path-5-Copy-5" stroke="#807D83" stroke-linecap="round"></path>
+            <g id="Group-31" transform="translate(1056.000000, 76.000000)" stroke="#807D83" stroke-linecap="round">
+                <path d="M0,1.5 L15,1.5" id="Path-5-Copy-11"></path>
+                <path d="M0,56.5 L15,56.5" id="Path-5-Copy-9"></path>
+                <path d="M0,84.5 L15,84.5" id="Path-5-Copy-8"></path>
+                <path d="M0,141.5 L15,141.5" id="Path-5-Copy-16"></path>
+                <path d="M0,196.5 L15,196.5" id="Path-5-Copy-14"></path>
+                <path d="M0,251.5 L15,251.5" id="Path-5-Copy-12"></path>
+            </g>
+        </g>
+    </g>
+</svg>

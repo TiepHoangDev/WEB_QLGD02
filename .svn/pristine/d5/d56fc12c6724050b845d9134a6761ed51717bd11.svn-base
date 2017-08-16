@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessController.BCL;
+using WCF.BussinessObject.Objects;
+using WEB_QLGD01.Models;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class AccountController : Controller
+    {
+        // GET: Account
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Edit()
+        {
+            return View(new Login().GetAccount());
+        }
+
+        [HttpPost]
+        public ActionResult Edit(AccountObject ob)
+        {
+            var acc = new Login().GetAccount();
+            if (acc.UserId == ob.UserId)
+            {
+                if (ModelState.IsValid)
+                {
+                    new AccountBCL().Update(ob);
+                    return RedirectToAction("Home", "Index");
+                }
+                else return View();
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+    }
+}

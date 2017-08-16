@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WCF.BussinessObject.Objects.RoleObject
+
+
+
+@using (Html.BeginForm("Edit", "Role", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="register-form" action="index.html" method="post">
+        <h3>Edit</h3>
+       
+         @Html.HiddenFor(q => q.RoleId)
+       
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Role Name</label>
+            <h4>&nbsp;RoleName</h4>
+            @Html.TextBoxFor(q => q.RName, new { @class = "form-control", @id = "RoleName", placeholder = "RoleName" })
+        </div>       
+
+     
+            <div class="form-actions">
+                @Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-default" })
+                <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Edit</button>
+            </div>
+        </div>
+}
+

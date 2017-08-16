@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.RoleObject>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table" id="lesson-category-table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.RName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isdeleted)
+        </th>
+       
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.RName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isdeleted)
+            </td>              
+            
+            
+            <td>
+                <a href="@Url.Action("Edit", "Account", new { Id = item.RoleId })" class="btn btn-info">Edit</a>
+                <a onclick="Delete('@item.RoleId','@item.RName',event)" class="btn btn-danger">Delete</a>
+
+
+            </td>
+        </tr>
+    }
+
+</table>

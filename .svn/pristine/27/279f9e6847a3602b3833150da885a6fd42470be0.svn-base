@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class MenuController : Controller
+    {
+        // GET: Menu
+        public ActionResult Redirect(string sAction, Models.eFea Fea)
+        {
+            var per = new Models.Permission();
+            string action = "", controller = "";
+            Models.eAction _acction = (Models.eAction)Enum.Parse(typeof(Models.eAction), sAction);
+            if (per.IsAllow(_acction, Fea))
+            {
+                switch (Fea)
+                {
+                    case WEB_QLGD01.Models.eFea.QLCG:
+                        controller = "Expert";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLCH:
+                        controller = "Shift";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLCTGV:
+                        controller = "ExpertDetail";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLCTHV:
+                        controller = "StudentDetail";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLCTLGD:
+                        controller = "SchdelerDetail";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLHV:
+                        controller = "Student";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLKH:
+                        controller = "Course";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLLGD:
+                        controller = "Home";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLNKGD:
+                        controller = "CourseJon";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLTTT:
+                        controller = "Weekday";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLTK:
+                        controller = "Account";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLPQ:
+                        controller = "Permission";
+                        break;
+                    case WEB_QLGD01.Models.eFea.QLVT:
+                        controller = "Role";
+                        break;
+                    default:
+                        controller = "Error";
+                        break;
+                }
+                switch (_acction)
+                {
+                    case WEB_QLGD01.Models.eAction.Delete:
+                        action = "Delete";
+                        break;
+                    case WEB_QLGD01.Models.eAction.Add:
+                        action = "Create";
+                        break;
+                    case WEB_QLGD01.Models.eAction.Edit:
+                        action = "Edit";
+                        break;
+                    case WEB_QLGD01.Models.eAction.Search:
+                        action = "Index";
+                        break;
+                    default:
+                        action = "Index";
+                        break;
+                }
+            }
+            return RedirectToAction(action, controller);
+        }
+    }
+}

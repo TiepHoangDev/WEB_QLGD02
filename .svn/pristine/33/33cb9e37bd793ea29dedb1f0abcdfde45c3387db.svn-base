@@ -1,0 +1,63 @@
+﻿@using WEB_QLGD01.Models;
+@{
+    var PerOfAcc = new Login().GetPermission();
+    var lstFea = new List<WCF.BussinessObject.Objects.FeaIdObject>();
+    bool isSA = PerOfAcc != null && PerOfAcc.GetRole() == eRole.SuperAdmin;
+    if (isSA)
+    {
+        lstFea = new WCF.BussinessController.BCL.FeaIdBCL().GetAll();
+    }
+    else if (PerOfAcc != null && PerOfAcc.Account != null)
+    {
+        lstFea = PerOfAcc.ListPermission.Select(q => q.FeaJoin).ToList();
+    }
+    int i = -1;
+    foreach (var item in lstFea)
+    {
+        if (item.FeaId.Trim().ToUpper().Equals("QLLGD"))
+        {
+            i = lstFea.IndexOf(item);
+            break;
+        }
+    }
+    if (i > -1)
+    {
+        var o = lstFea[i];
+        var k = lstFea[0];
+        lstFea[0] = o;
+        lstFea[i] = k;
+    }
+}
+<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    @if (PerOfAcc != null)
+    {
+        foreach (var item in lstFea)
+        {
+            <li>
+                <a href="javascript:;">
+                    <i class="icon-docs"></i>
+                    <span class="title">@item.FeaName.Replace("Quản Lý", "")</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    @if (isSA || PerOfAcc.ListPermission.Any(q => q.F_SEARCH == true))
+                    {
+                        <li>
+                            <a href="@Url.Action("Redirect", "Menu", new { sAction = WEB_QLGD01.Models.eAction.Search.ToString(), Fea = @item.FeaId })">
+                                <i class="icon-paper-plane"></i> Quản lý
+                            </a>
+                        </li>
+                    }
+                    @if (isSA || PerOfAcc.ListPermission.Any(q => q.F_ADD == true))
+                    {
+                        <li>
+                            <a href="@Url.Action("Redirect", "Menu", new { sAction = WEB_QLGD01.Models.eAction.Add.ToString(), Fea = @item.FeaId })">
+                                <i class="icon-paper-plane"></i> Thêm mới
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    }
+</ul>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@model WCF.BussinessObject.Objects.RoleObject
+
+@using (Html.BeginForm("Create", "Role", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="register-form" action="index.html" method="post">
+        
+        <p class="hint">
+            Enter your Role details below:
+        </p>
+
+
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Role Name</label>
+            @Html.TextBoxFor(q => q.RName, new { @class = "form-control", @id = "RoleName", placeholder = "RoleName" })
+        </div>       
+        
+        <div class="form-actions">
+            @Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-default" })
+            <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+        </div>
+    </div>
+}
+
