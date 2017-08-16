@@ -10,76 +10,94 @@ namespace WEB_QLGD01.Controllers
     public class CoursesStudentDetailtController : Controller
     {
         // GET: CoursesStudentDetailt
-        public ActionResult Index()
+        public ActionResult Index(Guid ID)
         {
-            var list = new CoursesStudentDetailtBCL().GetJoin();
-
+            var ob = new CoursesJournalBCL().GetByCJId(ID);
+            ob.CoursesJoin = new CoursesBCL().GetByCoId((Guid)ob.CoId);
+            ViewBag.CJ = ob;
+            var list = new CoursesStudentDetailtBCL().GetJoin().Where(q => q.CJId.Equals(ID)).ToList();
             return View(list);
         }
 
-        // GET: CoursesStudentDetailt/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Create(Guid ID)
         {
-            return View();
-        }
+            var ob = new CoursesJournalBCL().GetByCJId(ID);
+            ob.CoursesJoin = new CoursesBCL().GetByCoId((Guid)ob.CoId);
+            var dropStuden = new List<SelectListItem>();
+            var old = new CoursesStudentDetailtBCL().GetAll().Where(q => q.CJId == ob.CJId).ToList();
+            var all = new StudentDetailtBCL().GetJoin().Where(q => q.CoId == ob.CoId && !old.Any(x => x.StudetId == q.StudetId)).ToList();
+            foreach (var item in all)
+            {
+                dropStuden.Add(new SelectListItem()
+                {
+                    Text = item.StudentJoin.FullName,
+                    Value = item.StudetId.ToString()
+                });
+            }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-            List<StudentObjects> LisStudent = new StudentBCL().GetAll();
-            /*FeaIdObject objFeat = LisFeat.Single(x => x.FeaId.Equals(0));
-            LisFeat.Remove(objFeat);*/
-            ViewBag.ListStudent = LisStudent;
+            ViewBag.CJ = ob;
+            ViewBag.dropStuden = dropStuden;
 
-            List<CoursesStudentDetailtObject> lisCoursesStudent = new CoursesStudentDetailtBCL().GetAll();
-            /* AccountObject objAccount = lisFeat.Single(x => x.FeaId.Equals(0));
-             lisFeat.Remove(objFeat);*/
-            ViewBag.ListCoursesStudent = lisCoursesStudent;
-            return View();
+            return View(new CoursesStudentDetailtObject() { CJId = ob.CJId });
 
         }
 
         [HttpPost]
         public ActionResult Create(CoursesStudentDetailtObject obj)
         {
-            CoursesStudentDetailtObject objCoS = new CoursesStudentDetailtObject();
-            objCoS.ScsId= Guid.NewGuid();
-            /*HttpPostedFileBase file = Request.Files[0];
-            if (file.ContentLength > 0 && file.ContentType.Contains("image"))
+            try
             {
-                var fileName = DateTime.Now.ToString("ddMMyyyyhhMMss") + "-" + Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/Galleries/Lesson/Categories"), fileName);
-                file.SaveAs(path);
-                objLessonCategory.CategoryImage = fileName;
-            }*/
-            //objLessonCategory.ModifiedBy =Guid.Parse("5065268F-F180-4061-976E-BB74BAB0DC2E");
-            objCoS.StudetId = obj.StudetId;
-            objCoS.CJId = obj.CJId;
-            objCoS.Description = obj.Description;
-            new CoursesStudentDetailtBCL().Insert(objCoS);
-            return RedirectToAction("Create", "CoursesStudentDetailt");
+                obj.ScsId = Guid.NewGuid();
+                if (new CoursesStudentDetailtBCL().Insert(obj))
+                {
+                    return RedirectToAction("Index", new { ID = (Guid)obj.CJId });
+                }
+            }
+            catch
+            {
+            }
+            return View();
 
         }
-       
-        public ActionResult Edit(int id)
+
+        public ActionResult Edit(Guid ID)
         {
-            return View();
+            var ob = new CoursesStudentDetailtBCL().GetByScsId(ID);
+            ob.CoursesJournalJoin = new CoursesJournalBCL().GetByCJId((Guid)ob.CJId);
+            ob.CoursesJournalJoin.CoursesJoin = new CoursesBCL().GetByCoId((Guid)ob.CoursesJournalJoin.CoId);
+
+            var dropStuden = new List<SelectListItem>();
+            var old = new CoursesStudentDetailtBCL().GetAll().Where(q => q.CJId == ob.CJId).ToList();
+            var all = new StudentDetailtBCL().GetJoin().Where(q => q.CoId == ob.CoursesJournalJoin.CoId && (!old.Any(x => x.StudetId == q.StudetId) || q.StudetId == ob.StudetId)).ToList();
+            foreach (var item in all)
+            {
+                dropStuden.Add(new SelectListItem()
+                {
+                    Text = item.StudentJoin.FullName,
+                    Value = item.StudetId.ToString(),
+                    Selected = item.StudetId == ob.StudetId
+                });
+            }
+
+            ViewBag.CJ = ob;
+            ViewBag.dropStuden = dropStuden;
+            return View(ob);
         }
 
         // POST: CoursesStudentDetailt/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(CoursesStudentDetailtObject ob, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (new CoursesStudentDetailtBCL().Update(ob))
+                    return RedirectToAction("Index", new { ID = ob.CJId });
             }
             catch
             {
-                return View();
             }
+            return View(ob.ScsId);
         }
 
         // GET: CoursesStudentDetailt/Delete/5
@@ -87,9 +105,9 @@ namespace WEB_QLGD01.Controllers
 
         // POST: CoursesStudentDetailt/Delete/5
         [HttpPost]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(Guid ID)
         {
-            return Json(new CoursesStudentDetailtBCL().Delete(id));
+            return Json(new CoursesStudentDetailtBCL().Delete(ID));
         }
     }
 }

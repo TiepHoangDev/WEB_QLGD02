@@ -17,7 +17,7 @@ namespace DataAccessLayer.Dao
 
         public bool Update(AccountObject ob)
         {
-            if (GetAll().Find(q => q.Username.Trim().ToLower() == ob.Username) != null) return false;
+            if (GetAll().Find(q => q.Username.Trim().ToLower() == ob.Username && q.UserId != ob.UserId) != null) return false;
             var db = new eTrainingScheduleEntities();
             return db.sp_tbl_Account_UPDATE(ob.UserId, ob.FullName, ob.PassWord, ob.Username, ob.Email, ob.Phone, ob.Description, ob.Isdeleted, ob.RoleId) > 0;
         }

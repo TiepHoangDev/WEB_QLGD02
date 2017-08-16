@@ -49,6 +49,7 @@ namespace WEB_QLGD01.Controllers
        
         public ActionResult Edit(AccountObject obj)
         {
+            obj.Isdeleted = false;
             new AccountBCL().Update(obj);
             return RedirectToAction("Index", "Account");
         }

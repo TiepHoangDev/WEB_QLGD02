@@ -30,7 +30,7 @@ namespace WCF.BussinessController.BCL
             return new CoursesStudentDetailtDao().GetByScsId(ID);
         }
 
-        public CoursesStudentDetailtObject GetByCJId(Guid ID)
+        public List<CoursesStudentDetailtObject> GetByCJId(Guid ID)
         {
             return new CoursesStudentDetailtDao().GetByCJId(ID);
         }

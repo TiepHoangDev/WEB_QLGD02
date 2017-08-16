@@ -33,7 +33,6 @@ namespace WEB_QLGD01.Controllers
         [HttpPost]
         public ActionResult Create(CoursesJournalObjects objCJ)
         {
-
             var b = new CoursesJournalBCL().Insert(objCJ);
             if (b)
             {
@@ -47,32 +46,32 @@ namespace WEB_QLGD01.Controllers
         }
 
         // GET: CoursesJournal/Edit/5
-       /* public ActionResult Edit(Guid id)
-        {
-            var obj = new CoursesJournalBCL().GetByCJId(id);
-            //obj.CoursesJoin = new CoursesBCL().GetByCoId((Guid)obj.CoId);
+        /* public ActionResult Edit(Guid id)
+         {
+             var obj = new CoursesJournalBCL().GetByCJId(id);
+             //obj.CoursesJoin = new CoursesBCL().GetByCoId((Guid)obj.CoId);
 
             
 
-            return View(obj);
-        }
+             return View(obj);
+         }
 
-        // POST: CoursesJournal/Edit/5
-        [HttpPost]
-        public ActionResult Edit(CoursesJournalObjects objCJ)
-        {
-            var b = new CoursesJournalBCL().Update(objCJ);
-            if (b)
-            {
-                return RedirectToAction("Index", "CoursesJournal");
-            }
-            else
-            {
-                ModelState.AddModelError("", "them moi that bai");
-            }
-            return View();
-        }
-        */
+         // POST: CoursesJournal/Edit/5
+         [HttpPost]
+         public ActionResult Edit(CoursesJournalObjects objCJ)
+         {
+             var b = new CoursesJournalBCL().Update(objCJ);
+             if (b)
+             {
+                 return RedirectToAction("Index", "CoursesJournal");
+             }
+             else
+             {
+                 ModelState.AddModelError("", "them moi that bai");
+             }
+             return View();
+         }
+         */
 
 
         [HttpGet]
@@ -85,9 +84,9 @@ namespace WEB_QLGD01.Controllers
         }
         [HttpPost]
         public ActionResult Edit(CoursesJournalObjects model)
-        {           
-           var b= new CoursesJournalBCL().Update(model);
-            if(b)
+        {
+            var b = new CoursesJournalBCL().Update(model);
+            if (b)
             {
                 return RedirectToAction("Edit", "CoursesJournal");
             }
@@ -106,7 +105,7 @@ namespace WEB_QLGD01.Controllers
             return Json(new CoursesJournalBCL().Delete(ID));
         }
 
-       
-        
+
+
     }
 }

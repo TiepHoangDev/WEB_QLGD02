@@ -86,16 +86,18 @@ namespace DataAccessLayer.Dao
             return null;
         }
 
-        public CoursesStudentDetailtObject GetByCJId(Guid ID)
+        public List<CoursesStudentDetailtObject> GetByCJId(Guid CJId)
         {
+            List<CoursesStudentDetailtObject> lst = new List<CoursesStudentDetailtObject>();
             var db = new eTrainingScheduleEntities();
-            var list = db.sp_tbl_S07_CoursesStudentDetailt_GetByCJId(ID);
-            CoursesStudentDetailtObject obj = new CoursesStudentDetailtObject();
+            var list = db.sp_tbl_S07_CoursesStudentDetailt_GetByCJId(CJId);
             foreach (var item in list)
             {
-                obj.ScsId = item.ScsId; obj.StudetId = item.StudetId; obj.CJId = item.CJId; obj.Description = item.Description;
+                CoursesStudentDetailtObject ob = new CoursesStudentDetailtObject();
+                ob.ScsId = item.ScsId; ob.StudetId = item.StudetId; ob.CJId = item.CJId; ob.Description = item.Description;
+                lst.Add(ob);
             }
-            return obj;
+            return lst;
         }
 
         public CoursesStudentDetailtObject GetByStudetId(Guid ID)

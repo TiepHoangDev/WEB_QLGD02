@@ -6586,6 +6586,7 @@
     <Content Include="Views\StudentDetail\Index.cshtml" />
     <Content Include="Views\CoursesStudentDetailt\Index.cshtml" />
     <Content Include="Views\CoursesStudentDetailt\Create.cshtml" />
+    <Content Include="Views\CoursesStudentDetailt\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
