@@ -3,19 +3,34 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var obCJ = ViewBag.CJ as WCF.BussinessObject.Objects.CoursesJournalObjects;
+    WCF.BussinessObject.Objects.CoursesJournalObjects obCJ = ViewBag.CJ;
 }
 
 <!-- BEGIN EXAMPLE TABLE PORTLET-->
 <div class="portlet box blue-hoki">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-globe"></i>Danh sách học viên vắng mặt lớp @obCJ.CoursesJoin.CourseId - @obCJ.CoursesJoin.CourseName
+            <i class="fa fa-globe"></i>Danh sách học viên vắng mặt
+            @if (obCJ != null)
+            {
+                <span> Mã lớp: @obCJ.CoursesJoin.CourseId - Tên lớp: @obCJ.CoursesJoin.CourseName</span>
+            }
         </div>
         <div class="tools">
         </div>
     </div>
-    @Html.ActionLink("Create New", "Create", new { ID = obCJ.CJId }, new { @class = "btn btn-success" })
+    @if (obCJ != null)
+    {
+        <div>@Html.ActionLink("Create New", "Create", new { ID = obCJ.CJId }, new { @class = "btn btn-success", style = "margin-left: 23px" })</div>
+    }
+
+    @using (Html.BeginForm())
+    {
+        <div class="row" style="color: white; margin: 9px">
+            <span class="col-md-8">Chọn một nhật kí: @Html.DropDownList("sCJ", (List<SelectListItem>)ViewBag.dropCJ, new { @class = "form-control" })</span>
+            <input type="submit" name="submit" value="Load" class="btn btn-success" style="margin-top: 18px" />
+        </div>
+    }
     <div class="portlet-body">
         <table class="table table-striped table-bordered table-hover" id="sample_1">
             <thead>
@@ -35,7 +50,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Description)
                     </th>
-                    <th></th>
+                    <th>
+                        Thao tác
+                    </th>
                 </tr>
 
             </thead>
@@ -47,13 +64,13 @@
                             @Html.DisplayFor(modelItem => item.StudentJoin.FullName)
                         </td>
                         <td>
-                            @obCJ.CoursesJoin.CourseId - @obCJ.CoursesJoin.CourseName
+                            @item.CoursesJournalJoin.CoursesJoin.CourseId - @item.CoursesJournalJoin.CoursesJoin.CourseName
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CoursesJournalJoin.Contents)
                         </td>
                         <td>
-                            @(((DateTime)obCJ.DayOf).ToString("d"))
+                            @(item.CoursesJournalJoin.DayOf.Value.ToString("d"))
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Description)

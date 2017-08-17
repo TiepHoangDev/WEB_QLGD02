@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    th, td {
+        max-width: 200px ;
+        overflow: auto ;
+        text-align: center;
+    }
+</style>
+
 <!-- BEGIN EXAMPLE TABLE PORTLET-->
 <div class="portlet box blue-hoki">
     <div class="portlet-title">
@@ -52,7 +60,7 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            <a href="@Url.Action("Index", "CoursesStudentDetailt", new { ID = item.CJId })" class="btn btn-default">DSHV Nghỉ học</a>
+                            <a href="@Url.Action("Index", "CoursesStudentDetailt", new { ID = item.CJId })" class="btn btn-info">DSHV Vắng</a>
                             @Html.ActionLink("Edit", "Edit", "CoursesJournal", new { ID = item.CJId }, new { @class = "btn btn-default" })
                             <span class="btn btn-warning btn-delete" data-toggle="modal" data-target="#myModal" data-value="@item.CJId">Xóa</span>
                         </td>

@@ -14,7 +14,7 @@
         <h4>Thêm mới Học sinh nghỉ học lớp @obCJ.CoursesJoin.CourseId - @obCJ.CoursesJoin.CourseName thời gian @obCJ.DayOf</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(q=>q.CJId);
+        @Html.HiddenFor(q=>q.CJId)
 
         <div class="form-group">
             @Html.Label("Học sinh nghỉ học", htmlAttributes: new { @class = "control-label col-md-2" })
