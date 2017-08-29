@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessController.BCL;
+using WCF.BussinessObject.Objects;
+using WEB_QLGD01.Models;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class AccountController : Controller
+    {
+        // GET: Account
+        public ActionResult Index()
+        {
+            return View(new AccountBCL().GetJoin());
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            return View(new AccountBCL().GetByUserId(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(AccountObject ob)
+        {
+            try
+            {
+                new AccountBCL().Update(ob);
+                return RedirectToAction("Index");
+
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Sửa không thành công");
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Create(AccountObject obj)
+        {
+            try
+            {
+                obj.UserId = Guid.NewGuid();
+                obj.Isdeleted = false;
+                if (new AccountBCL().Insert(obj))
+                {
+                    return RedirectToAction("Index", "Account");
+                }
+                else ModelState.AddModelError("", "Thêm thất bại");
+            }
+            catch
+            {
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Guid id, FormCollection collection)
+        {
+            return Json(new AccountBCL().Delete(id));
+        }
+
+    }
+}

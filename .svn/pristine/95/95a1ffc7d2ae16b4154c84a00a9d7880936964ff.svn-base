@@ -1,0 +1,315 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.SchedulersObjects>
+@using WEB_QLGD01.Models
+@{
+    ViewBag.Title = "Home Page";
+    var listShift = new WCF.BussinessController.BCL.ShiftDayBCL().GetAll();
+    var listWeekday = new WEB_QLGD01.Models.Weekday().GetAll();
+}
+<link href="/Content/lich-giang-day.css" rel="stylesheet" />
+<style>
+    .ca-hoc-items {
+        width: @string.Format("{0}% !important", 100 / listWeekday.Count);
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Chi tiết</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <img src="~/Source/img/loading.gif" alt="Loading..." height="100" class="img-thumbnail imgLoadAjax" />
+                </p>
+                <div class="modal-body-contents">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+
+    function setModal(loadimg, header, body) {
+        if ($('#myModal')) {
+            let img = $('.imgLoadAjax');
+            if (img) {
+                if (loadimg) img.show();
+                else img.hide();
+            }
+
+            let mheader = $('#myModal .modal-title');
+            if (mheader) mheader.html(header);
+
+            let mbody = $('#myModal .modal-body-contents');
+            if (mbody) mbody.html(body);
+        }
+    }
+
+    var elementDelete;
+
+    $(function () {
+        $('.btn-ajax').click(function () {
+            debugger
+            let name = $(this).data('name');
+            let value = $(this).data('value');
+            if (name && value) {
+                if (name == "Delete") {
+                    if (confirm("Bạn có muốn xóa?") != true) return;
+                    else elementDelete = $(this);
+                }
+                $('#myModal').modal('show');
+                setModal(true, "Chi tiết", "Vui lòng chờ trong ít phút");
+                try {
+                    myAjax('@Url.Action("GetData","Home")', { n: name, v: value }, function (d) {
+                        let html = '';
+                        html += '<div class="center">';
+                        switch (name) {
+                            case "KhoaHoc":
+                                html += '<h4>Thông tin lớp </h4>';
+                                break;
+                            case "GiaoVien":
+                                html += '<h4>Danh sách giáo viên</h4>';
+                                break;
+                            case "Delete":
+                                html += '<h4>Xóa lịch học</h4>';
+                                break;
+                            default:
+                                throw Error("Not found action for " + name);
+                                break;
+                        }
+                        @{
+                            bool allowEditCourse = new WEB_QLGD01.Models.Permission().IsAllow(WEB_QLGD01.Models.eAction.Edit, WEB_QLGD01.Models.eFea.QLKH);
+                        }
+                        switch (name) {
+                            case "KhoaHoc":
+                                html += '<table class="table table-hover">\
+		<thead>\
+			<tr>\
+				<th>Mã lớp</th>\
+				<th>Tên lớp</th>\
+				<th>Số học viên</th>\
+				<th>Status</th>\
+				<th>Ngày khai giảng</th>\
+				<th>Ngày kết thúc</th>\
+				<th>Miêu tả</th>\
+			</tr>\
+		</thead>\
+		<tbody>';
+                                html += '<tr>';
+                                html += '<td>' + d.CourseId + '</td>';
+                                html += '<td>' + d.CourseName + '</td>';
+                                html += '<td>' + d.TotalNumber + '</td>';
+                                html += '<td>' + d.Status + '</td>';
+                                html += '<td>' + ToJavaScriptDate(d.StartDate) + '</td>';
+                                html += '<td>' + ToJavaScriptDate(d.EndDate) + '</td>';
+                                html += '<td>' + d.Description + '</td>';
+                                html += '</tr>';
+                                break;
+                            case "GiaoVien":
+                                html += '<table class="table table-hover">\
+		<thead>\
+			<tr>\
+				<th>STT</th>\
+				<th>Họ tên</th>\
+				<th>Địa chỉ</th>\
+				<th>SĐT</th>\
+				<th>Status</th>\
+			</tr>\
+		</thead>\
+		<tbody>';
+                                for (var i = 0; i < d.length; i++) {
+                                    html += '<tr>';
+                                    html += '<td>' + (i + 1) + '</td>';
+                                    html += '<td>' + d[i].FullName + '</td>';
+                                    html += '<td>' + d[i].Address + '</td>';
+                                    html += '<td>' + d[i].Mobile + '</td>';
+                                    html += '<td>' + d[i].Status + '</td>';
+                                    html += '</tr>';
+                                }
+                                break;
+                            case "Delete":
+                                html += d && Boolean(d) ? "Xóa thành công" : "Xóa thất bại";
+                                if (d) {
+                                    if (elementDelete) {
+                                        $(elementDelete).parents('li').html('');
+                                    } else {
+                                        window.location.reload();
+                                    }
+                                }
+                                break;
+                            default:
+                                throw Error("Not found action for " + name);
+                                break;
+                        }
+                        html += '</tbody>\
+	</table>\
+</div>'
+                        setModal(false, "Kết quả", html);
+                    }, function (d, a, s) {
+                        setModal(false, "Lỗi", "Rất tiếc đã xảy ra lỗi!");
+                    });
+                } catch (e) {
+                    setModal(false, "Lỗi", "Rất tiếc đã xảy ra lỗi trang!");
+                }
+            }
+        });
+    });
+</script>
+<a href="@Url.Action("Redirect", "Menu", new { sAction = WEB_QLGD01.Models.eAction.Add.ToString(), Fea = WEB_QLGD01.Models.eFea.QLLGD })" class="btn btn-success float-right">Thêm mới</a>
+<div style="margin: 9px">
+    @{
+        var lstGV = new WCF.BussinessController.BCL.ExpertsBCL().GetAll().Where(q => q.Status == false).ToList();
+        var selectItem = new List<SelectListItem>();
+        selectItem.Add(new SelectListItem()
+        {
+            Text = "All",
+            Value = "",
+            Selected = ViewBag.Value == null
+        });
+        foreach (var item in lstGV)
+        {
+            selectItem.Add(new SelectListItem()
+            {
+                Text = item.FullName,
+                Value = item.ExpertId.ToString(),
+                Selected = ViewBag.Value != null && ViewBag.Value == item.ExpertId
+            });
+        }
+    }
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="row">
+            <span class="col-md-8">
+                <span>Chọn giáo viên :</span>
+                @Html.DropDownList("GV", selectItem, new { @class = "form-control", id = "GV" })
+                <input type="submit" name="submit" style="display: none;" id="btnSubmit" value=" " />
+                <script>
+                    $('#GV').change(function () {
+                        $.ajax({
+                            url: '@Url.Action("Index","Home")',
+                            type: "Get",
+                            data: { ID_Expert: $('#GV').val() },
+                            success: function (d) {
+                                $('body').html(d)
+                            }
+                        });
+                    });
+                </script>
+            </span>
+        </div>
+    }
+</div>
+<table>
+    <thead>
+        <tr>
+            <td class="ngay-hoc-heads">---</td>
+            @foreach (var item in listWeekday)
+            {
+                <td class="ngay-hoc-heads">@item.WeName</td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ca in listShift)
+        {
+            <tr class="ca-hocs">
+                <td class="ca-hocs-heads">@ca.ShiftName</td>
+                @foreach (var item in listWeekday)
+                {
+                    var lst = Model.Where(q => q.WeId == item.WeId && q.ShiftId == ca.ShiftId).ToList();
+                    if (lst != null && lst.Count > 0)
+                    {
+                        <td class="ca-hoc-items">
+                            <ul>
+                                @foreach (var c in lst)
+                                {
+                                    <li>
+                                        <span class="item-actions">
+                                            <span class="item-action-tooltips">
+                                                @if (new Permission().IsAllow(eAction.Search, eFea.QLKH))
+                                                {
+                                                    <span class="btn-ajax" title="Xem chi tiết" data-name="KhoaHoc" data-value="@c.CoursesJoin.CoId"><i class="fa fa-eye"></i></span>
+                                                }
+                                                @if (new Permission().IsAllow(eAction.Edit, eFea.QLCTLGD))
+                                                {
+                                                    <a href='@Url.Action("Edit", "Home", new { ID = c.ScId})' title="Sửa"><i class="fa fa-pencil"></i></a>
+                                                }
+                                                @if (new Permission().IsAllow(eAction.Delete, eFea.QLKH))
+                                                {
+                                                    <span title="Xóa" class="btn-ajax" data-name="Delete" data-value="@c.ScId"><i class="fa fa-trash-o"></i></span>
+                                                }
+                                            </span>
+                                            @if (new Permission().IsAllow(eAction.Search, eFea.QLCG))
+                                            {
+                                                @(lst.IndexOf(c) + 1)
+                                                <label class="label label-success btn-ajax border-dashed" data-name="KhoaHoc" data-value="@c.CoursesJoin.CoId">@c.CoursesJoin.CourseId</label>
+                                            }
+                                        </span>
+                                        <span class="item-actions">
+                                            <span class="item-action-tooltips">
+                                                @if (new Permission().IsAllow(eAction.Search, eFea.QLCG))
+                                                {
+                                                    <span class="btn-ajax" title="Xem chi tiết" data-name="GiaoVien" data-value="@c.CoursesJoin.CoId"><i class="fa fa-eye"></i></span>
+                                                }
+                                                @if (new Permission().IsAllow(eAction.Edit, eFea.QLCG))
+                                                {
+                                                    <a href='@Url.Action("Create", "ExpertsDetailt", new { id_Course = c.CoId })' title="Sử title=" sửa"><i class="fa fa-pencil"></i></a>
+                                                }
+                                            </span>
+                                            @if (new Permission().IsAllow(eAction.Search, eFea.QLCG))
+                                            {
+                                                <label class="label label-success btn-ajax border-dashed" data-name="GiaoVien" data-value="@c.CoursesJoin.CoId"> GV </label>
+                                            }
+                                        </span>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="ca-hoc-items"></td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    .item-actions {
+        position: relative;
+    }
+
+        .item-actions:hover .item-action-tooltips {
+            display: block;
+        }
+
+    .item-action-tooltips {
+        height: 30px;
+        line-height: 30px;
+        width: 70px;
+        position: absolute;
+        background: bisque;
+        text-align: center;
+        top: -34px;
+        left: -12px;
+        border-radius: 5px;
+        display: none;
+    }
+
+        .item-action-tooltips a:hover {
+            background: #9ac1a1;
+            height: 100%;
+        }
+</style>

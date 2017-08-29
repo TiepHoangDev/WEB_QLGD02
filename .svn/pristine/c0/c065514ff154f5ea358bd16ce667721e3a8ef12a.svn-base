@@ -1,0 +1,113 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessController.BCL;
+using WCF.BussinessObject.Objects;
+using WEB_QLGD01.Models;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class StudentDetailController : Controller
+    {
+        // GET: StudentDetail
+        public ActionResult Index(bool status = false, DateTime? start = null, DateTime? end = null)
+        {
+            string ChiTietDanhSach = (status ? "Đang theo học" : "Đã hoàn thành ");
+
+            IEnumerable<StudentDetailtObjects> data = new StudentDetailtBCL().GetJoin().Where(q => q.StudentJoin.Status == status);
+            if (start.HasValue)
+            {
+                ChiTietDanhSach += " Từ ngày: " + start.Value.ToShortDateString();
+                data = data.Where(q => q.CoursesJoin.StartDate.Value > start.Value);
+            }
+            if (end.HasValue)
+            {
+                ChiTietDanhSach += " Đến ngày: " + start.Value.ToShortDateString();
+                data = data.Where(q => q.CoursesJoin.EndDate.Value < end.Value);
+            }
+            ViewBag.ChiTietDanhSach = ChiTietDanhSach;
+            ViewBag.status = status;
+            ViewBag.start = start.HasValue ? start.Value.ToShortDateString() : "";
+            ViewBag.end = end.HasValue ? end.Value.ToShortDateString() : "";
+            return View(data);
+        }
+
+        public ActionResult ChiTiet(Guid? ID = null)
+        {
+            if (!ID.HasValue) return RedirectToAction("Index");
+            var data = new StudentBCL().GetByStudetId(ID.Value);
+            ViewBag.ChiTietDanhSach = "Học viên " + data.FullName;
+            ViewBag.status = data.Status;
+            ViewBag.start = "";
+            ViewBag.end = "";
+            return View("Index", new StudentDetailtBCL().GetJoin().Where(q => q.StudentJoin.StudetId == ID.Value));
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            List<StudentObjects> LisStudent = new StudentBCL().GetAll();
+            /*FeaIdObject objFeat = LisFeat.Single(x => x.FeaId.Equals(0));
+            LisFeat.Remove(objFeat);*/
+            ViewBag.ListStudent = LisStudent;
+
+            List<CoursesObjects> lisCourses = new CoursesBCL().GetAll();
+            /* AccountObject objAccount = lisFeat.Single(x => x.FeaId.Equals(0));
+             lisFeat.Remove(objFeat);*/
+            ViewBag.ListCourses = lisCourses;
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult Create(StudentDetailtObjects obj)
+        {
+            var oke = !new StudentDetailtBCL().GetJoin().Any(q => q.CoId == obj.CoId && q.StudetId == obj.StudetId);
+            if (oke)
+            {
+                obj.StdId = Guid.NewGuid();
+                if (new StudentDetailtBCL().Insert(obj))
+                    return RedirectToAction("Index", "StudentDetail");
+                else ModelState.AddModelError("", "Thêm học viên thất bại!");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Học viên này đã học ở lớp này!");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Edit(System.Guid ID)
+        {
+            return View(new StudentDetailtBCL().GetByStdId(ID));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(StudentDetailtObjects obj)
+        {
+            var oke = new StudentDetailtBCL().GetJoin().Count(q => q.CoId == obj.CoId && q.StudetId == obj.StudetId) == 1;
+            if (oke)
+            {
+                obj.StdId = Guid.NewGuid();
+                if (new StudentDetailtBCL().Insert(obj))
+                    return RedirectToAction("Create", "StudentDetail");
+                else ModelState.AddModelError("", "Sửa học viên thất bại!");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Học viên không thể học một lớp quá 2 lần!");
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Delete(Guid ID, FormCollection collection)
+        {
+            return Json(new StudentDetailtBCL().Delete(ID));
+        }
+    }
+}

@@ -1,0 +1,71 @@
+﻿@model WCF.BussinessObject.Objects.ExpertsDetailtObjects
+@using WCF.BussinessObject.Objects
+@using WCF.BussinessController.BCL
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thêm mới Lớp giảng dạy cho Giảng viên</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("Khóa học", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (Model.CoId.HasValue)
+                {
+                    var lstCo = new SelectList(new CoursesBCL().GetAll().Where(c => c.Status == false).ToList(), "CoId", "CourseId", Model.CoId.Value);
+                    @Html.DropDownListFor(q => q.CoId, lstCo, new { @class = "form-control", required = "required" });
+                }
+                else
+                {
+                    @Html.DropDownListFor(q => q.CoId, new SelectList(new CoursesBCL().GetAll().Where(c => c.Status == false), "CoId", "CourseId"), new { @class = "form-control", required = "required" });
+                }
+                <p>
+                    @Html.ActionLink("Thêm mới Khóa học", "Create", "Courses", new { }, new { })
+                </p>
+                @Html.ValidationMessageFor(model => model.CoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Chuyên gia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (Model.ExpertId.HasValue)
+                {
+                    @Html.DropDownListFor(q => q.ExpertId, new SelectList(new ExpertsBCL().GetAll().Where(q => q.Status == false), "ExpertId", "FullName", Model.ExpertId.Value), new { @class = "form-control", required = "required" });
+                }
+                else
+                {
+                    @Html.DropDownListFor(q => q.ExpertId, new SelectList(new ExpertsBCL().GetAll().Where(q => q.Status == false), "ExpertId", "FullName"), new { @class = "form-control", required = "required" });
+                }
+                <p>
+                    @Html.ActionLink("Thêm mới  Chuyên gia", "Create", "Expert", new { }, new { })
+                </p>
+                @Html.ValidationMessageFor(model => model.ExpertId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+                @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

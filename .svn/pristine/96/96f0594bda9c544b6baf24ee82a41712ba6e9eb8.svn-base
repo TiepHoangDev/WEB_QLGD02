@@ -1,0 +1,104 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessController.BCL;
+using WCF.BussinessObject.Objects;
+namespace WEB_QLGD01.Controllers
+{
+    public class StudentController : Controller
+    {
+        // GET: Student
+        public ActionResult Index()
+        {
+            var list = new StudentBCL().GetAll().Where(q => q.Status == false).ToList();        
+            return View(list);
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult anlyzeUser_byTimeStuden(bool status, DateTime? start, DateTime? end)
+        {
+            if (start == null || end == null)
+            {
+                if (status == false)
+                {
+                    ViewBag.test = false;
+                    var data = new StudentBCL().GetAll().Where(x => x.Status == false);
+                    return View("Index", data);
+                }
+                else
+                {
+                    ViewBag.test = true;
+                    return View("Index", new StudentBCL().GetAll().Where(x => x.Status == true));
+                }
+            }
+            else
+            {
+                if (status == false)
+                {
+                    ViewBag.test = false;
+                    return View("Index", new StudentDetailtBCL().GetJoin()
+                        .Where(x => x.StudentJoin.Status == false && x.CoursesJoin.StartDate >= start && x.CoursesJoin.EndDate <= end).Select(a=>a.StudentJoin));
+                }
+                else
+                {
+                    ViewBag.test = true;
+                    return View("Index", new StudentDetailtBCL().GetJoin().Where(x => x.StudentJoin.Status == true && x.CoursesJoin.StartDate >= start && x.CoursesJoin.EndDate <= end).Select(a => a.StudentJoin));
+                }
+            }
+        }
+
+        // POST: Expert/Create
+        [HttpPost]
+        public ActionResult Create(StudentObjects objS)
+        {
+            objS.Deleted = false;
+            objS.Status = false;
+            var b = new StudentBCL().Insert(objS);
+            if (b)
+            {
+                return RedirectToAction("Index", "Student");
+            }
+            else
+            {
+                ModelState.AddModelError("", "them moi that bai");
+            }
+            return View();
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            var obj = new StudentBCL().GetByStudetId(id);
+
+            return View(obj);
+        }
+
+        // POST: Expert/Edit/5
+        [HttpPost]
+        public ActionResult Edit(StudentObjects objS)
+        {
+            objS.Deleted = false;
+            var b = new StudentBCL().Update(objS);
+            if (b)
+            {
+                return RedirectToAction("Index", "Student");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Edit that bai");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Guid ID, FormCollection collection)
+        {
+            return Json(new StudentBCL().Delete(ID));
+        }
+    }
+}

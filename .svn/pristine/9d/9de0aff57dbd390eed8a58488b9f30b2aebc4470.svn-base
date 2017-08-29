@@ -1,0 +1,62 @@
+﻿using WCF.BussinessObject.Objects;
+using DataAccessLayer.Dao;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace WCF.BussinessController.BCL
+{
+    public class CoursesBCL
+    {
+
+        public bool Insert(CoursesObjects ob)
+        {
+            return new CoursesDao().Insert(ob);
+        }
+
+        /// <summary>
+        ///  Khi thiết lập cho 1 khóa học trạng thái: "Khóa đã tốt nghiệp" --> thì cập nhật trạng thái cho
+        ///  tất cả các học viên từ "Đang theo học" --> "Đã hoàn thành" nếu học viên đó ko thuộc của lớp 
+        ///  nào nữa.
+        /// </summary>
+        /// <param name="ob"></param>
+        /// <returns></returns>
+        public bool Update(CoursesObjects ob)
+        {
+            if (ob.Status == true)
+            {
+                var allDetail = new StudentDetailtBCL().GetJoin();
+                var grstd = allDetail.GroupBy(q => q.StudetId);
+                var bcl = new StudentBCL();
+                foreach (var item in grstd)
+                {
+                    if(item.Count()==1){
+                        var std=  bcl.GetByStudetId(item.Key.Value);
+                        std.Status = true;
+                        bcl.Update(std);
+                    }
+                }
+            }
+            return new CoursesDao().Update(ob);
+        }
+
+
+        public List<CoursesObjects> GetAll()
+        {
+            return new CoursesDao().GetAll();
+        }
+
+
+        public CoursesObjects GetByCoId(Guid ID)
+        {
+            return new CoursesDao().GetByCoId(ID);
+        }
+
+
+        public bool Delete(Guid ID)
+        {
+            return new CoursesDao().Delete(ID);
+        }
+
+
+    }
+}

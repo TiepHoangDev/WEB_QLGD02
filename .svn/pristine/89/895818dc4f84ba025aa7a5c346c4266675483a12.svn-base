@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessController.BCL;
+using WCF.BussinessObject.Objects;
+using WEB_QLGD01.Models;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class AccountController : Controller
+    {
+        // GET: Account
+        public ActionResult Index()
+        {
+            return View(new AccountBCL().GetJoin().Where(q => !(new Permission() < q) && q.UserId != new Permission().Account.UserId).OrderByDescending(q => q.RoleId).ToList());
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            return View(new AccountBCL().GetByUserId(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(AccountObject ob)
+        {
+            try
+            {
+                if (new AccountBCL().GetAll().Count(q => q.Username == ob.Username) == 2)
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập đã được sử dụng cho người dùng khác");
+                }
+                else
+                {
+                    ob.Isdeleted = false;
+                    new AccountBCL().Update(ob);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Sửa không thành công");
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Create(AccountObject obj)
+        {
+            try
+            {
+                if (new AccountBCL().GetAll().Any(q => q.Username == obj.Username))
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập đã được sử dụng cho người dùng khác");
+                }
+                else
+                {
+                    obj.UserId = Guid.NewGuid();
+                    obj.Isdeleted = false;
+                    if (new AccountBCL().Insert(obj))
+                    {
+                        return RedirectToAction("Index", "Account");
+                    }
+                    else ModelState.AddModelError("", "Thêm thất bại");
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Có lỗi xảy ra, Liên hệ với Developer");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Guid id, FormCollection collection)
+        {
+            return Json(new AccountBCL().Delete(id));
+        }
+
+    }
+}

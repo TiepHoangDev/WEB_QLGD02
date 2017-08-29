@@ -1,0 +1,31 @@
+﻿@model  Guid?
+
+@{
+    var lstGV = new WCF.BussinessController.BCL.ExpertsBCL().GetAll().Where(q => q.Status == false).ToList();
+    var selectItem = new List<SelectListItem>();
+    selectItem.Add(new SelectListItem()
+    {
+        Text = "All",
+        Value = "",
+        Selected = !Model.HasValue
+    });
+    foreach (var item in lstGV)
+    {
+        selectItem.Add(new SelectListItem()
+        {
+            Text = item.FullName,
+            Value = item.ExpertId.ToString(),
+            Selected = Model.HasValue
+        });
+    }
+}
+
+@using (Html.BeginForm("GV", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <span class="col-md-8">
+            <span>Chọn giáo viên :</span>
+            @Html.DropDownListFor(m => Model, selectItem, new { @class = "form-control" })
+        </span>
+    </div>
+}

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.ExpertsDetailtObjects>
+@using WEB_QLGD01.Models
+
+@{
+    var per = new Permission();
+}
+
+<table class="table table-striped table-bordered table-hover" id="sample_1">
+    <thead>
+        <tr>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Chuyên môn
+            </th>
+            <th>
+                Trạng thái Chuyên gia
+            </th>
+            <th>
+                Khóa học
+            </th>
+            <th>
+                Trạng thái Khóa học
+            </th>
+            <th>
+                Ghi chú
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpertsJoin.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpertsJoin.Specialize)
+                </td>
+                <td>
+                    @(item.ExpertsJoin.Status ? "Đã nghỉ dạy" : "Đang giảng dạy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoursesJoin.CourseId)
+                </td>
+                <td>
+                    @(item.CoursesJoin.Status ? "Đã tốt nghiệp" : "Chưa tốt nghiệp")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @if (per.IsAllow(eAction.Edit, eFea.QLCTGV))
+                    {
+                        @Html.ActionLink("Edit", "Edit", "ExpertsDetailt", new { id = item.ExId }, new { @class = "btn btn-default" })
+                    }
+                    @if (per.IsAllow(eAction.Delete, eFea.QLCTGV))
+                    {
+                        <span class="btn btn-warning btn-delete" data-value="@item.ExId">Xóa</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $('.btn-delete').click(function () {
+        let value = $(this).data('value');
+        if (value) {
+            var elementDelete = $(this);
+            if (confirm('Bạn có chắc chắn xóa') != true) return;
+            $.ajax({
+                url: '@Url.Action("Delete")',
+                data: { id: value },
+                type: 'post',
+                success: function (d) {
+                    if (d === true) {
+                        if (elementDelete) $(elementDelete).parents('tr').remove();
+                        else window.location.reload();
+                    } else {
+                        alert("Xóa thất bại");
+                    }
+                },
+                error: function () {
+                    debugger
+                    alert('Đã xảy ra lỗi, Trang web sẽ được load lại');
+                    window.location.reload();
+                }
+            });
+        } else {
+            alert('Lỗi, ko tìm thấy dữ liệu này');
+        }
+    });
+</script>

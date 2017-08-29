@@ -1,0 +1,122 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessController.BCL;
+using WCF.BussinessObject.Objects;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class ExpertsDetailtController : Controller
+    {
+        // GET: ExpertsDetailt
+        public ActionResult Index(Guid? id_lop = null)
+        {
+            if (id_lop.HasValue)
+            {
+                ViewBag.Course = id_lop;
+                return View(new ExpertsDetailtBCL().GetJoin().Where(q => q.CoursesJoin.Status == false && q.CoId == id_lop.Value).ToList());
+            }
+            else
+            {
+                return View(new ExpertsDetailtBCL().GetJoin().Where(q => q.CoursesJoin.Status == false).ToList());
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Index(FormCollection f)
+        {
+            var result = new List<ExpertsDetailtObjects>();
+            Guid ID_Expert = new Guid();
+            Guid ID_Course = new Guid();
+            if (Guid.TryParse(f["Course"].ToString(), out ID_Course))
+            {
+                ViewBag.Course = ID_Course;
+                result = new ExpertsDetailtBCL().GetByCoId(ID_Course);
+            }
+            else
+            {
+                result = new ExpertsDetailtBCL().GetJoin();
+            }
+            if (Guid.TryParse(f["Expert"].ToString(), out ID_Expert))
+            {
+                ViewBag.Expert = ID_Expert;
+                result = result.Where(q => q.ExpertId == ID_Expert).ToList();
+            }
+            return View(result);
+        }
+
+        // GET: ExpertsDetailt/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: ExpertsDetailt/Create
+        [HttpPost]
+        public ActionResult Create(ExpertsDetailtObjects ob)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                var oke = !new ExpertsDetailtBCL().GetJoin().Any(q => q.ExpertId == ob.ExpertId && q.CoId == ob.CoId);
+                if (oke)
+                {
+                    ob.ExId = Guid.NewGuid();
+                    if (new ExpertsDetailtBCL().Insert(ob))
+                        return RedirectToAction("Index");
+                    else ModelState.AddModelError("", "Tạo mới thất bại");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Giáo viên này đang dạy lớp hiện tại");
+                }
+            }
+            catch
+            {
+            }
+            return View();
+        }
+
+        // GET: ExpertsDetailt/Edit/5
+        public ActionResult Edit(Guid id)
+        {
+            var ob = new ExpertsDetailtBCL().GetByExId(id);
+            ob.CoursesJoin = new CoursesBCL().GetByCoId((Guid)ob.CoId);
+            ob.ExpertsJoin = new ExpertsBCL().GetByExpertId((Guid)ob.ExpertId);
+            return View(ob);
+        }
+
+        // POST: ExpertsDetailt/Edit/5
+        [HttpPost]
+        public ActionResult Edit(ExpertsDetailtObjects ob, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                var oke = new ExpertsDetailtBCL().GetJoin().Count(q => q.ExpertId == ob.ExpertId && q.CoId == ob.CoId) == 1;
+                if (oke)
+                {
+                    if (new ExpertsDetailtBCL().Update(ob))
+                        return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Không thêm giáo viên dạy một lớp quá hai lần!");
+                }
+            }
+            catch
+            {
+            }
+            return View();
+        }
+
+        // POST: ExpertsDetailt/Delete/5
+        [HttpPost]
+        public ActionResult Delete(Guid id)
+        {
+            return Json(new ExpertsDetailtBCL().Delete(id));
+        }
+    }
+}
