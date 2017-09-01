@@ -26,8 +26,8 @@
         </div>
         <div class="col-md-12">
             <select name="status" id="status" class="form-control" style="width: 250px; float: left">
-                <option value="false">Chưa tốt nghiệp</option>
-                <option value="true">Đã tốt nghiệp</option>
+                <option value="false">Lớp chưa tốt nghiệp</option>
+                <option value="true">Lớp đã tốt nghiệp</option>
             </select>
             <input type="text" name="start" value="" id="start" placeholder="Thời gian khai giảng" class="form-control" style="width: 250px; float: left" />
             <input type="text" name="end" value="" id="end" placeholder="Thời gian kết thúc" class="form-control" style="width: 250px; float: left" />
@@ -93,6 +93,15 @@
 
         //xử lí khi bấm buttun load
         $('.btn-load').click(function () {
+            if ($('#status').val() == 'true') {
+                debugger
+                if ($('#start').val() && $('#end').val()) {
+                    if (new Date($('#start').val()) > new Date($('#end').val())) {
+                        alert('Lỗi chọn ngày: Chọn ngày kết thúc sau ngày bắt đầu');
+                        return;
+                    }
+                }
+            }
             $('.img-loading').css('display', "block");
             $('#data').html('');
             let json = {};

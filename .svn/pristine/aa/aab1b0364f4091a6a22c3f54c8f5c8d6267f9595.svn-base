@@ -1,0 +1,130 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.ExpertsDetailtObjects>
+@using WCF.BussinessController.BCL
+@using WEB_QLGD01.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var per = new Permission();
+}
+
+
+<div class="portlet box blue-hoki">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>Danh sách giáo viên
+        </div>
+    </div>
+    @if (per.IsAllow(eAction.Add, eFea.QLCTGV))
+    {
+        @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success" })
+    }
+    <form id="frmSearch">
+        <div class="col-md-12">
+            @Html.DropDownList("id_gv", new SelectList(new ExpertsBCL().GetAll().Where(q => q.Status != true), "ExpertId", "FullName"), "Tất cả giáo viên", new { @class = "form-control loadDrop", @style = "width: 250px; float: left" })
+            @Html.DropDownList("id_lop", new SelectList(new CoursesBCL().GetAll().Where(q => q.Status != true), "CoId", "CourseId"), "Tất cả Lớp học", new { @class = "form-control loadDrop", @style = "width: 250px; float: left" })
+            <img src="/Content/img/ajax-loader.gif" class="img-loading-drop" alt="loading...." style="display: none ;width: 47px;" />
+        </div>
+        <div class="col-md-12">
+            <select name="status" id="status" class="form-control" style="width: 250px; float: left">
+                <option value="false">Lớp chưa tốt nghiệp</option>
+                <option value="true">Lớp đã tốt nghiệp</option>
+            </select>
+            <input type="text" name="start" value="" id="start" placeholder="Thời gian khai giảng" class="form-control" style="width: 250px; float: left" />
+            <input type="text" name="end" value="" id="end" placeholder="Thời gian kết thúc" class="form-control" style="width: 250px; float: left" />
+            <input type="button" name="name" value="Lọc" class="btn-load btn btn-success" style="float: left; margin-left: 10px" />
+            <img src="/Content/img/ajax-loader.gif" class="img-loading" alt="loading...." style="float: left; display: none;width: 50px" />
+        </div>
+    </form>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="~/Content/jquery-ui.min.js"></script>
+    <script>
+        function checkStatus() {
+            if ($('#status').val() == 'false') {
+                $("#start").hide();
+                $("#end").hide();
+            } else {
+                $("#start").show();
+                $("#end").show();
+            }
+        }
+
+        $('#id_gv').change(function () {
+            $('.img-loading-drop').css('display', "block");
+            $.ajax({
+                url: '@Url.Action("loadDrop")',
+                data: { id: $('#id_gv').val(), type: 1 },
+                type: 'post',
+                success: function (d) {
+                    $('#id_lop').html(d);
+                    $('.img-loading-drop').css('display', "none");
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra, Trang web sẽ được tải lại");
+                    window.location.reload();
+                }
+            });
+        });
+
+        $('#id_lop').change(function () {
+            $('.img-loading-drop').css('display', "block");
+            $.ajax({
+                url: '@Url.Action("loadDrop")',
+                data: { id: $('#id_lop').val(), type: 2 },
+                type: 'post',
+                success: function (d) {
+                    $('#id_gv').html(d);
+                    $('.img-loading-drop').css('display', "none");
+                },
+                error: function (e) {
+                    debugger
+                    alert("Có lỗi xảy ra, Trang web sẽ được tải lại");
+                    window.location.reload();
+                }
+            });
+        });
+
+        $("#start").datepicker();
+        $("#end").datepicker();
+        checkStatus();
+
+        $('#status').change(function () {
+            checkStatus();
+        })
+
+        //xử lí khi bấm buttun load
+        $('.btn-load').click(function () {
+            if ($('#status').val() == 'true') {
+                debugger
+                if ($('#start').val() && $('#end').val()) {
+                    if (new Date($('#start').val()) > new Date($('#end').val())) {
+                        alert('Lỗi chọn ngày: Chọn ngày kết thúc sau ngày bắt đầu');
+                        return;
+                    }
+                }
+            }
+            $('.img-loading').css('display', "block");
+            $('#data').html('');
+            let json = {};
+            $.each($('#frmSearch').serializeArray(), function () {
+                json[this.name] = this.value || '';
+            });
+            debugger
+            $.ajax({
+                url: '@Url.Action("search")',
+                data: json,
+                type: 'post',
+                success: function (d) {
+                    $('#data').html(d);
+                    $('.img-loading').css('display', "none");
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra, Trang web sẽ được tải lại");
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
+    <div class="portlet-body" id="data">
+        @Html.Partial("pv_ChiTietGiaoVien", Model)
+    </div>
+</div>
