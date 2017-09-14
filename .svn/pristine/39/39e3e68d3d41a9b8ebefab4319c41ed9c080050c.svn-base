@@ -1,0 +1,67 @@
+﻿@model WCF.BussinessObject.Objects.AccountObject
+@using WCF.BussinessController.BCL
+@using WEB_QLGD01.Models
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var per = new Permission();
+}
+
+
+
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle"></i>Thêm mới tài khoản
+        </div>
+    </div>
+    <div class="portlet-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm("Create", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="register-form">
+                <div class="form-group">
+                    <h4>&nbsp;Họ và tên:</h4>
+                    <label class="control-label visible-ie8 visible-ie9">Full Name</label>
+                    @Html.TextBoxFor(q => q.FullName, new { @class = "form-control", @id = "FullName", placeholder = "FullName", required = "required" })
+                </div>
+                <div class="form-group">
+                    <h4>&nbsp;Email:</h4>
+                    <label class="control-label visible-ie8 visible-ie9">Email</label>
+                    @Html.TextBoxFor(q => q.Email, new { @class = "form-control", @id = "Email", placeholder = "Email", required = "required" })
+                </div>
+                <div class="form-group">
+                    <h4>&nbsp;Điện thoại:</h4>
+                    <label class="control-label visible-ie8 visible-ie9">Phone</label>
+                    @Html.TextBoxFor(q => q.Phone, new { @class = "form-control", @id = "Email", placeholder = "Phone", required = "required" })
+                </div>
+
+                <div class="form-group">
+                    <h4>&nbsp;Mô tả:</h4>
+                    <label class="control-label visible-ie8 visible-ie9">Description</label>
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Description", rows = "4", required = "required" })
+                </div>
+                <div class="form-group">
+                    <h4>&nbsp;Tên đăng nhập:</h4>
+                    <label class="control-label visible-ie8 visible-ie9">Username</label>
+                    @Html.TextBoxFor(q => q.Username, new { @class = "form-control placeholder-no-fix", placeholder = "Username", required = "required" })
+                </div>
+                <div class="form-group">
+                    <h4>&nbsp;Mật khẩu:</h4>
+                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                    @Html.PasswordFor(m => m.PassWord, new { @class = "form-control placeholder-no-fix", placeholder = "Password", required = "required" })
+                </div>
+                <div class="form-group">
+                    <h4>&nbsp;Vai trò:</h4>
+                    <label class="control-label visible-ie8 visible-ie9">Quyền</label>
+                    @Html.DropDownListFor(q => q.RoleId, new SelectList(new RoleBCL().GetAll().Where(u => per.MyRole() < per.iRole(u.RName)).ToList(), "RoleId", "RName"), new { @class = "form-control", required = "required" })
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="register-submit-btn" class="btn btn-success ">Cập nhật</button>
+                    @Html.ActionLink("Đóng", "Index", new { }, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        }
+    </div>
+</div>

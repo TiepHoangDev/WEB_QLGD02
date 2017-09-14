@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+
+namespace WEB_QLGD01.Controllers
+{
+    public abstract class BaseController : Controller
+    {
+        public abstract Models.eFea GetFea();
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var permisstion = new Models.Login().GetPermission();
+
+            var allow = false;
+
+            if (permisstion != null && permisstion.Account != null)
+            {
+                if (filterContext.ActionDescriptor.ActionName.ToLower().Equals("index")) allow = permisstion.IsAllow(Models.eAction.Search, GetFea());
+                else if (filterContext.ActionDescriptor.ActionName.ToLower().Equals("delete")) allow = permisstion.IsAllow(Models.eAction.Delete, GetFea());
+                else if (filterContext.ActionDescriptor.ActionName.ToLower().Equals("create")) allow = permisstion.IsAllow(Models.eAction.Add, GetFea());
+                else if (filterContext.ActionDescriptor.ActionName.ToLower().Equals("edit"))
+                {
+                    allow = permisstion.IsAllow(Models.eAction.Edit, GetFea());
+                    if (!allow)
+                    {
+                        allow = GetFea() == Models.eFea.QLTK && filterContext.ActionParameters["id"] != null && filterContext.ActionParameters["id"].ToString().Equals(permisstion.Account.UserId.ToString());
+                    }
+                }
+                else allow = true;
+            }
+            if (!allow)
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                new RouteValueDictionary(new
+                {
+                    controller = "Login",
+                    action = "Index"
+                }));
+            }
+            base.OnActionExecuting(filterContext);
+        }
+    }
+}

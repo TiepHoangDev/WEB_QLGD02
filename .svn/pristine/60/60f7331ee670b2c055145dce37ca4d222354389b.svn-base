@@ -1,0 +1,215 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessObject.Objects;
+using WCF.BussinessController.BCL;
+using WEB_QLGD01.Models;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class CoursesJournalController : Controller
+    {
+        // GET: CoursesJournal
+        public ActionResult Index()
+        {
+            var list = new CoursesJournalBCL().GetJoin().OrderByDescending(q => q.DayOf.Value).ToList();
+            return View(list);
+        }
+
+        public JsonResult LopHoc(Guid? id_lop)
+        {
+            string r = "";
+            IEnumerable<CoursesJournalObjects> data;
+            if (id_lop.HasValue)
+            {
+                data = new CoursesJournalBCL().GetJoin().Where(q => q.CoursesJoin.CoId == id_lop.Value).OrderByDescending(m => m.DayOf.Value);
+            }
+            else
+            {
+                data = new CoursesJournalBCL().GetJoin().OrderByDescending(m => m.DayOf.Value);
+            }
+            var per = new Models.Permission();
+            foreach (var item in data)
+            {
+                r += string.Format(@"
+<tr>
+                        <td>
+                            {2}
+                        </td>
+                        <td>
+                            {0} - {1}
+                        </td>
+                        <td>
+                            {3}
+                        </td>
+                        <td>
+                            {4}
+                        </td>
+                        <td>
+                            {5}
+                            {6}
+                            {7}
+                        </td>
+                    </tr>
+", item.CoursesJoin.CourseId
+, item.CoursesJoin.CourseName
+, item.DayOf.Value.ToString("dd/MM/YYYY")
+, item.Contents
+, item.Description
+, per.IsAllow(eAction.Search, eFea.QLCTHV) ? "<a href='" + @Url.Action("Index", "CoursesStudentDetailt", new { ID = item.CJId }) + "' class='btn btn-info'>DSHV Vắng</a>" : ""
+, per.IsAllow(eAction.Edit, eFea.QLNKGD) ? "<a href=" + Url.Action("Edit", "CoursesJournal", new { ID = item.CJId }) + " class='btn btn-default'>Sửa</a>" : ""
+, per.IsAllow(eAction.Delete, eFea.QLNKGD) ? "<span class='btn btn-warning btn-delete' data-value='" + item.CJId + "'>Xóa</span>" : ""
+);
+            }
+            r += @"<div class='modal fade' id='myModal' role='dialog'>
+    <div class='modal-dialog'>
+        <!-- Modal content-->
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h4 class='modal-title'><i class='fa fa-warning'>Chú ý</i></h4>
+            </div>
+            <div class='modal-body'>
+
+                <div class='modal-body-contents'>
+
+                </div>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-warning btn-ajax'>Xác nhận</button>
+                <button type='button' class='btn btn-default' data-dismiss='modal'>Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+        $('.btn-delete').click(function () {
+            if(confirm('Bạn có chắc chắn xóa?')!=true) return;
+            let elementDelete = $(this);
+myAjax('Delete', { ID: $('this'.data('value')) }, function (d, xhr, r) {
+
+if(d){
+if (elementDelete) {
+$(elementDelete).parents('tr').first().hide();
+                    elementDelete = undefined;
+                    }
+else{
+alert('Xảy ra lỗi, Trang sẽ được tải lại')
+}
+}else{
+alert('Xóa thất bại');
+}
+                }, function (d) {
+alert('Xảy ra lỗi, Trang sẽ được tải lại')
+                    window.location.reload();
+                }, function (d) {
+
+                });
+
+        });
+</script>";
+            return Json(r);
+        }
+
+        // GET: CoursesJournal/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: CoursesJournal/Create
+        public ActionResult Create()
+        {
+
+            return View();
+        }
+
+        // POST: CoursesJournal/Create
+        [HttpPost]
+        public ActionResult Create(CoursesJournalObjects objCJ)
+        {
+            var b = new CoursesJournalBCL().Insert(objCJ);
+            if (b)
+            {
+                return RedirectToAction("Index", "CoursesJournal");
+            }
+            else
+            {
+                ModelState.AddModelError("", "them moi that bai");
+            }
+            return View();
+        }
+
+        // GET: CoursesJournal/Edit/5
+        /* public ActionResult Edit(Guid id)
+         {
+             var obj = new CoursesJournalBCL().GetByCJId(id);
+             //obj.CoursesJoin = new CoursesBCL().GetByCoId((Guid)obj.CoId);
+
+            
+
+             return View(obj);
+         }
+
+         // POST: CoursesJournal/Edit/5
+         [HttpPost]
+         public ActionResult Edit(CoursesJournalObjects objCJ)
+         {
+             var b = new CoursesJournalBCL().Update(objCJ);
+             if (b)
+             {
+                 return RedirectToAction("Index", "CoursesJournal");
+             }
+             else
+             {
+                 ModelState.AddModelError("", "them moi that bai");
+             }
+             return View();
+         }
+         */
+
+
+        [HttpGet]
+        public ActionResult Edit(Guid Id)
+        {
+            CoursesJournalObjects objCourses = new CoursesJournalBCL().GetByCJId(Id);
+            List<CoursesObjects> lstCourse = new CoursesBCL().GetAll();
+            ViewBag.ListCourse = lstCourse;
+            return View(objCourses);
+        }
+        [HttpPost]
+        public ActionResult Edit(CoursesJournalObjects model)
+        {
+            var b = new CoursesJournalBCL().Update(model);
+            if (b)
+            {
+                return RedirectToAction("Edit", "CoursesJournal");
+            }
+
+            else
+            {
+                ModelState.AddModelError("", "them moi that bai");
+            }
+            return View();
+        }
+        // GET: CoursesJournal/Delete/5
+        [HttpPost]
+        public ActionResult Delete(Guid ID)
+        {
+
+            return Json(new CoursesJournalBCL().Delete(ID));
+        }
+
+
+        public ActionResult GetListByCoursesId(Guid? coursesId)
+        {
+            var list = new CoursesJournalBCL().GetJoin().OrderByDescending(q => q.DayOf.GetValueOrDefault()).Where(x => x.CoId.Equals(coursesId)).ToList();
+            return PartialView(list);
+        }
+
+    }
+}

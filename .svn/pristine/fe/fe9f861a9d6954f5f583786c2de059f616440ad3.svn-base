@@ -1,0 +1,309 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WCF.BussinessObject.Objects;
+using WCF.BussinessController.BCL;
+using WEB_QLGD01.Models;
+
+namespace WEB_QLGD01.Controllers
+{
+    public class CoursesJournalController : BaseController
+    {
+        public override Models.eFea GetFea()
+        {
+            return Models.eFea.QLNKGD;
+        }
+        // GET: CoursesJournal
+        public ActionResult Index(Guid? coId)
+        {
+            var list = new List<CoursesJournalObjects>();
+            ViewBag.ALL = new CoursesBCL().GetAll();
+            if (coId == null || coId.Equals(Guid.Empty))
+            {
+                list = new CoursesJournalBCL().GetJoin().OrderByDescending(q => q.DayOf.Value).ToList();
+            }
+            else
+            {
+                list = new CoursesJournalBCL().GetJoin().Where(x => x.CoId.Equals(coId)).OrderByDescending(q => q.DayOf.Value).ToList();
+                ViewBag.check = coId;
+            }
+                
+            return View(list);
+        }
+
+        public JsonResult LopHoc(Guid? id_lop)
+        {
+            string r = "";
+            IEnumerable<CoursesJournalObjects> data;
+            if (id_lop.HasValue)
+            {
+                data = new CoursesJournalBCL().GetJoin().Where(q => q.CoursesJoin.CoId == id_lop.Value).OrderByDescending(m => m.DayOf.Value);
+            }
+            else
+            {
+                data = new CoursesJournalBCL().GetJoin().OrderByDescending(m => m.DayOf.Value);
+            }
+            var per = new Models.Permission();
+            foreach (var item in data)
+            {
+                r += string.Format(@"
+<tr>
+                        <td>
+                            {2}
+                        </td>
+                        <td>
+                            {0} - {1}
+                        </td>
+                        <td>
+                            {3}
+                        </td>
+                        <td>
+                            {4}
+                        </td>
+                        <td>
+                            {5}
+                            {6}
+                            {7}
+                        </td>
+                    </tr>
+", item.CoursesJoin.CourseId
+, item.CoursesJoin.CourseName
+, item.DayOf.Value.ToString("dd/MM/YYYY")
+, item.Contents
+, item.Description
+, per.IsAllow(eAction.Search, eFea.QLCTHV) ? "<a href='" + @Url.Action("Index", "CoursesStudentDetailt", new { ID = item.CJId }) + "' class='btn btn-info'>DSHV Vắng</a>" : ""
+, per.IsAllow(eAction.Edit, eFea.QLNKGD) ? "<a href=" + Url.Action("Edit", "CoursesJournal", new { ID = item.CJId }) + " class='btn btn-default'>Sửa</a>" : ""
+, per.IsAllow(eAction.Delete, eFea.QLNKGD) ? "<span class='btn btn-warning btn-delete' data-value='" + item.CJId + "'>Xóa</span>" : ""
+);
+            }
+            r += @"<div class='modal fade' id='myModal' role='dialog'>
+    <div class='modal-dialog'>
+        <!-- Modal content-->
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h4 class='modal-title'><i class='fa fa-warning'>Chú ý</i></h4>
+            </div>
+            <div class='modal-body'>
+
+                <div class='modal-body-contents'>
+
+                </div>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-warning btn-ajax'>Xác nhận</button>
+                <button type='button' class='btn btn-default' data-dismiss='modal'>Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+        $('.btn-delete').click(function () {
+            if(confirm('Bạn có chắc chắn xóa?')!=true) return;
+            let elementDelete = $(this);
+myAjax('Delete', { ID: $('this'.data('value')) }, function (d, xhr, r) {
+
+if(d){
+if (elementDelete) {
+$(elementDelete).parents('tr').first().hide();
+                    elementDelete = undefined;
+                    }
+else{
+alert('Xảy ra lỗi, Trang sẽ được tải lại')
+}
+}else{
+alert('Xóa thất bại');
+}
+                }, function (d) {
+alert('Xảy ra lỗi, Trang sẽ được tải lại')
+                    window.location.reload();
+                }, function (d) {
+
+                });
+
+        });
+</script>";
+            return Json(r);
+        }
+
+        // GET: CoursesJournal/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: CoursesJournal/Create
+        public ActionResult Create(Guid? Coursesid = null)
+        {
+            ViewBag.Coursesid = Coursesid;
+            if (Coursesid == null)
+            {
+                Coursesid = (Guid)new CoursesBCL().GetAll().Select(x => x.CoId).FirstOrDefault();
+            }
+            ViewBag.LisStudent = new StudentDetailtBCL().GetJoin().Where(x => x.CoId.Equals(Coursesid)).ToList();
+            return View();
+        }
+        public ActionResult ListudenAjax(Guid Coursesid)
+        {
+            var LisStudent = new StudentDetailtBCL().GetJoin().Where(x => x.CoId.Equals(Coursesid));
+            var lst = new List<CoursesStudentDetailtObject>();
+            foreach (var item in LisStudent)
+            {
+                lst.Add(new CoursesStudentDetailtObject()
+                {
+                    Selected = false,
+                    StudetId = item.StudetId,
+                    CJId = Coursesid,
+                    StudentJoin = item.StudentJoin,
+                    CoursesJournalJoin = new CoursesJournalObjects() { CJId = item.CoursesJoin.CoId },
+                    Description = ""
+                });
+            }
+            return PartialView("pv_dsvang", lst);
+        }
+
+        // POST: CoursesJournal/Create
+        [HttpPost]
+        public ActionResult Create(CoursesJournalObjects objCJ, string[] oldstudent, int IsOption = 0)
+        {
+            objCJ.CJId = Guid.NewGuid();
+            var b = new CoursesJournalBCL().Insert(objCJ);
+            if (oldstudent != null)
+            {
+                foreach (var item in oldstudent)
+                {
+                    CoursesStudentDetailtObject obj = new CoursesStudentDetailtObject();
+                    obj.CJId = Guid.NewGuid();
+                    obj.StudetId = Guid.Parse(item);
+                    obj.CJId = objCJ.CJId;
+                    new CoursesStudentDetailtBCL().Insert(obj);
+                }
+
+            }
+            if (b)
+            {
+                if (IsOption == 0)
+                {
+                    return RedirectToAction("Index", "CoursesJournal");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Courses");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "them moi that bai");
+            }
+
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult Edit(Guid Id)
+        {
+            CoursesJournalObjects objCourses = new CoursesJournalBCL().GetByCJId(Id);
+            objCourses.CoursesJoin = new CoursesBCL().GetByCoId(objCourses.CoId.Value);
+            List<CoursesObjects> lstCourse = new CoursesBCL().GetAll();
+            ViewBag.ListCourse = lstCourse;
+
+            return View(objCourses);
+        }
+        [HttpPost]
+        public ActionResult Edit(CoursesJournalObjects model)
+        {
+            var b = new CoursesJournalBCL().Update(model);
+            if (b)
+            {
+                return RedirectToAction("Index", "CoursesJournal");
+            }
+
+            else
+            {
+                ModelState.AddModelError("", "them moi that bai");
+            }
+            return View();
+        }
+        // GET: CoursesJournal/Delete/5
+        [HttpPost]
+        public ActionResult Delete(Guid ID)
+        {
+            try
+            {
+                new CoursesJournalBCL().Delete(ID);
+            }
+            catch (Exception e)
+            {
+                return Json(new { result = false, message = "Đã có lỗi xảy ra!" });
+            }
+            return Json(new { result = true, message = "Xóa bài học thành công!" });
+
+        }
+
+
+        public ActionResult GetListByCoursesId(Guid? coursesId)
+        {
+            ViewBag.coursesId = coursesId;
+            var list = new CoursesJournalBCL().GetJoin().OrderByDescending(q => q.DayOf.GetValueOrDefault()).Where(x => x.CoId.Equals(coursesId)).ToList();
+            return PartialView(list);
+        }
+
+        public void addhvv(List<CoursesStudentDetailtObject> lst)
+        {
+            if (lst == null && lst.Count <= 0) return;
+            var dathem = new CoursesStudentDetailtBCL().GetAll().Where(q => q.CJId.Equals(lst[0].CJId));
+            var bcl = new CoursesStudentDetailtBCL();
+            foreach (var item in lst)
+            {
+                var hv = dathem.FirstOrDefault(m => m.StudetId.Equals(item.StudetId));
+                var ob = new CoursesStudentDetailtObject()
+                {
+                    CJId = item.CJId,
+                    Description = item.Description,
+                    StudetId = item.StudetId
+                };
+                if (hv == null && item.Selected)
+                {
+                    ob.ScsId = Guid.NewGuid();
+                    bcl.Insert(ob);
+                }
+                else if (hv != null)
+                {
+                    ob.ScsId = hv.ScsId;
+                    if (item.Selected)
+                    {
+                        bcl.Update(ob);
+                    }
+                    else bcl.Delete(ob.ScsId);
+                }
+            }
+        }
+
+        public ActionResult getHvv(Guid CJId)
+        {
+            var nk = new CoursesJournalBCL().GetByCJId(CJId);
+            var hv_vang = new CoursesStudentDetailtBCL().GetByCJId(CJId);
+            var lst = new List<CoursesStudentDetailtObject>();
+            var hv_trong_lop = new StudentDetailtBCL().GetJoin().Where(q => q.CoId.Equals(nk.CoId));
+            foreach (var item in hv_trong_lop)
+            {
+                var hv = hv_vang.FirstOrDefault(q => q.StudetId.Equals(item.StudetId));
+                lst.Add(new CoursesStudentDetailtObject()
+                {
+                    ScsId = hv != null ? hv.ScsId : Guid.NewGuid(),
+                    Selected = hv != null,
+                    StudetId = item.StudetId,
+                    CJId = CJId,
+                    StudentJoin = item.StudentJoin,
+                    Description = hv != null ? hv.Description : ""
+                });
+            }
+            return PartialView("pv_dsvang", lst);
+        }
+    }
+}

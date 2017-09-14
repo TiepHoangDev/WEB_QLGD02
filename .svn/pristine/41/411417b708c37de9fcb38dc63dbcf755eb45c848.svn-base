@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<WCF.BussinessObject.Objects.NotificationsObjects>
+<div class="col-md-12">
+    <!-- BEGIN PROFILE SIDEBAR -->
+    <!-- END BEGIN PROFILE SIDEBAR -->
+    <!-- BEGIN PROFILE CONTENT -->
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <!-- BEGIN PORTLET -->
+                <div class="portlet light">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md col-md-3">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">Danh sách gửi đi </span>
+                        </div>
+                        <div class="col-md-3">
+                            <select name="status" id="compobox" class="form-control">
+                                @if (ViewBag.Status == false)
+                                {
+                                    <option selected value="false">Chưa xem</option>
+                                    <option value="true">Đã xem</option>
+                                }
+                                else
+                                {
+                                    <option value="false">Chưa xem</option>
+                                    <option selected value="true">Đã xem</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <!--BEGIN TABS-->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1_1">
+                                <div class="scroller" style="height: 320px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+
+
+                                    <ul class="feeds">
+                                        @foreach (var item in Model)
+                                        {
+                                            if (ViewBag.Status == false)
+                                            {
+                                                <li>
+                                                    <div class="col1">
+                                                        <div class="cont">
+                                                            <div class="cont-col1">
+                                                                <div class="label label-sm label-icon label-warning">
+                                                                    <i class="fa fa-bell-o"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="cont-col2">
+                                                                <div class="desc">
+                                                                    <a href="@Url.Action("Details", "NotificationsManage", new { id = item.notificationsID })">@item.title</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col2">
+                                                        <div class="date">
+                                                            Chưa xem
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <div class="col1">
+                                                        <div class="cont">
+                                                            <div class="cont-col1">
+                                                                <div class="label label-sm label-success">
+                                                                    <i class="fa fa-bell-o"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="cont-col2">
+                                                                <div class="desc">
+                                                                    <a href="@Url.Action("Details", "NotificationsManage", new { id = item.notificationsID })">@item.title</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col2">
+                                                        <div class="date">
+                                                            Đã xem
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END TABS-->
+                    </div>
+                </div>
+                <!-- END PORTLET -->
+            </div>
+        </div>
+
+    </div>
+    <!-- END PROFILE CONTENT -->
+</div>
+<script>
+    $('#compobox').on('change', function (e) {
+        var option = $("option:selected", this);
+        var valueselected = this.value;
+        debugger;
+        $.ajax({
+            url: '@Url.Action("NotificationIndex", "NotificationsManage")',
+            type: 'get',
+            data: { status: valueselected },
+            success: function (data) {
+                $('body').html(data);
+            }
+
+        })
+    })
+</script>
+
+

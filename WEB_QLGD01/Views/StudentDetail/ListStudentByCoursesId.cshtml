@@ -1,0 +1,119 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.StudentDetailtObjects>
+@using WEB_QLGD01.Models
+
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>Danh Sách Học Viên Đã Tham Gia Vào Lớp
+        </div>
+        <div class="tools">
+        </div>
+    </div>
+
+
+    <script src="~/Content/jquery-ui.min.js"></script>
+
+    <div class="portlet-body">
+        <p>
+            @if (new Permission().IsAllow(eAction.Add, eFea.QLCTHV))
+            {
+                @Html.ActionLink("Thêm Mới Học Viên Vào Lớp", "Create", new { coursesId = ViewBag.coursesId }, new { @class = "btn btn-success", @target = "_blank" })
+            }
+            <button id="reloadST" class="btn btn-success">Làm Mới Dữ liệu</button>
+            <h5 style="color:red">Note :Sau khi thêm mới học viên xong thì làm mới dữ liệu</h5>
+        </p>
+        <div class="portlet-body">
+            <table class="table table-striped table-bordered table-hover" id="sample_1">
+                <thead>
+                    <tr>
+                        <td>Tên Học Viên</td>
+                        <td>Mã Lớp Học</td>
+                        <td>Tên Lớp Học</td>
+                        <td>Ngày khai giảng</td>
+                        <td>Ngày kết thúc</td>
+                        <td>Mô tả</td>
+                        <td>Thao tác</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.StudentJoin.FullName</td>
+                            <td>@item.CoursesJoin.CourseId</td>
+                            <td>@item.CoursesJoin.CourseName</td>
+                            <td>@item.CoursesJoin.StartDate.Value.ToShortDateString()</td>
+                            <td>@item.CoursesJoin.EndDate.Value.ToShortDateString()</td>
+                            <td>@item.Description</td>
+                            <td>
+                                @if (new Permission().IsAllow(eAction.Edit, eFea.QLCTHV))
+                                {
+                                    @Html.ActionLink("Sửa", "Edit", new { ID = item.StdId, IsOption = 1 }, new { @class = "btn btn-default" })
+                                }
+                                @if (new Permission().IsAllow(eAction.Delete, eFea.QLCTHV))
+                                {
+                                    <span class="btn btn-warning btn-delete-hocvien" data-value="@item.StdId">Xóa</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="~/Content/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function () {
+            $("#start").datepicker();
+            $("#end").datepicker();
+        });
+
+
+        function check() {
+            if ($('#Status').val() == 'true') {
+                $("#start").show();
+                $("#end").show();
+            } else {
+                $("#start").hide();
+                $("#end").hide();
+            }
+        }
+
+        $('#Status').change(function () {
+            check();
+        });
+
+        check();
+
+        $('.btn-delete-hocvien').click(function () {
+            if (confirm("Bạn có muốn xóa không?") != true) return;
+            elementDelete = this;
+            let value = $(this).data('value');
+            if (value) {
+                myAjax('@Url.Action("Delete")', { ID: value }, function (d, xhr, r) {
+                    if (elementDelete) {
+                        $(elementDelete).parents('tr').first().hide();
+                    } else {
+                        window.location.reload();
+                    }
+                    if (d == false) alert("Xóa thất bại");
+                    elementDelete = undefined;
+                }, function (d) {
+                    alert('Đã xảy ra lỗi, trang web sẽ được load lại!');
+                    window.location.reload();
+                }, function (d) {
+
+                });
+            }
+        });
+    </script>
+    <script>
+        $('#reloadST').click(function () {
+            window.location.reload();
+        });
+    </script>
+
+</div>

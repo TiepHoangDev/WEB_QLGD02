@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using WCF.BussinessObject.Objects
+
+@model WCF.BussinessObject.Objects.StudentDetailtObjects
+
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle"></i>Thêm mới Lớp cho Học Viên
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm("Create", "StudentDetail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="register-form" action="index.html" method="post">
+
+               
+                <h4>&nbsp;Tên học viên:</h4>
+                @{
+            List<StudentObjects> lisStu = (List<StudentObjects>)ViewBag.ListStudent;
+            List<SelectListItem> listItem = new List<SelectListItem>();
+            foreach (var item in lisStu)
+            {
+                listItem.Add(new SelectListItem()
+                {
+                    Value = "" + item.StudetId,
+                    Text = item.FullName
+                });
+            }
+                }
+                @Html.DropDownListFor(m => m.StudetId, listItem, new { @class = "form-control", required = "required" })
+                <p>
+                    @Html.ActionLink("Thêm mới Học viên", "Create", "Student", new { }, new { })
+                </p>
+
+                @if (ViewBag.coursesId == null)
+                {
+                    <h4>&nbsp;Mã lớp học:</h4>
+                    
+                    List<WCF.BussinessObject.Objects.CoursesObjects> lisCourses = ViewBag.ListCourses as List<WCF.BussinessObject.Objects.CoursesObjects>;
+                    List<SelectListItem> listItem1 = new List<SelectListItem>();
+                    foreach (var item in lisCourses)
+                    {
+                        listItem1.Add(new SelectListItem()
+                        {
+                            Value = "" + item.CoId,
+                            Text = item.CourseId,
+                        });
+                    }
+                    
+                    @Html.DropDownListFor(m => m.CoId, listItem1, new { @class = "form-control", required = "required" })
+                    <p>
+                        @Html.ActionLink("Thêm mới  Khóa học", "Create", "Courses", new { }, new { })
+                    </p>
+                }
+                else
+                {
+                    <input value="@ViewBag.coursesId" style="display:none" name="CoId" id="CoId" />
+                    <input value="1" style="display:none" name="IsOption" id="IsOption" />
+                }
+               
+               
+
+               
+                <h4>&nbsp;Mô tả:</h4>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Description</label>
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Description", rows = "4" })
+
+                </div>
+
+                <div class="form-actions">
+                    @Html.ActionLink("Đóng", "Index", new { }, new { @class = "btn btn-default" })
+                    <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Thêm mới</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

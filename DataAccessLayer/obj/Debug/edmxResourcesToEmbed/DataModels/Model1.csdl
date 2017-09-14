@@ -1,411 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="eTrainingScheduleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="tbl_Account">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="UserId" Type="Guid" Nullable="false" />
-    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Isdeleted" Type="Boolean" />
-    <Property Name="RoleId" Type="Guid" />
-    <NavigationProperty Name="tbl_Role" Relationship="Self.fk_Account_01" FromRole="tbl_Account" ToRole="tbl_Role" />
-    <NavigationProperty Name="tbl_Permisstion" Relationship="Self.fk_Permisstion_02" FromRole="tbl_Account" ToRole="tbl_Permisstion" />
-  </EntityType>
-  <EntityType Name="tbl_FeaId">
-    <Key>
-      <PropertyRef Name="FeaId" />
-    </Key>
-    <Property Name="FeaId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="FeaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Isdeleted" Type="Boolean" />
-    <NavigationProperty Name="tbl_Permisstion" Relationship="Self.fk_Permisstion_01" FromRole="tbl_FeaId" ToRole="tbl_Permisstion" />
-  </EntityType>
-  <EntityType Name="tbl_Permisstion">
-    <Key>
-      <PropertyRef Name="PerID" />
-    </Key>
-    <Property Name="PerID" Type="Guid" Nullable="false" />
-    <Property Name="F_ADD" Type="Boolean" />
-    <Property Name="F_EDIT" Type="Boolean" />
-    <Property Name="F_DELETE" Type="Boolean" />
-    <Property Name="F_SEARCH" Type="Boolean" />
-    <Property Name="FeaId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="UserId" Type="Guid" />
-    <NavigationProperty Name="tbl_Account" Relationship="Self.fk_Permisstion_02" FromRole="tbl_Permisstion" ToRole="tbl_Account" />
-    <NavigationProperty Name="tbl_FeaId" Relationship="Self.fk_Permisstion_01" FromRole="tbl_Permisstion" ToRole="tbl_FeaId" />
-  </EntityType>
-  <EntityType Name="tbl_Role">
-    <Key>
-      <PropertyRef Name="RoleId" />
-    </Key>
-    <Property Name="RoleId" Type="Guid" Nullable="false" />
-    <Property Name="RName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Isdeleted" Type="Boolean" />
-    <NavigationProperty Name="tbl_Account" Relationship="Self.fk_Account_01" FromRole="tbl_Role" ToRole="tbl_Account" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Courses">
-    <Key>
-      <PropertyRef Name="CoId" />
-    </Key>
-    <Property Name="CoId" Type="Guid" Nullable="false" />
-    <Property Name="CourseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TotalNumber" Type="Byte" />
-    <Property Name="StartDate" Type="DateTime" Precision="3" />
-    <Property Name="EndDate" Type="DateTime" Precision="3" />
-    <Property Name="Status" Type="Boolean" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Deleted" Type="Boolean" />
-    <NavigationProperty Name="tbl_S07_ExpertsDetailt" Relationship="Self.pk_02" FromRole="tbl_S07_Courses" ToRole="tbl_S07_ExpertsDetailt" />
-    <NavigationProperty Name="tbl_S07_StudentDetailt" Relationship="Self.pk_04" FromRole="tbl_S07_Courses" ToRole="tbl_S07_StudentDetailt" />
-    <NavigationProperty Name="tbl_S07_CoursesJournal" Relationship="Self.pk_05" FromRole="tbl_S07_Courses" ToRole="tbl_S07_CoursesJournal" />
-    <NavigationProperty Name="tbl_S07_Schedulers" Relationship="Self.pk_06" FromRole="tbl_S07_Courses" ToRole="tbl_S07_Schedulers" />
-  </EntityType>
-  <EntityType Name="tbl_S07_CoursesJournal">
-    <Key>
-      <PropertyRef Name="CJId" />
-    </Key>
-    <Property Name="CJId" Type="Guid" Nullable="false" />
-    <Property Name="CoId" Type="Guid" />
-    <Property Name="DayOf" Type="DateTime" Precision="3" />
-    <Property Name="Contents" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tbl_S07_Courses" Relationship="Self.pk_05" FromRole="tbl_S07_CoursesJournal" ToRole="tbl_S07_Courses" />
-    <NavigationProperty Name="tbl_S07_CoursesStudentDetailt" Relationship="Self.FK_tbl_S07_CoursesStudentDetailt_tbl_S07_CoursesJournal" FromRole="tbl_S07_CoursesJournal" ToRole="tbl_S07_CoursesStudentDetailt" />
-  </EntityType>
-  <EntityType Name="tbl_S07_CoursesStudentDetailt">
-    <Key>
-      <PropertyRef Name="ScsId" />
-    </Key>
-    <Property Name="ScsId" Type="Guid" Nullable="false" />
-    <Property Name="StudetId" Type="Guid" />
-    <Property Name="CJId" Type="Guid" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tbl_S07_CoursesJournal" Relationship="Self.FK_tbl_S07_CoursesStudentDetailt_tbl_S07_CoursesJournal" FromRole="tbl_S07_CoursesStudentDetailt" ToRole="tbl_S07_CoursesJournal" />
-    <NavigationProperty Name="tbl_S07_Student" Relationship="Self.pk_09" FromRole="tbl_S07_CoursesStudentDetailt" ToRole="tbl_S07_Student" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Experts">
-    <Key>
-      <PropertyRef Name="ExpertId" />
-    </Key>
-    <Property Name="ExpertId" Type="Guid" Nullable="false" />
-    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Specialize" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="StartDate" Type="DateTime" Precision="3" />
-    <Property Name="Status" Type="Boolean" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Deleted" Type="Boolean" />
-    <NavigationProperty Name="tbl_S07_ExpertsDetailt" Relationship="Self.pk_01" FromRole="tbl_S07_Experts" ToRole="tbl_S07_ExpertsDetailt" />
-  </EntityType>
-  <EntityType Name="tbl_S07_ExpertsDetailt">
-    <Key>
-      <PropertyRef Name="ExId" />
-    </Key>
-    <Property Name="ExId" Type="Guid" Nullable="false" />
-    <Property Name="ExpertId" Type="Guid" />
-    <Property Name="CoId" Type="Guid" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tbl_S07_Courses" Relationship="Self.pk_02" FromRole="tbl_S07_ExpertsDetailt" ToRole="tbl_S07_Courses" />
-    <NavigationProperty Name="tbl_S07_Experts" Relationship="Self.pk_01" FromRole="tbl_S07_ExpertsDetailt" ToRole="tbl_S07_Experts" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Schedulers">
-    <Key>
-      <PropertyRef Name="ScId" />
-    </Key>
-    <Property Name="ScId" Type="Guid" Nullable="false" />
-    <Property Name="WeId" Type="Guid" />
-    <Property Name="ShiftId" Type="Guid" />
-    <Property Name="CoId" Type="Guid" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tbl_S07_Courses" Relationship="Self.pk_06" FromRole="tbl_S07_Schedulers" ToRole="tbl_S07_Courses" />
-    <NavigationProperty Name="tbl_S07_Weekdays" Relationship="Self.pk_07" FromRole="tbl_S07_Schedulers" ToRole="tbl_S07_Weekdays" />
-    <NavigationProperty Name="tbl_S07_ShiftDay" Relationship="Self.pk_08" FromRole="tbl_S07_Schedulers" ToRole="tbl_S07_ShiftDay" />
-  </EntityType>
-  <EntityType Name="tbl_S07_ShiftDay">
-    <Key>
-      <PropertyRef Name="ShiftId" />
-    </Key>
-    <Property Name="ShiftId" Type="Guid" Nullable="false" />
-    <Property Name="ShiftName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tbl_S07_Schedulers" Relationship="Self.pk_08" FromRole="tbl_S07_ShiftDay" ToRole="tbl_S07_Schedulers" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Student">
-    <Key>
-      <PropertyRef Name="StudetId" />
-    </Key>
-    <Property Name="StudetId" Type="Guid" Nullable="false" />
-    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="Boolean" />
-    <Property Name="Deleted" Type="Boolean" />
-    <NavigationProperty Name="tbl_S07_CoursesStudentDetailt" Relationship="Self.pk_09" FromRole="tbl_S07_Student" ToRole="tbl_S07_CoursesStudentDetailt" />
-    <NavigationProperty Name="tbl_S07_StudentDetailt" Relationship="Self.pk_03" FromRole="tbl_S07_Student" ToRole="tbl_S07_StudentDetailt" />
-  </EntityType>
-  <EntityType Name="tbl_S07_StudentDetailt">
-    <Key>
-      <PropertyRef Name="StdId" />
-    </Key>
-    <Property Name="StdId" Type="Guid" Nullable="false" />
-    <Property Name="StudetId" Type="Guid" />
-    <Property Name="CoId" Type="Guid" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tbl_S07_Courses" Relationship="Self.pk_04" FromRole="tbl_S07_StudentDetailt" ToRole="tbl_S07_Courses" />
-    <NavigationProperty Name="tbl_S07_Student" Relationship="Self.pk_03" FromRole="tbl_S07_StudentDetailt" ToRole="tbl_S07_Student" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Weekdays">
-    <Key>
-      <PropertyRef Name="WeId" />
-    </Key>
-    <Property Name="WeId" Type="Guid" Nullable="false" />
-    <Property Name="WeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tbl_S07_Schedulers" Relationship="Self.pk_07" FromRole="tbl_S07_Weekdays" ToRole="tbl_S07_Schedulers" />
-  </EntityType>
-  <Association Name="fk_Account_01">
-    <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="0..1" />
-    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_Role">
-        <PropertyRef Name="RoleId" />
-      </Principal>
-      <Dependent Role="tbl_Account">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Permisstion_02">
-    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
-    <End Role="tbl_Permisstion" Type="Self.tbl_Permisstion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_Account">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="tbl_Permisstion">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Permisstion_01">
-    <End Role="tbl_FeaId" Type="Self.tbl_FeaId" Multiplicity="1" />
-    <End Role="tbl_Permisstion" Type="Self.tbl_Permisstion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_FeaId">
-        <PropertyRef Name="FeaId" />
-      </Principal>
-      <Dependent Role="tbl_Permisstion">
-        <PropertyRef Name="FeaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_02">
-    <End Role="tbl_S07_Courses" Type="Self.tbl_S07_Courses" Multiplicity="0..1" />
-    <End Role="tbl_S07_ExpertsDetailt" Type="Self.tbl_S07_ExpertsDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Courses">
-        <PropertyRef Name="CoId" />
-      </Principal>
-      <Dependent Role="tbl_S07_ExpertsDetailt">
-        <PropertyRef Name="CoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_04">
-    <End Role="tbl_S07_Courses" Type="Self.tbl_S07_Courses" Multiplicity="0..1" />
-    <End Role="tbl_S07_StudentDetailt" Type="Self.tbl_S07_StudentDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Courses">
-        <PropertyRef Name="CoId" />
-      </Principal>
-      <Dependent Role="tbl_S07_StudentDetailt">
-        <PropertyRef Name="CoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_05">
-    <End Role="tbl_S07_Courses" Type="Self.tbl_S07_Courses" Multiplicity="0..1" />
-    <End Role="tbl_S07_CoursesJournal" Type="Self.tbl_S07_CoursesJournal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Courses">
-        <PropertyRef Name="CoId" />
-      </Principal>
-      <Dependent Role="tbl_S07_CoursesJournal">
-        <PropertyRef Name="CoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_06">
-    <End Role="tbl_S07_Courses" Type="Self.tbl_S07_Courses" Multiplicity="0..1" />
-    <End Role="tbl_S07_Schedulers" Type="Self.tbl_S07_Schedulers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Courses">
-        <PropertyRef Name="CoId" />
-      </Principal>
-      <Dependent Role="tbl_S07_Schedulers">
-        <PropertyRef Name="CoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_S07_CoursesStudentDetailt_tbl_S07_CoursesJournal">
-    <End Role="tbl_S07_CoursesJournal" Type="Self.tbl_S07_CoursesJournal" Multiplicity="0..1" />
-    <End Role="tbl_S07_CoursesStudentDetailt" Type="Self.tbl_S07_CoursesStudentDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_CoursesJournal">
-        <PropertyRef Name="CJId" />
-      </Principal>
-      <Dependent Role="tbl_S07_CoursesStudentDetailt">
-        <PropertyRef Name="CJId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_09">
-    <End Role="tbl_S07_Student" Type="Self.tbl_S07_Student" Multiplicity="0..1" />
-    <End Role="tbl_S07_CoursesStudentDetailt" Type="Self.tbl_S07_CoursesStudentDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Student">
-        <PropertyRef Name="StudetId" />
-      </Principal>
-      <Dependent Role="tbl_S07_CoursesStudentDetailt">
-        <PropertyRef Name="StudetId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_01">
-    <End Role="tbl_S07_Experts" Type="Self.tbl_S07_Experts" Multiplicity="0..1" />
-    <End Role="tbl_S07_ExpertsDetailt" Type="Self.tbl_S07_ExpertsDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Experts">
-        <PropertyRef Name="ExpertId" />
-      </Principal>
-      <Dependent Role="tbl_S07_ExpertsDetailt">
-        <PropertyRef Name="ExpertId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_07">
-    <End Role="tbl_S07_Weekdays" Type="Self.tbl_S07_Weekdays" Multiplicity="0..1" />
-    <End Role="tbl_S07_Schedulers" Type="Self.tbl_S07_Schedulers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Weekdays">
-        <PropertyRef Name="WeId" />
-      </Principal>
-      <Dependent Role="tbl_S07_Schedulers">
-        <PropertyRef Name="WeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_08">
-    <End Role="tbl_S07_ShiftDay" Type="Self.tbl_S07_ShiftDay" Multiplicity="0..1" />
-    <End Role="tbl_S07_Schedulers" Type="Self.tbl_S07_Schedulers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_ShiftDay">
-        <PropertyRef Name="ShiftId" />
-      </Principal>
-      <Dependent Role="tbl_S07_Schedulers">
-        <PropertyRef Name="ShiftId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_03">
-    <End Role="tbl_S07_Student" Type="Self.tbl_S07_Student" Multiplicity="0..1" />
-    <End Role="tbl_S07_StudentDetailt" Type="Self.tbl_S07_StudentDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Student">
-        <PropertyRef Name="StudetId" />
-      </Principal>
-      <Dependent Role="tbl_S07_StudentDetailt">
-        <PropertyRef Name="StudetId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="eTrainingScheduleEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" />
-    <EntitySet Name="tbl_FeaId" EntityType="Self.tbl_FeaId" />
-    <EntitySet Name="tbl_Permisstion" EntityType="Self.tbl_Permisstion" />
-    <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" />
-    <EntitySet Name="tbl_S07_Courses" EntityType="Self.tbl_S07_Courses" />
-    <EntitySet Name="tbl_S07_CoursesJournal" EntityType="Self.tbl_S07_CoursesJournal" />
-    <EntitySet Name="tbl_S07_CoursesStudentDetailt" EntityType="Self.tbl_S07_CoursesStudentDetailt" />
-    <EntitySet Name="tbl_S07_Experts" EntityType="Self.tbl_S07_Experts" />
-    <EntitySet Name="tbl_S07_ExpertsDetailt" EntityType="Self.tbl_S07_ExpertsDetailt" />
-    <EntitySet Name="tbl_S07_Schedulers" EntityType="Self.tbl_S07_Schedulers" />
-    <EntitySet Name="tbl_S07_ShiftDay" EntityType="Self.tbl_S07_ShiftDay" />
-    <EntitySet Name="tbl_S07_Student" EntityType="Self.tbl_S07_Student" />
-    <EntitySet Name="tbl_S07_StudentDetailt" EntityType="Self.tbl_S07_StudentDetailt" />
-    <EntitySet Name="tbl_S07_Weekdays" EntityType="Self.tbl_S07_Weekdays" />
-    <AssociationSet Name="fk_Account_01" Association="Self.fk_Account_01">
-      <End Role="tbl_Role" EntitySet="tbl_Role" />
-      <End Role="tbl_Account" EntitySet="tbl_Account" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Permisstion_02" Association="Self.fk_Permisstion_02">
-      <End Role="tbl_Account" EntitySet="tbl_Account" />
-      <End Role="tbl_Permisstion" EntitySet="tbl_Permisstion" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Permisstion_01" Association="Self.fk_Permisstion_01">
-      <End Role="tbl_FeaId" EntitySet="tbl_FeaId" />
-      <End Role="tbl_Permisstion" EntitySet="tbl_Permisstion" />
-    </AssociationSet>
-    <AssociationSet Name="pk_02" Association="Self.pk_02">
-      <End Role="tbl_S07_Courses" EntitySet="tbl_S07_Courses" />
-      <End Role="tbl_S07_ExpertsDetailt" EntitySet="tbl_S07_ExpertsDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_04" Association="Self.pk_04">
-      <End Role="tbl_S07_Courses" EntitySet="tbl_S07_Courses" />
-      <End Role="tbl_S07_StudentDetailt" EntitySet="tbl_S07_StudentDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_05" Association="Self.pk_05">
-      <End Role="tbl_S07_Courses" EntitySet="tbl_S07_Courses" />
-      <End Role="tbl_S07_CoursesJournal" EntitySet="tbl_S07_CoursesJournal" />
-    </AssociationSet>
-    <AssociationSet Name="pk_06" Association="Self.pk_06">
-      <End Role="tbl_S07_Courses" EntitySet="tbl_S07_Courses" />
-      <End Role="tbl_S07_Schedulers" EntitySet="tbl_S07_Schedulers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_S07_CoursesStudentDetailt_tbl_S07_CoursesJournal" Association="Self.FK_tbl_S07_CoursesStudentDetailt_tbl_S07_CoursesJournal">
-      <End Role="tbl_S07_CoursesJournal" EntitySet="tbl_S07_CoursesJournal" />
-      <End Role="tbl_S07_CoursesStudentDetailt" EntitySet="tbl_S07_CoursesStudentDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_09" Association="Self.pk_09">
-      <End Role="tbl_S07_Student" EntitySet="tbl_S07_Student" />
-      <End Role="tbl_S07_CoursesStudentDetailt" EntitySet="tbl_S07_CoursesStudentDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_01" Association="Self.pk_01">
-      <End Role="tbl_S07_Experts" EntitySet="tbl_S07_Experts" />
-      <End Role="tbl_S07_ExpertsDetailt" EntitySet="tbl_S07_ExpertsDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_07" Association="Self.pk_07">
-      <End Role="tbl_S07_Weekdays" EntitySet="tbl_S07_Weekdays" />
-      <End Role="tbl_S07_Schedulers" EntitySet="tbl_S07_Schedulers" />
-    </AssociationSet>
-    <AssociationSet Name="pk_08" Association="Self.pk_08">
-      <End Role="tbl_S07_ShiftDay" EntitySet="tbl_S07_ShiftDay" />
-      <End Role="tbl_S07_Schedulers" EntitySet="tbl_S07_Schedulers" />
-    </AssociationSet>
-    <AssociationSet Name="pk_03" Association="Self.pk_03">
-      <End Role="tbl_S07_Student" EntitySet="tbl_S07_Student" />
-      <End Role="tbl_S07_StudentDetailt" EntitySet="tbl_S07_StudentDetailt" />
-    </AssociationSet>
     <FunctionImport Name="CoursesStudentDetail_Join" ReturnType="Collection(eTrainingScheduleModel.CoursesStudentDetail_Join_Result)" />
     <FunctionImport Name="sp_Account_CheckLogin" ReturnType="Collection(eTrainingScheduleModel.sp_Account_CheckLogin_Result)">
       <Parameter Name="Username" Mode="In" Type="String" />
@@ -724,9 +319,6 @@
       <Parameter Name="StdId" Mode="In" Type="Guid" />
     </FunctionImport>
     <FunctionImport Name="sp_tbl_S07_StudentDetailt_GetAll" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_S07_StudentDetailt_GetAll_Result)" />
-    <FunctionImport Name="sp_tbl_S07_StudentDetailt_GetByStdId" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_S07_StudentDetailt_GetByStdId_Result)">
-      <Parameter Name="StdId" Mode="In" Type="Guid" />
-    </FunctionImport>
     <FunctionImport Name="sp_tbl_S07_StudentDetailt_INSERT">
       <Parameter Name="StdId" Mode="In" Type="Guid" />
       <Parameter Name="StudetId" Mode="In" Type="Guid" />
@@ -738,6 +330,7 @@
       <Parameter Name="StudetId" Mode="In" Type="Guid" />
       <Parameter Name="CoId" Mode="In" Type="Guid" />
       <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="StatusSC" Mode="In" Type="Boolean" />
     </FunctionImport>
     <FunctionImport Name="sp_tbl_S07_Weekdays_DELETE">
       <Parameter Name="WeId" Mode="In" Type="Guid" />
@@ -761,6 +354,50 @@
     <FunctionImport Name="WEB_QLGD01_sp_Permission_GetJoin" ReturnType="Collection(eTrainingScheduleModel.WEB_QLGD01_sp_Permission_GetJoin_Result)" />
     <FunctionImport Name="WEB_QLGD01_sp_ExpertsDetailt_GetByCoId" ReturnType="Collection(eTrainingScheduleModel.WEB_QLGD01_sp_ExpertsDetailt_GetByCoId_Result)">
       <Parameter Name="CoId" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="sp_tbl_Notifications_DELETE">
+      <Parameter Name="notificationsID" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="sp_tbl_Notifications_GetAll" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_Notifications_GetAll_Result)" />
+    <FunctionImport Name="sp_tbl_Notifications_INSERT">
+      <Parameter Name="notificationsID" Mode="In" Type="Guid" />
+      <Parameter Name="UserID" Mode="In" Type="Guid" />
+      <Parameter Name="title" Mode="In" Type="String" />
+      <Parameter Name="Content" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="Boolean" />
+      <Parameter Name="UserId2" Mode="In" Type="Guid" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Isdeleted" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="sp_tbl_Notifications_UPDATE">
+      <Parameter Name="notificationsID" Mode="In" Type="Guid" />
+      <Parameter Name="UserID" Mode="In" Type="Guid" />
+      <Parameter Name="title" Mode="In" Type="String" />
+      <Parameter Name="Content" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="Boolean" />
+      <Parameter Name="UserId2" Mode="In" Type="Guid" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Isdeleted" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="sp_SentEmail_GetAll" ReturnType="Collection(eTrainingScheduleModel.sp_SentEmail_GetAll_Result)" />
+    <FunctionImport Name="sp_tbl_Notifications_GetByID" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_Notifications_GetByID_Result)">
+      <Parameter Name="notificationsID" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="sp_tbl_S07_Student_GetAll_NOTClass" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_S07_Student_GetAll_NOTClass_Result)" />
+    <FunctionImport Name="sp_tbl_S07_StudentDetailt_GetCoursebyStudentID" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_S07_StudentDetailt_GetCoursebyStudentID_Result)">
+      <Parameter Name="SudetId" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="sp_tbl_S07_StudentDetailt_GetByStdId" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_S07_StudentDetailt_GetByStdId_Result)">
+      <Parameter Name="StdId" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="sp_tbl_Notifications_GetByUserID" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_Notifications_GetByUserID_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="sp_tbl_Notifications_GetByUserID2" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_Notifications_GetByUserID2_Result)">
+      <Parameter Name="UserID2" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="sp_tbl_S07_StudentDetailt_GetByStdId1" ReturnType="Collection(eTrainingScheduleModel.sp_tbl_S07_StudentDetailt_GetByStdId1_Result)">
+      <Parameter Name="StdId" Mode="In" Type="Guid" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="CoursesStudentDetail_Join_Result">
@@ -827,6 +464,7 @@
     <Property Type="Boolean" Name="StatusCourses" Nullable="true" />
     <Property Type="String" Name="DescriptionCourses" Nullable="true" MaxLength="200" />
     <Property Type="Boolean" Name="DeletedCourses" Nullable="true" />
+    <Property Type="DateTime" Name="edCreationDate" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -877,6 +515,7 @@
     <Property Type="Boolean" Name="StatusCourses" Nullable="true" />
     <Property Type="String" Name="DescriptionCourses" Nullable="true" MaxLength="200" />
     <Property Type="Boolean" Name="DeletedCourses" Nullable="true" />
+    <Property Type="Boolean" Name="StatusSC" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_tbl_Account_GetAll_Result">
     <Property Type="Guid" Name="UserId" Nullable="false" />
@@ -982,9 +621,19 @@
   </ComplexType>
   <ComplexType Name="sp_tbl_S07_CoursesStudentDetailt_GetByCJId_Result">
     <Property Type="Guid" Name="ScsId" Nullable="false" />
-    <Property Type="Guid" Name="StudetId" Nullable="true" />
-    <Property Type="Guid" Name="CJId" Nullable="true" />
-    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="Guid" Name="StudetId" Nullable="false" />
+    <Property Type="Guid" Name="CJId" Nullable="false" />
+    <Property Type="String" Name="Description_CoursesStudentDetailt" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+    <Property Type="Boolean" Name="Deleted" Nullable="true" />
+    <Property Type="Guid" Name="CoId" Nullable="true" />
+    <Property Type="DateTime" Name="DayOf" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Contents" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="Description_CoursesJournal" Nullable="true" MaxLength="200" />
   </ComplexType>
   <ComplexType Name="sp_tbl_S07_CoursesStudentDetailt_GetByScsId_Result">
     <Property Type="Guid" Name="ScsId" Nullable="false" />
@@ -1027,6 +676,7 @@
     <Property Type="Guid" Name="ExpertId" Nullable="true" />
     <Property Type="Guid" Name="CoId" Nullable="true" />
     <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="sp_tbl_S07_ExpertsDetailt_GetByExId_Result">
     <Property Type="Guid" Name="ExId" Nullable="false" />
@@ -1066,6 +716,7 @@
     <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
     <Property Type="Boolean" Name="Status" Nullable="true" />
     <Property Type="Boolean" Name="Deleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="sp_tbl_S07_Student_GetByStudetId_Result">
     <Property Type="Guid" Name="StudetId" Nullable="false" />
@@ -1081,12 +732,7 @@
     <Property Type="Guid" Name="StudetId" Nullable="true" />
     <Property Type="Guid" Name="CoId" Nullable="true" />
     <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
-  </ComplexType>
-  <ComplexType Name="sp_tbl_S07_StudentDetailt_GetByStdId_Result">
-    <Property Type="Guid" Name="StdId" Nullable="false" />
-    <Property Type="Guid" Name="StudetId" Nullable="true" />
-    <Property Type="Guid" Name="CoId" Nullable="true" />
-    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="StatusSC" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_tbl_S07_Weekdays_GetAll_Result">
     <Property Type="Guid" Name="WeId" Nullable="false" />
@@ -1216,5 +862,97 @@
     <Property Type="Boolean" Name="StatusCourses" Nullable="true" />
     <Property Type="String" Name="DescriptionCourses" Nullable="true" MaxLength="200" />
     <Property Type="Boolean" Name="DeletedCourses" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_tbl_Notifications_GetAll_Result">
+    <Property Type="Guid" Name="notificationsID" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Isdeleted" Nullable="true" />
+    <Property Type="String" Name="FullNameUser1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FullNameUser2" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_SentEmail_GetAll_Result">
+    <Property Type="Guid" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="sp_tbl_Notifications_GetByID_Result">
+    <Property Type="Guid" Name="notificationsID" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Isdeleted" Nullable="true" />
+    <Property Type="String" Name="FullNameUser1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FullNameUser2" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="UserId" Nullable="true" />
+    <Property Type="Guid" Name="UserId2" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_tbl_S07_Student_GetAll_NOTClass_Result">
+    <Property Type="Guid" Name="StudetId" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+    <Property Type="Boolean" Name="Deleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_tbl_S07_StudentDetailt_GetCoursebyStudentID_Result">
+    <Property Type="Guid" Name="StdId" Nullable="false" />
+    <Property Type="Guid" Name="StudetId" Nullable="true" />
+    <Property Type="Guid" Name="CoId" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="StatusSC" Nullable="true" />
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CourseId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CourseName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_tbl_S07_StudentDetailt_GetByStdId_Result">
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+    <Property Type="Guid" Name="StdId" Nullable="false" />
+    <Property Type="Guid" Name="StudetId" Nullable="true" />
+    <Property Type="Guid" Name="CoId" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="StatusSC" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_tbl_Notifications_GetByUserID_Result">
+    <Property Type="Guid" Name="notificationsID" Nullable="false" />
+    <Property Type="Guid" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="FullNameUser1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Guid" Name="UserId2" Nullable="true" />
+    <Property Type="String" Name="FullNameUser2" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Isdeleted" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_tbl_Notifications_GetByUserID2_Result">
+    <Property Type="Guid" Name="notificationsID" Nullable="false" />
+    <Property Type="Guid" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="FullNameUser1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Guid" Name="UserId2" Nullable="true" />
+    <Property Type="String" Name="FullNameUser2" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Isdeleted" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_tbl_S07_StudentDetailt_GetByStdId1_Result">
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+    <Property Type="Guid" Name="StdId" Nullable="false" />
+    <Property Type="Guid" Name="StudetId" Nullable="true" />
+    <Property Type="Guid" Name="CoId" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="StatusSC" Nullable="true" />
+    <Property Type="DateTime" Name="CreateDate1" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

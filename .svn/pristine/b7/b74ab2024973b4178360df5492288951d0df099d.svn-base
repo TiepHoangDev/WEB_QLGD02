@@ -1,0 +1,92 @@
+﻿@model WCF.BussinessObject.Objects.NotificationsObjects
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+
+<!--======================================-->
+<div class="portlet box red-intense">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle">
+                Tạo mới Lớp học
+            </i>
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                <div class="form-group">
+                    @Html.Label("Tiêu đề", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.Label("Người nhận", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.UserId2, null, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserId2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm mới" class="btn btn-success" />
+                        @Html.ActionLink("Đóng", "Index", "Home", new { }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    $("#avatar").change(function () {
+        readURL(this, '.rimage');
+    });
+
+</script>
+
+<script type="text/javascript">
+    if ($(window).width() > 500) {
+        var editor = CKEDITOR.instances['Content'];
+
+        if (editor) {
+            editor.destroy(true);
+        }
+        CKEDITOR.replace('Content',
+        {
+            enterMode: CKEDITOR.ENTER_BR,
+            htmlEncodeOutput: true,
+            height: '300px'
+
+        });
+    }
+</script>

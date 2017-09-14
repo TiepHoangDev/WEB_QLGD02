@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ED79B7B7-82BA-4A19-B890-20ED3DCD5DA0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WCF.BussinessController</RootNamespace>
+    <AssemblyName>WCF.BussinessController</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BCL\AccountBCL.cs" />
+    <Compile Include="BCL\CoursesBCL.cs" />
+    <Compile Include="BCL\CoursesJournalBCL.cs" />
+    <Compile Include="BCL\EmailBCL.cs" />
+    <Compile Include="BCL\ExpertsBCL.cs" />
+    <Compile Include="BCL\ExpertsDetailtBCL.cs" />
+    <Compile Include="BCL\FeaIdBCL.cs" />
+    <Compile Include="BCL\NotificationsBCL.cs" />
+    <Compile Include="BCL\PermisstionBCL.cs" />
+    <Compile Include="BCL\RoleBCL.cs" />
+    <Compile Include="BCL\CoursesStudentDetailtBCL.cs" />
+    <Compile Include="BCL\SchedulersBCL.cs" />
+    <Compile Include="BCL\ShiftDayBCL.cs" />
+    <Compile Include="BCL\StudentBCL.cs" />
+    <Compile Include="BCL\StudentDetailtBCL.cs" />
+    <Compile Include="BCL\WeekdaysBCL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Securities\SecurityConexts.cs" />
+    <Compile Include="Securities\SecurityEntity.cs" />
+    <Compile Include="Ultils\BUltils.cs" />
+    <Compile Include="Ultils\EmailService.cs" />
+    <Compile Include="Ultils\Validations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{4562fc29-dfc7-458a-a708-4bdc22f0e537}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCF.BussinessObject\WCF.BussinessObject.csproj">
+      <Project>{7b402cde-7a14-44b3-a56e-17926baa17f6}</Project>
+      <Name>WCF.BussinessObject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

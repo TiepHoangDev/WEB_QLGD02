@@ -1,0 +1,114 @@
+﻿@model WCF.BussinessObject.Objects.NotificationsObjects
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = new WEB_QLGD01.Models.Login().GetAccount();
+}
+
+
+
+
+
+
+
+<!--======================================-->
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle">
+               
+            </i>
+            Tạo mới Thông báo
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <input hidden value="@ViewBag.IsOption" name="IsOption" id="IsOption">
+                        <div class="form-group">
+                        @Html.Label("Tiêu đề", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.title, new { @class = "form-control"  })
+                            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        </div>
+                       
+                    </div>
+                
+
+                    <div class="form-group">
+                        @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Content,  new { @class = "form-control" } )
+                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.Label("Người nhận", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.UserId2, null,new { @class = "form-control" } )
+                            @Html.ValidationMessageFor(model => model.UserId2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Thêm mới" class="btn btn-success" />
+                            @if (ViewBag.IsOption == 1)
+                            {
+                                @Html.ActionLink("Đóng", "Index", new { }, new { @class = "btn btn-default" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Đóng", "Index", "NotificationIndex", new { user.UserId }, new { @class = "btn btn-default" })
+                            }
+                        </div>
+                    </div>
+                </div>
+        }
+    </div>
+</div>
+
+<script>
+    $("#avatar").change(function () {
+        readURL(this, '.rimage');
+    });
+
+</script>
+
+<script type="text/javascript">
+    if ($(window).width() > 500) {
+        var editor = CKEDITOR.instances['Content'];
+
+        if (editor) {
+            editor.destroy(true);
+        }
+        CKEDITOR.replace('Content',
+        {
+            enterMode: CKEDITOR.ENTER_BR,
+            htmlEncodeOutput: true,
+            height: '300px'
+
+        });
+    }
+</script>
+<script type="text/javascript" src="~/theme/assets/global/plugins/ckeditor/ckeditor.js"></script>
+@*<script>
+    $("#btn-update").click(function () {
+        var name = $('#lessonName').val();
+        if (name == null || name.trim() == '') {
+            $('.name_warning').show();
+        }
+        else {
+            $("#confirm-modal").modal({ show: true });
+        }
+    });
+</script>*@

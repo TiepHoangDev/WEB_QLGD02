@@ -1,0 +1,158 @@
+﻿@model WCF.BussinessObject.Objects.CoursesJournalObjects
+@using WCF.BussinessObject.Objects;
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var selectCourse = new List<SelectListItem>();
+
+    var data = new WCF.BussinessController.BCL.CoursesBCL().GetAll().Where(q => q.Status == false);
+
+    foreach (var item in data)
+    {
+        selectCourse.Add(new SelectListItem()
+        {
+            Text = item.CourseId + " - " + item.CourseName,
+            Value = item.CoId.ToString()
+        });
+    }
+}
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle">
+                
+            </i>
+            Thêm nhật kí giảng dạy
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm("Create", "CoursesJournal"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @if (ViewBag.Coursesid == null)
+                    {
+                        @Html.Label("Mã nhật ký GD", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.CoId, selectCourse, new { @class = "form-control", required = "required" })
+                            <p>
+                                @Html.ActionLink("Thêm mới Khóa học", "Create", "Courses", new { }, new { })
+                            </p>
+                            @Html.ValidationMessageFor(model => model.CoursesJoin.CourseName, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                    else
+                    {
+                        <input value="@ViewBag.Coursesid" id="CoId" name="CoId" style="display:none"/>
+                        <input value="1" id="IsOption" name="IsOption"  style="display:none" />
+
+                    }
+                   
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ngày GD", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.DayOf, new { @class = "form-control", type = "date", required = "required", value = DateTime.Now.ToString("yyyy/MM/dd") })
+                        @Html.ValidationMessageFor(model => model.DayOf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <script>
+                    var now = new Date();
+
+                    var day = ("0" + now.getDate()).slice(-2);
+                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+                    $('#DayOf').val(today);
+                </script>
+                <div class="form-group">
+                    @Html.Label("Nội dung GD", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Contents, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.Contents, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @{
+                    List<StudentDetailtObjects> lstStudent = (List<StudentDetailtObjects>)ViewBag.LisStudent;
+                    }
+                    @Html.Label("Danh Sách Vắng ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="Lis col-md-10 LisStudent">
+                        @foreach (var item in lstStudent)
+                        {
+                            <div class="col-xs-3" style="margin:0px;padding:0px">
+                                <input type="checkbox" name="oldstudent" value="@item.StudetId" />@item.StudentJoin.FullName
+                            </div>
+                        }
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm mới" class="btn btn-success" />
+                        @Html.ActionLink("Đóng", "Index", new { }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+<script>
+   
+    $(document).on('change', '#CoId', function () {
+        var Courses = $(this).val();
+        debugger
+        $.ajax(
+            {
+                url: '@Url.Action("ListudenAjax", "CoursesJournal")',
+                        data: { Coursesid: Courses },
+                        type: 'post',
+                        success: function (Repont) {
+                            $('.LisStudent').empty();
+                            for (var item in Repont) {
+                                var name = Repont[item].StudentJoin.FullName;
+                                var id = Repont[item].StudentJoin.StudetId;
+                                $('.LisStudent').append('<div class="col-xs-3" style="margin:0px;padding:0px">' +
+                                    '<div class="checker hover">' +
+                                    '<span >' +
+                                    '<input type="checkbox" name="oldstudent" value="' + id + '" />' +
+                                    '</span>'+
+                                    '</div>'
+                                    + name + '</div>');
+                            }
+                        }
+                        });
+            });
+
+</script>
+<script>
+    $(document).on('click','input[name=oldstudent]', function ()
+    {
+        debugger
+        if ($(this).parent().hasClass('checked'))
+        {
+            $(this).parent().removeClass('checked');
+        }
+        else
+        {
+            $(this).parent().addClass('checked');
+        }
+       
+    })
+</script>

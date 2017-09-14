@@ -1,0 +1,161 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.NotificationsObjects>
+<script>
+    function Notification(id) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("deleteNotification", "Notification")',
+            data: { IdNotification: id },
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                data.alert("xoa");
+            }
+        })
+    }
+</script>
+
+<li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+        <i class="icon-bell"></i>
+        <span class="badge badge-success">
+            @Model.Count()
+        </span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="external">
+            <h3><span class="bold">@Model.Count() </span>
+                thông báo mới
+            </h3>
+            <a href="@Url.Action("Index", "Notification")">Xem tất cả</a>
+        </li>
+
+        <li>
+            <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="@Url.Action("Detail", "Notification", new { id=item.notificationsID})" onclick="Notification('@item.notificationsID')">
+
+                            <span class="time">@item.StartDate</span>
+                            <span class="details">
+                                <span class="label label-sm label-icon label-warning">
+                                    <i class="fa fa-bell-o"></i>
+                                </span>
+                                @item.Content
+                            </span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+</li>
+
+<li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
+    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+        <i class="icon-envelope-open"></i>
+        <span class="badge badge-danger">
+            4
+        </span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="external">
+            <h3>You have <span class="bold">7 New</span> Messages</h3>
+            <a href="inbox.html">view all</a>
+        </li>
+        <li>
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 275px;">
+                <ul class="dropdown-menu-list scroller" style="height: 275px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
+                    <li>
+                        <a href="inbox.html?a=view">
+                            <span class="photo">
+                                <img src="../../assets/admin/layout3/img/avatar2.jpg" class="img-circle" alt="">
+                            </span>
+                            <span class="subject">
+                                <span class="from">
+                                    Lisa Wong
+                                </span>
+                                <span class="time">Just Now </span>
+                            </span>
+                            <span class="message">
+                                Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh...
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inbox.html?a=view">
+                            <span class="photo">
+                                <img src="../../assets/admin/layout3/img/avatar3.jpg" class="img-circle" alt="">
+                            </span>
+                            <span class="subject">
+                                <span class="from">
+                                    Richard Doe
+                                </span>
+                                <span class="time">16 mins </span>
+                            </span>
+                            <span class="message">
+                                Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inbox.html?a=view">
+                            <span class="photo">
+                                <img src="../../assets/admin/layout3/img/avatar1.jpg" class="img-circle" alt="">
+                            </span>
+                            <span class="subject">
+                                <span class="from">
+                                    Bob Nilson
+                                </span>
+                                <span class="time">2 hrs </span>
+                            </span>
+                            <span class="message">
+                                Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inbox.html?a=view">
+                            <span class="photo">
+                                <img src="../../assets/admin/layout3/img/avatar2.jpg" class="img-circle" alt="">
+                            </span>
+                            <span class="subject">
+                                <span class="from">
+                                    Lisa Wong
+                                </span>
+                                <span class="time">40 mins </span>
+                            </span>
+                            <span class="message">
+                                Vivamus sed auctor 40% nibh congue nibh...
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inbox.html?a=view">
+                            <span class="photo">
+                                <img src="../../assets/admin/layout3/img/avatar3.jpg" class="img-circle" alt="">
+                            </span>
+                            <span class="subject">
+                                <span class="from">
+                                    Richard Doe
+                                </span>
+                                <span class="time">46 mins </span>
+                            </span>
+                            <span class="message">
+                                Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+                            </span>
+                        </a>
+                    </li>
+                </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 160.904px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </div>
+        </li>
+    </ul>
+</li>
+
+
+
+
+
+
+
+

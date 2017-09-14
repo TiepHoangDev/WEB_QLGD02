@@ -1,0 +1,50 @@
+﻿@model WCF.BussinessObject.Objects.StudentDetailtObjects
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle">
+            </i>
+            Sửa chi tiết học viên
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm("Edit", "StudentDetail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="register-form" action="index.html" method="post">
+                @Html.HiddenFor(q => q.StdId)
+                
+                <h4>&nbsp;Tên học viên:</h4>
+                @Html.DropDownListFor(m => m.StudetId, new SelectList(new WCF.BussinessController.BCL.StudentBCL().GetAll(), "StudetId", "FullName"), new { @class = "form-control", required = "required" })
+                <p>
+                    @Html.ActionLink("Thêm mới Học viên", "Create", "Student", new { }, new { })
+                </p>
+
+                
+                <h4>&nbsp;Mã lớp học:</h4>
+                @Html.DropDownListFor(m => m.CoId, new SelectList(new WCF.BussinessController.BCL.CoursesBCL().GetAll(), "CoId", "CourseName"), new { @class = "form-control", required = "required" })
+                <p>
+                    @Html.ActionLink("Thêm mới  Khóa học", "Create", "Courses", new { }, new { })
+                </p>
+
+                <h4>&nbsp;Mô tả:</h4>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Description</label>
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Description", rows = "4" })
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="register-submit-btn" class="btn btn-success">Cập nhật</button>
+                    @Html.ActionLink("Đóng", "Index", new { }, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="dsvang">
+    <h3>Điểm danh học viên vắng mặt ngày 11-11-2017</h3>
+    <h5 class="note"><i>Tích và điền lí do cho các học sinh vắng</i></h5>
+    <table class="dsvang-table">
+        <tr>
+            <td>
+                <div class="item">
+                    <input type="checkbox" class="tick" id="1"> <label for="1">Nguyễn văn A</label>
+                    <input type="text" class="form-control lido" placeholder="Lí do nghỉ học.">
+                </div>
+            </td>
+            <td>
+                <div class="item">
+                    <input type="checkbox" class="tick" id="13"> <label for="13">Nguyễn văn A</label>
+                    <input type="text" class="form-control lido" placeholder="Lí do nghỉ học.">
+                </div>
+            </td>
+            <td>
+                <div class="item">
+                    <input type="checkbox" class="tick" id="142"> <label for="142">Nguyễn văn A</label>
+                    <input type="text" class="form-control lido" placeholder="Lí do nghỉ học.">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item">
+                    <input type="checkbox" class="tick" id="11"> <label for="11">Nguyễn văn A</label>
+                    <input type="text" class="form-control lido" placeholder="Lí do nghỉ học.">
+                </div>
+            </td>
+            <td>
+                <div class="item">
+                    <input type="checkbox" class="tick" id="12"> <label for="12">Nguyễn văn A</label>
+                    <input type="text" class="form-control lido" placeholder="Lí do nghỉ học.">
+                </div>
+            </td>
+            <td>
+                <div class="item">
+                    <input type="checkbox" class="tick" id="122"> <label for="122">Nguyễn văn A</label>
+                    <input type="text" class="form-control lido" placeholder="Lí do nghỉ học.">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<style>
+    .dsvang {
+        width: 100%;
+        padding: 11px;
+        text-align: center;
+    }
+
+    .note {
+        color: red;
+    }
+
+    .dsvang-table {
+        border: 1px green dashed;
+        width: 100%;
+    }
+
+        .dsvang-table tr {
+            width: 100%;
+        }
+
+        .dsvang-table td {
+            width: 33%;
+        }
+
+    .item {
+        margin: 9px;
+        padding: 9px;
+        width: 80%;
+    }
+
+    .lido {
+        display: none;
+    }
+</style>
+<script type="text/javascript">
+    $('.tick').change(function (event) {
+        debugger;
+        $(this).siblings('.lido').css('display', this.checked ? "block" : "none");
+    });
+</script>

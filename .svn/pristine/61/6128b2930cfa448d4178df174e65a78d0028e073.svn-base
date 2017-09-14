@@ -1,0 +1,66 @@
+﻿@model List<WCF.BussinessObject.Objects.CoursesStudentDetailtObject>
+
+@using (Html.BeginForm("addhvv", "CoursesJournal", FormMethod.Post, new { @class = "_pv" }))
+{
+    <div class="dsvang note">
+        <h3>Điểm danh học viên vắng mặt ngày @DateTime.Now.ToShortDateString()</h3>
+        <h5 class="notes"><i>Tích và điền lí do cho các học sinh vắng</i></h5>
+        <div class="dsvang-list">
+            <h4 id="checkCount">Lớp không có học sinh nào theo học.</h4>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="item">
+                    @Html.HiddenFor(q => Model[i].CJId)
+                    @Html.HiddenFor(q => Model[i].ScsId)
+                    @Html.HiddenFor(q => Model[i].StudetId)
+                    @Html.CheckBoxFor(q => Model[i].Selected, new { @class = "tick", id = Model[i].StudetId })
+                    @Html.LabelFor(q => Model[i].Selected, Model[i].StudentJoin.FullName, new { @for = Model[i].StudetId })
+                    @Html.TextBoxFor(q => Model[i].Description, new { @class = "lido", @placeholder = "Lí do nghỉ học." })
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .notes {
+        color: green;
+    }
+
+    .dsvang {
+        text-align: center;
+        padding: 9px;
+    }
+
+    .dsvang-list {
+        text-align: left;
+        overflow: hidden;
+    }
+
+    .item {
+        padding: 2px 9px;
+        width: 33%;
+        float: left;
+        height: 60px;
+    }
+
+        .item .lido {
+            width: 80%;
+            display: none;
+        }
+</style>
+<script type="text/javascript">
+    $('.tick').change(function (event) {
+        $(this).siblings('.lido').css('display', this.checked ? "block" : "none");
+    });
+    $('#checkCount').text(@Model.Count > 0 ? "" : "Có " +@Model.Count +" học viên trong lớp học.");
+    $('.tick').each(function () {
+        $(this).siblings('.lido').css('display', this.checked ? "block" : "none");
+    })
+</script>

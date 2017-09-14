@@ -1,0 +1,113 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.CoursesJournalObjects>
+@using WEB_QLGD01.Models
+
+@{
+    ViewBag.Title = "Nhật kí giảng dạy";
+    var per = new Permission();
+}
+
+<style>
+    th, td {
+        max-width: 200px;
+        overflow: auto;
+        text-align: center;
+    }
+</style>
+
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>Nhật kí giảng dạy
+        </div>
+        <div class="tools">
+        </div>
+    </div>
+</div>
+<div style="margin-bottom: 20px">
+    @if (per.IsAllow(eAction.Add, eFea.QLNKGD))
+    {
+        @Html.ActionLink("Thêm mới", "Create", new { Coursesid = ViewBag.coursesId }, new { @class = "btn btn-success", @target = "_blank" })
+    }
+</div>
+<div class="portlet-body">
+    <table class="table table-striped table-bordered table-hover" id="sample_1">
+        <thead>
+            <tr>
+                <th>
+                    Nhật kí ngày
+                </th>
+                <th>
+                    Tên lớp học
+                </th>
+                <th>
+                    Nội dung giảng dạy
+                </th>
+                <th>
+                    Ghi chú
+                </th>
+                <th></th>
+            </tr>
+
+        </thead>
+        <tbody id="tBoby">
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(((DateTime) item.DayOf).ToString("d"))
+                </td>
+                <td>
+                    @item.CoursesJoin.CourseId - @item.CoursesJoin.CourseName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contents)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @if (per.IsAllow(eAction.Search, eFea.QLCTHV))
+                    {
+                    <a href="@Url.Action("GetListStudentByCourseId", "CoursesStudentDetailt", new {coursesId = item.CJId})" class="btn btn-info">DSHV Vắng</a>
+                    }
+                    @if (per.IsAllow(eAction.Edit, eFea.QLNKGD))
+                    {
+                    @Html.ActionLink("Edit", "Edit", "CoursesJournal", new {ID = item.CJId}, new {@class = "btn btn-default"})
+                    }
+                    @if (per.IsAllow(eAction.Delete, eFea.QLNKGD))
+                    {
+                    <span class="btn btn-warning btn-delete" data-toggle="modal" data-target="#myModal" data-value="@item.CJId">Xóa</span>
+
+                    }
+
+                </td>
+            </tr>
+        }
+        </tbody>
+
+
+    </table>
+</div>
+
+<script>
+    $('.btn-delete').click(function (parameters) {
+        if (confirm("Bạn có chắc chắn muốn xóa?")) {
+            var id = $(this).data('value');
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("Delete","CoursesStudentDetailt")',
+                data: { ID: id },
+                succcess: function (data) {
+                    if (data.rs) {
+                        alert('Xóa thành công');
+                        window.location.reload();
+                    } else {
+                        alert('Xóa thất bại');
+                    }
+                }
+            });
+        }
+    })
+
+</script>

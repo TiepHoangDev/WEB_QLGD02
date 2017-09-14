@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WCF.BussinessObject.Objects;
+using DataAccessLayer.Dao;
+namespace WCF.BussinessController.BCL
+{
+   public class NotificationsBCL
+    {
+       public List<NotificationsObjects> GetAll()
+       {
+           return new NotificationsDao().GetAll();
+       }
+       public List<NotificationsObjects> GetByUserID(Guid UserID)
+       {
+           return new NotificationsDao().GetByUserID(UserID);
+       }
+       public List<NotificationsObjects> GetByUserID2(Guid UserID2)
+       {
+           return new NotificationsDao().GetByUserID2(UserID2);
+       }
+       public bool INSERT(NotificationsObjects obj)
+       {
+
+           return new NotificationsDao().INSERT(obj);
+       }
+       public bool UPDATE(NotificationsObjects obj)
+       {
+           return new NotificationsDao().UPDATE(obj);
+
+       }
+       public bool DELETE(Guid ID)
+       {
+           return new NotificationsDao().DELETE(ID);
+       }
+       public NotificationsObjects GetByID(Guid ID)
+       {
+           return new NotificationsDao().GetByID(ID);
+       }
+    }
+}

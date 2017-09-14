@@ -1,0 +1,126 @@
+﻿@model IEnumerable<WCF.BussinessObject.Objects.CoursesJournalObjects>
+@using WEB_QLGD01.Models
+
+@{
+    ViewBag.Title = "Nhật kí giảng dạy";
+    var per = new Permission();
+}
+
+<style>
+    th, td {
+        max-width: 200px;
+        overflow: auto;
+        text-align: center;
+    }
+</style>
+
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>Nhật kí giảng dạy
+        </div>
+        <div class="tools">
+        </div>
+    </div>
+</div>
+<div style="margin-bottom: 20px">
+    @if (per.IsAllow(eAction.Add, eFea.QLNKGD))
+    {
+        @Html.ActionLink("Thêm Mới Nhật Ký", "Create", new { Coursesid = ViewBag.coursesId }, new { @class = "btn btn-success", @target = "_blank" })
+    }
+    <button id="reloadCJ" class="btn btn-success">Làm Mới Dữ liệu</button>
+    <h5 style="color:red">Note :Sau khi thêm mới học viên xong thì làm mới dữ liệu</h5>
+</div>
+<div class="portlet-body">
+    <table class="table table-striped table-bordered table-hover" id="sample_1">
+        <thead>
+            <tr>
+                <th>
+                    Nhật kí ngày
+                </th>
+                <th>
+                    Tên lớp học
+                </th>
+                <th>
+                    Nội dung giảng dạy
+                </th>
+                <th>
+                    Ghi chú
+                </th>
+                <th></th>
+            </tr>
+
+        </thead>
+        <tbody id="tBoby">
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(((DateTime) item.DayOf).ToString("d"))
+                </td>
+                <td>
+                    @item.CoursesJoin.CourseId - @item.CoursesJoin.CourseName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contents)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td width="100px">
+                    @if (per.IsAllow(eAction.Search, eFea.QLCTHV))
+                    {
+                    <a href="@Url.Action("GetListStudentByCourseId", "CoursesStudentDetailt", new {coursesId = item.CJId})" target="_blank"   class="btn btn-info">DSHV Vắng</a>
+                    }
+                    @if (per.IsAllow(eAction.Edit, eFea.QLNKGD))
+                    {
+                    @Html.ActionLink("Sửa", "Edit", "CoursesJournal", new { ID = item.CJId, IsOption =1}, new { @class = "btn btn-default", @style = "width:100px" })
+                    }
+                    @if (per.IsAllow(eAction.Delete, eFea.QLNKGD))
+                    {
+                    <a onclick="Delete('@item.CJId',event)" class="btn btn-danger" style="width:100px">Xóa</a>
+
+                    }
+
+                </td>
+            </tr>
+        }
+        </tbody>
+
+
+    </table>
+</div>
+@*@section Scripts{*@
+<script>
+    function Delete(id, event) {
+        var sender = event.currentTarget;
+        var answer = confirm("Bạn có muốn xóa nhật ký này ?");
+        if (answer) {
+            $.ajax({
+                url: '@Url.Action("Delete", "CoursesJournal")',
+                data: { ID: id },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (!data) {
+                        alert("Xóa thất bại");
+                    } else {
+                        $(sender).closest("tr").remove();
+                       
+                    }
+                }
+            });
+        }
+    }
+
+</script>
+<script>
+    $('#reloadCJ').click(function () {
+        window.location.reload();
+    });
+
+   
+</script>
+
+@*}*@

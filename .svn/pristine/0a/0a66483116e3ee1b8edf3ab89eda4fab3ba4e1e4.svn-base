@@ -1,0 +1,111 @@
+﻿@model WCF.BussinessObject.Objects.CoursesJournalObjects
+@using WCF.BussinessObject.Objects;
+@using WCF.BussinessController.BCL;
+
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle">
+
+            </i>
+            Sửa nhật kí giảng dạy lớp @Model.CoursesJoin.CourseId - @Model.CoursesJoin.CourseName - Ngày @Model.DayOf.Value.ToString("d")
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm("Edit", "CoursesJournal"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @*@Html.Label("Mã nhật ký GD", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.CoId, new SelectList(new CoursesBCL().GetAll().Where(q => q.Status != true), "CoId", "CourseId"), "Chọn một lớp học", new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.CoursesJoin.CourseName, "", new { @class = "text-danger" })
+                    </div>*@
+                    <script>
+                        $(function () {
+                            load_dsvang('@Model.CJId');
+                        })
+                    </script>
+                    @if (ViewBag.Coursesid != null)
+                    {
+                        <input value="@ViewBag.Coursesid" id="CoId" name="CoId" style="display:none" />
+                        <input value="1" id="IsOption" name="IsOption" style="display:none" />
+                    }
+
+                <div class="form-group">
+                    @Html.Label("Nội dung GD", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Contents, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.Contents, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @{
+            List<StudentDetailtObjects> lstStudent = (List<StudentDetailtObjects>)ViewBag.LisStudent;
+                    }
+                    @Html.Label("Điểm danh", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="Lis col-md-10">
+                        <img id="img-loader" src="~/Content/img/ajax-loader.gif" height="20" style="display: none" />
+                        <div id="dsvang"></div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Lưu" id="btnSubmit" class="btn btn-success" />
+                        @Html.ActionLink("Đóng", "Index", new { }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script>
+    function load_dsvang(value) {
+        $('#img-loader').show();
+        $('#dsvang').empty();
+        $.ajax({
+            url: '@Url.Action("getHvv")',
+            data: { CJId: value },
+            type: 'post',
+            success: function (d) {
+                debugger
+                $('#dsvang').html(d);
+                $('#img-loader').hide();
+            }
+        })
+    }
+
+    $('#CoId').change(function () {
+        value = $(this).val();
+        load_dsvang(value);
+    });
+
+    //sunmit form con
+    $('#btnSubmit').click(function () {
+            debugger
+        if ($('#Contents').val()) {
+            $('._pv').each(function () {
+                value = $(this).serialize();
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'post',
+                    data: value
+                })
+            })
+        }
+    });
+</script>

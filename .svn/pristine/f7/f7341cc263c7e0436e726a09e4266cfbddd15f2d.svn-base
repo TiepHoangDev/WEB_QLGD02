@@ -1,0 +1,277 @@
+﻿@using WEB_QLGD01.Models;
+@{
+    var user = new WEB_QLGD01.Models.Login().GetAccount();
+    var PerOfAcc = new Login().GetPermission();
+    var lstFea = new List<WCF.BussinessObject.Objects.FeaIdObject>();
+    bool isSA = PerOfAcc != null && (PerOfAcc.MyRole() == eRole.SuperAdmin || PerOfAcc.MyRole() == eRole.Admin);
+    if (isSA)
+    {
+        lstFea = new WCF.BussinessController.BCL.FeaIdBCL().GetAll();
+    }
+    else if (PerOfAcc != null && PerOfAcc.Account != null)
+    {
+        lstFea = PerOfAcc.ListPermission.Select(q => q.FeaJoin).ToList();
+    }
+    int i = -1;
+    foreach (var item in lstFea)
+    {
+        if (item.FeaId.Trim().ToUpper().Equals("QLLGD"))
+        {
+            i = lstFea.IndexOf(item);
+            break;
+        }
+    }
+    if (i > -1)
+    {
+        var o = lstFea[i];
+        var k = lstFea[0];
+        lstFea[0] = o;
+        lstFea[i] = k;
+    }
+}
+<div>
+    @*foreach (var item in lstFea)
+        {
+            <li>
+                @{
+            var href = isSA || PerOfAcc.IsAllow(eAction.Search, item.FeaId) ? " href=" + Url.Action("redirect", "Menu", new { saction = WEB_QLGD01.Models.eAction.Search.ToString(), fea = item.FeaId }) : "";
+                }
+                @if (PerOfAcc.HaveAnyActionOf(item.FeaId))
+                {
+                    <a @href>
+                        <i class="icon-docs"></i>
+                        <span class="title">
+                            @item.FeaName.Replace("Quản Lý", "")
+                        </span>
+                        <span class="arrow "></span>
+                    </a>
+                }
+                <ul class="sub-menu">
+                    @if (isSA || PerOfAcc.IsAllow(eAction.Search, item.FeaId))
+                    {
+                        <li>
+                            <a href="@Url.Action("Redirect", "Menu", new { sAction = WEB_QLGD01.Models.eAction.Search.ToString(), Fea = @item.FeaId })">
+                                <i class="icon-paper-plane"></i> Quản lý
+                            </a>
+                        </li>
+                    }
+                    @if (isSA || PerOfAcc.IsAllow(eAction.Add, item.FeaId))
+                    {
+                        <li>
+                            <a href="@Url.Action("Redirect", "Menu", new { sAction = WEB_QLGD01.Models.eAction.Add.ToString(), Fea = @item.FeaId })">
+                                <i class="icon-paper-plane"></i> Thêm mới
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }*@
+</div>
+<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    @if (PerOfAcc != null)
+    {
+        
+        //Lịch Giảng Dạy
+        <li>
+            <a href="@Url.Action("redirect", "Menu", new { saction = eAction.Search.ToString(), fea = eFea.QLLGD.ToString() })">
+                <i class="icon-home"></i>
+                <span class="title">
+                    LỊCH GIẢNG DẠY
+                </span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+                @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLLGD))
+                {
+                    <li>
+                        <a href="@Url.Action("Index","Home")">
+                            <i class="icon-calendar"></i> Lịch giảng dạy
+                        </a>
+                    </li>
+                }
+                @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLCH))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "ShiftDay")">
+                            <i class="glyphicon glyphicon-list"></i> Ca học
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+                //KHÓA HỌC
+                if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLKH) || PerOfAcc.IsAllow(eAction.Search, eFea.QLNKGD) || PerOfAcc.IsAllow(eAction.Search, eFea.QLHVV))
+                {
+                    <li>
+                        <a>
+                            <i class="icon-drawer"></i>
+                            <span class="title">
+                                KHÓA HỌC
+                            </span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLKH))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Courses")">
+                                        <i class="glyphicon glyphicon-asterisk"></i> Khóa học
+                                    </a>
+                                </li>
+                            }
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLNKGD))
+                            {
+                                if (!user.RoleId.Equals(new Guid("ADAE8847-5B4D-43FC-A761-038B315D7651")))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index", "CoursesJournal")">
+                                            <i class="icon-book-open"></i> Nhật kí giảng dạy
+                                        </a>
+                                    </li>
+                                }
+                                
+
+                            }
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLHVV))
+                            {
+                                if (!user.RoleId.Equals(new Guid("ADAE8847-5B4D-43FC-A761-038B315D7651")))
+                                {
+                                    <li>
+
+                                        <a href="@Url.Action("Index", "CoursesStudentDetailt")">
+                                            <i class="icon-user-unfollow"></i> Học viên vắng
+                                        </a>
+                                    </li>
+                                }
+                               
+
+                            }
+                        </ul>
+                    </li>
+                }
+
+
+                //CHUYÊN GIA
+                if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLCG))
+                {
+                    <li>
+                        <a>
+                            <i class="icon-badge "></i>
+                            <span class="title">
+                                CHUYÊN GIA
+                            </span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLCG))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Expert")">
+                                        <i class="icon-briefcase"></i> Danh sách chuyên gia
+                                    </a>
+                                </li>
+                            }
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLCTGV))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "ExpertsDetailt")">
+                                        <i class="icon-list"></i> Chi tiết chuyên gia
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+
+
+                //HOC VIÊN
+                if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLHV) || PerOfAcc.IsAllow(eAction.Add, eFea.QLCTHV))
+                {
+                    <li>
+                        <a>
+                            <i class="icon-graduation"></i>
+                            <span class="title">
+                                HOC VIÊN
+                            </span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLHV))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Student")">
+                                        <i class="icon-graduation"></i> Danh sách học viên
+                                    </a>
+                                </li>
+                            }
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Add, eFea.QLCTHV))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "StudentDetail")">
+                                        <i class="icon-social-dropbox"></i> Chi tiêt học viên
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+
+
+
+                //He Thống
+                if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLPQ) || PerOfAcc.IsAllow(eAction.Add, eFea.QLTTT))
+                {
+                    <li>
+                        <a>
+                            <i class="icon-settings"></i>
+                            <span class="title">
+                                QUẢN LÝ HỆ THỐNG
+                            </span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLPQ))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Permission")">
+                                        <i class="icon-wrench"></i> Phân quyền
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Account")">
+                                        <i class="icon-users"></i> Danh sách tài khoản
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "NotificationsManage")">
+                                        <i class="icon-envelope"></i> Quản lý gửi thông báo
+                                    </a>
+                                </li>
+
+                            }
+                            @if (isSA || PerOfAcc.IsAllow(eAction.Add, eFea.QLTTT))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Weekday")">
+                                        <i class="icon-speedometer"></i> Thứ trong tuần
+                                    </a>
+                                </li>
+                               
+                            }
+                        </ul>
+                    </li>
+                }
+<!--Gui thong bao-->
+        if (isSA || PerOfAcc.IsAllow(eAction.Search, eFea.QLPQ) || PerOfAcc.IsAllow(eAction.Add, eFea.QLHV))
+        { <li>
+                    <a href="@Url.Action("Create", "NotificationsManage", new { saction = eAction.Search.ToString(), fea = eFea.QLLGD.ToString() })">
+                        <i class="icon-home"></i>
+                        <span class="title">
+                           Gui Thong Bao
+                        </span>
+                        <span class="arrow "></span>
+                    </a>
+                    </li>
+         }
+     }
+</ul>

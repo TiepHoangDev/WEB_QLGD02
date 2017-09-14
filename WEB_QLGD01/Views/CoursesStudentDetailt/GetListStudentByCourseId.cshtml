@@ -1,0 +1,101 @@
+﻿
+@model List<WCF.BussinessObject.Objects.CoursesStudentDetailtObject>
+@using WEB_QLGD01.Models
+@using WCF.BussinessController.BCL
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var per = new Permission();
+}
+
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>Danh sách học viên vắng mặt
+        </div>
+        <div class="tools">
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{
+  
+    if (per.IsAllow(eAction.Add, eFea.QLHVV))
+    {
+        <div>@Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success", style = "margin-left: 23px", id = "btnAdd" })</div>
+    }
+    <script>
+        var eDelete;
+        function checkAdd() {
+            if ($('#NhatKi').val()) {
+                $('#btnAdd').show();
+                $('#btnAdd')[0].href = '@Url.Action("Create")' + '/' + $('#NhatKi').val();
+            } else {
+                $('#btnAdd').hide();
+            }
+        }
+
+        $('#btnAdd').hide();
+        $('#NhatKi').change(function () {
+            if ($(this).val()) {
+                $.ajax({
+                    url: '@Url.Action("LoadHocVienVang")',
+                    type: 'post',
+                    data: { idNhatKi: $(this).val() },
+                    success: function (d) {
+                        $('#bodyTable').html(d);
+                        checkAdd();
+                    }
+                });
+            }
+        });
+    </script>
+}
+@Html.ValidationSummary()
+<div class="portlet-body">
+    <table class="table table-striped table-bordered table-hover" id="sample_1">
+        <thead>
+            <tr>
+                <th>
+                    Học viên
+                </th>
+                <th>
+                    Thời gian
+                </th>
+                <th>
+                    Nội dung buổi học
+                </th>
+                <th>
+                    Ghi chú
+                </th>
+                
+            </tr>
+
+        </thead>
+        <tbody id="bodyTable">
+          @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                       @item.StudentJoin.FullName
+                    </td>
+                    <td>
+                       @item.CoursesJournalJoin.DayOf
+                    </td>
+                    <td>
+                        @item.CoursesJournalJoin.Description
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

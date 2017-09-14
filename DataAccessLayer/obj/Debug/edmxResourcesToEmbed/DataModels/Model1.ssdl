@@ -1,317 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="eTrainingScheduleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
-  <EntityType Name="tbl_Account">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
-    <Property Name="PassWord" Type="nvarchar" MaxLength="50" />
-    <Property Name="Username" Type="nvarchar" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-    <Property Name="Isdeleted" Type="bit" />
-    <Property Name="RoleId" Type="uniqueidentifier" />
-  </EntityType>
-  <EntityType Name="tbl_FeaId">
-    <Key>
-      <PropertyRef Name="FeaId" />
-    </Key>
-    <Property Name="FeaId" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="FeaName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Isdeleted" Type="bit" />
-  </EntityType>
-  <EntityType Name="tbl_Permisstion">
-    <Key>
-      <PropertyRef Name="PerID" />
-    </Key>
-    <Property Name="PerID" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="F_ADD" Type="bit" />
-    <Property Name="F_EDIT" Type="bit" />
-    <Property Name="F_DELETE" Type="bit" />
-    <Property Name="F_SEARCH" Type="bit" />
-    <Property Name="FeaId" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" />
-  </EntityType>
-  <EntityType Name="tbl_Role">
-    <Key>
-      <PropertyRef Name="RoleId" />
-    </Key>
-    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="RName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Isdeleted" Type="bit" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Courses">
-    <Key>
-      <PropertyRef Name="CoId" />
-    </Key>
-    <Property Name="CoId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="CourseId" Type="nvarchar" MaxLength="50" />
-    <Property Name="CourseName" Type="nvarchar" MaxLength="50" />
-    <Property Name="TotalNumber" Type="tinyint" />
-    <Property Name="StartDate" Type="datetime" />
-    <Property Name="EndDate" Type="datetime" />
-    <Property Name="Status" Type="bit" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-    <Property Name="Deleted" Type="bit" />
-  </EntityType>
-  <EntityType Name="tbl_S07_CoursesJournal">
-    <Key>
-      <PropertyRef Name="CJId" />
-    </Key>
-    <Property Name="CJId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="CoId" Type="uniqueidentifier" />
-    <Property Name="DayOf" Type="datetime" />
-    <Property Name="Contents" Type="nvarchar" MaxLength="400" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="tbl_S07_CoursesStudentDetailt">
-    <Key>
-      <PropertyRef Name="ScsId" />
-    </Key>
-    <Property Name="ScsId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="StudetId" Type="uniqueidentifier" />
-    <Property Name="CJId" Type="uniqueidentifier" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Experts">
-    <Key>
-      <PropertyRef Name="ExpertId" />
-    </Key>
-    <Property Name="ExpertId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
-    <Property Name="Address" Type="nvarchar" MaxLength="200" />
-    <Property Name="Specialize" Type="nvarchar" MaxLength="150" />
-    <Property Name="StartDate" Type="datetime" />
-    <Property Name="Status" Type="bit" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-    <Property Name="Deleted" Type="bit" />
-  </EntityType>
-  <EntityType Name="tbl_S07_ExpertsDetailt">
-    <Key>
-      <PropertyRef Name="ExId" />
-    </Key>
-    <Property Name="ExId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ExpertId" Type="uniqueidentifier" />
-    <Property Name="CoId" Type="uniqueidentifier" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Schedulers">
-    <Key>
-      <PropertyRef Name="ScId" />
-    </Key>
-    <Property Name="ScId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="WeId" Type="uniqueidentifier" />
-    <Property Name="ShiftId" Type="uniqueidentifier" />
-    <Property Name="CoId" Type="uniqueidentifier" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="tbl_S07_ShiftDay">
-    <Key>
-      <PropertyRef Name="ShiftId" />
-    </Key>
-    <Property Name="ShiftId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ShiftName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Student">
-    <Key>
-      <PropertyRef Name="StudetId" />
-    </Key>
-    <Property Name="StudetId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
-    <Property Name="Address" Type="nvarchar" MaxLength="50" />
-    <Property Name="Status" Type="bit" />
-    <Property Name="Deleted" Type="bit" />
-  </EntityType>
-  <EntityType Name="tbl_S07_StudentDetailt">
-    <Key>
-      <PropertyRef Name="StdId" />
-    </Key>
-    <Property Name="StdId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="StudetId" Type="uniqueidentifier" />
-    <Property Name="CoId" Type="uniqueidentifier" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="tbl_S07_Weekdays">
-    <Key>
-      <PropertyRef Name="WeId" />
-    </Key>
-    <Property Name="WeId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="WeName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <Association Name="fk_Account_01">
-    <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="0..1" />
-    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_Role">
-        <PropertyRef Name="RoleId" />
-      </Principal>
-      <Dependent Role="tbl_Account">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Permisstion_01">
-    <End Role="tbl_FeaId" Type="Self.tbl_FeaId" Multiplicity="1" />
-    <End Role="tbl_Permisstion" Type="Self.tbl_Permisstion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_FeaId">
-        <PropertyRef Name="FeaId" />
-      </Principal>
-      <Dependent Role="tbl_Permisstion">
-        <PropertyRef Name="FeaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Permisstion_02">
-    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
-    <End Role="tbl_Permisstion" Type="Self.tbl_Permisstion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_Account">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="tbl_Permisstion">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_S07_CoursesStudentDetailt_tbl_S07_CoursesJournal">
-    <End Role="tbl_S07_CoursesJournal" Type="Self.tbl_S07_CoursesJournal" Multiplicity="0..1" />
-    <End Role="tbl_S07_CoursesStudentDetailt" Type="Self.tbl_S07_CoursesStudentDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_CoursesJournal">
-        <PropertyRef Name="CJId" />
-      </Principal>
-      <Dependent Role="tbl_S07_CoursesStudentDetailt">
-        <PropertyRef Name="CJId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_01">
-    <End Role="tbl_S07_Experts" Type="Self.tbl_S07_Experts" Multiplicity="0..1" />
-    <End Role="tbl_S07_ExpertsDetailt" Type="Self.tbl_S07_ExpertsDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Experts">
-        <PropertyRef Name="ExpertId" />
-      </Principal>
-      <Dependent Role="tbl_S07_ExpertsDetailt">
-        <PropertyRef Name="ExpertId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_02">
-    <End Role="tbl_S07_Courses" Type="Self.tbl_S07_Courses" Multiplicity="0..1" />
-    <End Role="tbl_S07_ExpertsDetailt" Type="Self.tbl_S07_ExpertsDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Courses">
-        <PropertyRef Name="CoId" />
-      </Principal>
-      <Dependent Role="tbl_S07_ExpertsDetailt">
-        <PropertyRef Name="CoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_03">
-    <End Role="tbl_S07_Student" Type="Self.tbl_S07_Student" Multiplicity="0..1" />
-    <End Role="tbl_S07_StudentDetailt" Type="Self.tbl_S07_StudentDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Student">
-        <PropertyRef Name="StudetId" />
-      </Principal>
-      <Dependent Role="tbl_S07_StudentDetailt">
-        <PropertyRef Name="StudetId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_04">
-    <End Role="tbl_S07_Courses" Type="Self.tbl_S07_Courses" Multiplicity="0..1" />
-    <End Role="tbl_S07_StudentDetailt" Type="Self.tbl_S07_StudentDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Courses">
-        <PropertyRef Name="CoId" />
-      </Principal>
-      <Dependent Role="tbl_S07_StudentDetailt">
-        <PropertyRef Name="CoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_05">
-    <End Role="tbl_S07_Courses" Type="Self.tbl_S07_Courses" Multiplicity="0..1" />
-    <End Role="tbl_S07_CoursesJournal" Type="Self.tbl_S07_CoursesJournal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Courses">
-        <PropertyRef Name="CoId" />
-      </Principal>
-      <Dependent Role="tbl_S07_CoursesJournal">
-        <PropertyRef Name="CoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_06">
-    <End Role="tbl_S07_Courses" Type="Self.tbl_S07_Courses" Multiplicity="0..1" />
-    <End Role="tbl_S07_Schedulers" Type="Self.tbl_S07_Schedulers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Courses">
-        <PropertyRef Name="CoId" />
-      </Principal>
-      <Dependent Role="tbl_S07_Schedulers">
-        <PropertyRef Name="CoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_07">
-    <End Role="tbl_S07_Weekdays" Type="Self.tbl_S07_Weekdays" Multiplicity="0..1" />
-    <End Role="tbl_S07_Schedulers" Type="Self.tbl_S07_Schedulers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Weekdays">
-        <PropertyRef Name="WeId" />
-      </Principal>
-      <Dependent Role="tbl_S07_Schedulers">
-        <PropertyRef Name="WeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_08">
-    <End Role="tbl_S07_ShiftDay" Type="Self.tbl_S07_ShiftDay" Multiplicity="0..1" />
-    <End Role="tbl_S07_Schedulers" Type="Self.tbl_S07_Schedulers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_ShiftDay">
-        <PropertyRef Name="ShiftId" />
-      </Principal>
-      <Dependent Role="tbl_S07_Schedulers">
-        <PropertyRef Name="ShiftId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="pk_09">
-    <End Role="tbl_S07_Student" Type="Self.tbl_S07_Student" Multiplicity="0..1" />
-    <End Role="tbl_S07_CoursesStudentDetailt" Type="Self.tbl_S07_CoursesStudentDetailt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_S07_Student">
-        <PropertyRef Name="StudetId" />
-      </Principal>
-      <Dependent Role="tbl_S07_CoursesStudentDetailt">
-        <PropertyRef Name="StudetId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+<Schema Namespace="eTrainingScheduleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <Function Name="CoursesStudentDetail_Join" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="sp_Account_CheckLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -350,6 +38,7 @@
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_Schedulers_Join" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_SentEmail_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_StudentDetailt_Join" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_tbl_Account_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
@@ -395,6 +84,39 @@
   <Function Name="sp_tbl_FeaId_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FeaId" Type="nchar" Mode="In" />
     <Parameter Name="FeaName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Isdeleted" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_tbl_Notifications_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="notificationsID" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="sp_tbl_Notifications_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_tbl_Notifications_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="notificationsID" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="sp_tbl_Notifications_GetByUserID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="sp_tbl_Notifications_GetByUserID2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID2" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="sp_tbl_Notifications_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="notificationsID" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="UserID" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="title" Type="nvarchar" Mode="In" />
+    <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="status" Type="bit" Mode="In" />
+    <Parameter Name="UserId2" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="Isdeleted" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_tbl_Notifications_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="notificationsID" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="UserID" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="title" Type="nvarchar" Mode="In" />
+    <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="status" Type="bit" Mode="In" />
+    <Parameter Name="UserId2" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
     <Parameter Name="Isdeleted" Type="bit" Mode="In" />
   </Function>
   <Function Name="sp_tbl_Permisstion_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -606,6 +328,7 @@
     <Parameter Name="StudetId" Type="uniqueidentifier" Mode="In" />
   </Function>
   <Function Name="sp_tbl_S07_Student_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_tbl_S07_Student_GetAll_NOTClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_tbl_S07_Student_GetByStudetId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudetId" Type="uniqueidentifier" Mode="In" />
   </Function>
@@ -634,6 +357,12 @@
   <Function Name="sp_tbl_S07_StudentDetailt_GetByStdId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StdId" Type="uniqueidentifier" Mode="In" />
   </Function>
+  <Function Name="sp_tbl_S07_StudentDetailt_GetByStdId1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StdId" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="sp_tbl_S07_StudentDetailt_GetCoursebyStudentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SudetId" Type="uniqueidentifier" Mode="In" />
+  </Function>
   <Function Name="sp_tbl_S07_StudentDetailt_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StdId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="StudetId" Type="uniqueidentifier" Mode="In" />
@@ -645,6 +374,7 @@
     <Parameter Name="StudetId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="CoId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="StatusSC" Type="bit" Mode="In" />
   </Function>
   <Function Name="sp_tbl_S07_Weekdays_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="WeId" Type="uniqueidentifier" Mode="In" />
@@ -669,73 +399,5 @@
     <Parameter Name="CoId" Type="uniqueidentifier" Mode="In" />
   </Function>
   <Function Name="WEB_QLGD01_sp_Permission_GetJoin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <EntityContainer Name="eTrainingScheduleModelStoreContainer">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_FeaId" EntityType="Self.tbl_FeaId" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_Permisstion" EntityType="Self.tbl_Permisstion" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_Courses" EntityType="Self.tbl_S07_Courses" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_CoursesJournal" EntityType="Self.tbl_S07_CoursesJournal" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_CoursesStudentDetailt" EntityType="Self.tbl_S07_CoursesStudentDetailt" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_Experts" EntityType="Self.tbl_S07_Experts" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_ExpertsDetailt" EntityType="Self.tbl_S07_ExpertsDetailt" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_Schedulers" EntityType="Self.tbl_S07_Schedulers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_ShiftDay" EntityType="Self.tbl_S07_ShiftDay" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_Student" EntityType="Self.tbl_S07_Student" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_StudentDetailt" EntityType="Self.tbl_S07_StudentDetailt" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_S07_Weekdays" EntityType="Self.tbl_S07_Weekdays" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="fk_Account_01" Association="Self.fk_Account_01">
-      <End Role="tbl_Role" EntitySet="tbl_Role" />
-      <End Role="tbl_Account" EntitySet="tbl_Account" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Permisstion_01" Association="Self.fk_Permisstion_01">
-      <End Role="tbl_FeaId" EntitySet="tbl_FeaId" />
-      <End Role="tbl_Permisstion" EntitySet="tbl_Permisstion" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Permisstion_02" Association="Self.fk_Permisstion_02">
-      <End Role="tbl_Account" EntitySet="tbl_Account" />
-      <End Role="tbl_Permisstion" EntitySet="tbl_Permisstion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_S07_CoursesStudentDetailt_tbl_S07_CoursesJournal" Association="Self.FK_tbl_S07_CoursesStudentDetailt_tbl_S07_CoursesJournal">
-      <End Role="tbl_S07_CoursesJournal" EntitySet="tbl_S07_CoursesJournal" />
-      <End Role="tbl_S07_CoursesStudentDetailt" EntitySet="tbl_S07_CoursesStudentDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_01" Association="Self.pk_01">
-      <End Role="tbl_S07_Experts" EntitySet="tbl_S07_Experts" />
-      <End Role="tbl_S07_ExpertsDetailt" EntitySet="tbl_S07_ExpertsDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_02" Association="Self.pk_02">
-      <End Role="tbl_S07_Courses" EntitySet="tbl_S07_Courses" />
-      <End Role="tbl_S07_ExpertsDetailt" EntitySet="tbl_S07_ExpertsDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_03" Association="Self.pk_03">
-      <End Role="tbl_S07_Student" EntitySet="tbl_S07_Student" />
-      <End Role="tbl_S07_StudentDetailt" EntitySet="tbl_S07_StudentDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_04" Association="Self.pk_04">
-      <End Role="tbl_S07_Courses" EntitySet="tbl_S07_Courses" />
-      <End Role="tbl_S07_StudentDetailt" EntitySet="tbl_S07_StudentDetailt" />
-    </AssociationSet>
-    <AssociationSet Name="pk_05" Association="Self.pk_05">
-      <End Role="tbl_S07_Courses" EntitySet="tbl_S07_Courses" />
-      <End Role="tbl_S07_CoursesJournal" EntitySet="tbl_S07_CoursesJournal" />
-    </AssociationSet>
-    <AssociationSet Name="pk_06" Association="Self.pk_06">
-      <End Role="tbl_S07_Courses" EntitySet="tbl_S07_Courses" />
-      <End Role="tbl_S07_Schedulers" EntitySet="tbl_S07_Schedulers" />
-    </AssociationSet>
-    <AssociationSet Name="pk_07" Association="Self.pk_07">
-      <End Role="tbl_S07_Weekdays" EntitySet="tbl_S07_Weekdays" />
-      <End Role="tbl_S07_Schedulers" EntitySet="tbl_S07_Schedulers" />
-    </AssociationSet>
-    <AssociationSet Name="pk_08" Association="Self.pk_08">
-      <End Role="tbl_S07_ShiftDay" EntitySet="tbl_S07_ShiftDay" />
-      <End Role="tbl_S07_Schedulers" EntitySet="tbl_S07_Schedulers" />
-    </AssociationSet>
-    <AssociationSet Name="pk_09" Association="Self.pk_09">
-      <End Role="tbl_S07_Student" EntitySet="tbl_S07_Student" />
-      <End Role="tbl_S07_CoursesStudentDetailt" EntitySet="tbl_S07_CoursesStudentDetailt" />
-    </AssociationSet>
-  </EntityContainer>
+  <EntityContainer Name="eTrainingScheduleModelStoreContainer" />
 </Schema>
