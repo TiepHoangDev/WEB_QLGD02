@@ -64,6 +64,9 @@
     <Compile Include="Dao\StudentDao.cs" />
     <Compile Include="Dao\StudentDetailtDao.cs" />
     <Compile Include="Dao\WeekdaysDao.cs" />
+    <Compile Include="DataModels\CoursesStudentDetailt_Check_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataModels\CoursesStudentDetail_Join_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -233,6 +236,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DataModels\WEB_QLGD01_sp_ExpertsDetailt_GetByCoId_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\WEB_QLGD01_sp_Permission_GetJoinCheck_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DataModels\WEB_QLGD01_sp_Permission_GetJoin_Result.cs">

@@ -65,9 +65,9 @@
                     @Html.Label("Thời gian", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownListFor(model => model.WeId, selectWeekday, new { @class = "form-control" })
-                        <p>
+                        @*<p>
                             @Html.ActionLink("Thêm mới Thời gian", "Create", "Weekday", new { }, new { })
-                        </p>
+                        </p>*@
                         @Html.ValidationMessageFor(model => model.WeId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -76,9 +76,9 @@
                     @Html.Label("Ca học", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownListFor(model => model.ShiftId, selectShift, new { @class = "form-control" })
-                        <p>
+                        @*<p>
                             @Html.ActionLink("Thêm mới Ca học", "Create", "ShiftDay", new { }, new { })
-                        </p>
+                        </p>*@
                         @Html.ValidationMessageFor(model => model.ShiftId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -87,9 +87,9 @@
                     @Html.Label("Khóa học", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownListFor(model => model.CoId, selectCourse, new { @class = "form-control" })
-                        <p>
+                        @*<p>
                             @Html.ActionLink("Thêm mới Khóa học", "Create", "Courses", new { }, new { })
-                        </p>
+                        </p>*@
                         @Html.ValidationMessageFor(model => model.CoId, "", new { @class = "text-danger" })
                     </div>
                 </div>

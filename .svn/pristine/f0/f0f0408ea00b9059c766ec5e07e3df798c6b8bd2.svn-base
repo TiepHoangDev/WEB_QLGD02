@@ -1,0 +1,77 @@
+﻿@model  WCF.BussinessObject.Objects.CoursesStudentDetailtObject
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var obCJ = ViewBag.CJ as WCF.BussinessObject.Objects.CoursesJournalObjects;
+    var dropStuden = ViewBag.dropStuden as List<SelectListItem>;
+}
+
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle">Thêm mới Học sinh nghỉ học lớp @obCJ.CoursesJoin.CourseId - @obCJ.CoursesJoin.CourseName thời gian @obCJ.DayOf</i>
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(q => q.CJId)
+
+                <h3>Thông tin Nhật kí</h3>
+                <div class="form-group">
+                    @Html.Label("Mã lớp", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Label(@obCJ.CoursesJoin.CourseId, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Tên lớp", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Label(@obCJ.CoursesJoin.CourseName, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ngày học", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Label(((DateTime)obCJ.DayOf).ToString("d"), htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+
+                <h3>Thêm học viên vắng</h3>
+                <div class="form-group">
+                    @Html.Label("Học sinh nghỉ học", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.StudetId, dropStuden, new { @class = "form-control" })
+                        <p>
+                            @Html.ActionLink("Thêm mới Học viên", "Create", "Student", new { }, new { })
+                        </p>
+                        @Html.ValidationMessageFor(model => model.StudetId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.Label("Ghi chú", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control " })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm mới" class="btn btn-success" />
+                        @Html.ActionLink("Đóng", "Index", new { ID = obCJ.CJId }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+
+                
+            </div>
+        }
+    </div>
+</div>

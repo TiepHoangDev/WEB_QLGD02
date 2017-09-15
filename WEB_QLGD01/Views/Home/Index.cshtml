@@ -262,7 +262,7 @@
                                             <li>
                                                 <span class="item-actions">
                                                     <span class="item-action-tooltips">
-                                                        @if (new Permission().IsAllow(eAction.Search, eFea.QLKH))
+                                                        @if (new Permission().IsAllow(eAction.Search, eFea.QLLGD))
                                                         {
                                                             <span class="btn-ajax" title="Xem chi tiết" data-name="KhoaHoc" data-value="@c.CoursesJoin.CoId"><i class="fa fa-eye"></i></span>
                                                         }
@@ -270,7 +270,7 @@
                                                         {
                                                             <a href='@Url.Action("Edit", "Home", new { ID = c.ScId})' title="Sửa"><i class="fa fa-pencil"></i></a>
                                                         }
-                                                        @if (new Permission().IsAllow(eAction.Delete, eFea.QLKH))
+                                                        @if (new Permission().IsAllow(eAction.Delete, eFea.QLLGD))
                                                         {
                                                             <span title="Xóa" class="btn-ajax" data-name="Delete" data-value="@c.ScId"><i class="fa fa-trash-o"></i></span>
                                                         }
@@ -280,7 +280,7 @@
                                                 </span>
                                                 <span class="item-actions">
                                                     <span class="item-action-tooltips">
-                                                        @if (new Permission().IsAllow(eAction.Search, eFea.QLCG))
+                                                        @if (new Permission().IsAllow(eAction.Search, eFea.QLLGD))
                                                         {
                                                             <span class="btn-ajax" title="Xem chi tiết" data-name="GiaoVien" data-value="@c.CoursesJoin.CoId"><i class="fa fa-eye"></i></span>
                                                         }

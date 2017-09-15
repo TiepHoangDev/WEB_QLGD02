@@ -87,5 +87,36 @@ namespace DataAccessLayer.Dao
             }
             return lst;
         }
+        public List<PermisstionObject> GetJoinCheck(Guid UserID, string FeaID)
+        {
+            List<PermisstionObject> lst = new List<PermisstionObject>();
+            var db = new eTrainingScheduleEntities();
+            var list = db.WEB_QLGD01_sp_Permission_GetJoinCheck(UserID,FeaID);
+            foreach (var item in list)
+            {
+                PermisstionObject ob = new PermisstionObject();
+                ob.PerID = item.PerID; ob.F_ADD = item.F_ADD == true; ob.F_EDIT = item.F_EDIT == true; ob.F_DELETE = item.F_DELETE == true; ob.F_SEARCH = item.F_SEARCH == true; ob.FeaId = item.FeaId; ob.UserId = item.UserId;
+                ob.FeaJoin = new FeaIdObject()
+                {
+                    FeaId = item.FeaId,
+                    FeaName = item.FeaName,
+                    Isdeleted = item.IsdeletedFedId
+                };
+                ob.AccountJoin = new AccountObject
+                {
+                    Description = item.Description,
+                    Email = item.Email,
+                    FullName = item.FullName,
+                    Isdeleted = item.IsdeletedAccount,
+                    PassWord = item.PassWord,
+                    Phone = item.Phone,
+                    RoleId = item.RoleId,
+                    UserId = item.UserId,
+                    Username = item.Username
+                };
+                lst.Add(ob);
+            }
+            return lst;
+        }
     }
 }

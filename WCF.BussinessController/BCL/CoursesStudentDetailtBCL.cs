@@ -49,5 +49,9 @@ namespace WCF.BussinessController.BCL
         {
             return new CoursesStudentDetailtDao().GetJoin();
         }
+         public List<CoursesStudentDetailtObject> Check(Guid CJID,DateTime Date)
+        {
+            return new CoursesStudentDetailtDao().Check(CJID, Date);
+        }
     }
 }

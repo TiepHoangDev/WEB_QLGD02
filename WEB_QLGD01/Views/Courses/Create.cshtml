@@ -25,7 +25,7 @@
                 <div class="form-group">
                     @Html.Label("Mã lớp học", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.CourseId, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.CourseId, new { @class = "form-control", required = "required" })
                         @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="form-group">
                     @Html.Label("Tên khóa học", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.CourseName, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.CourseName, new { @class = "form-control", required = "required" })
                         @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="form-group">
                     @Html.Label("Ngày bắt đầu", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", @type = "date" })
+                        @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", @type = "date", required = "required" })
                         @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     @Html.Label("Ngày kết thúc", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control", @type = "date" })
+                        @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control", @type = "date", required = "required" })
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>

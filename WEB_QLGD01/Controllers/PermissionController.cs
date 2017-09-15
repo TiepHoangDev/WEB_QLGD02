@@ -60,8 +60,10 @@ namespace WEB_QLGD01.Controllers
                 // TODO: Add insert logic here
                 if (ob != null)
                 {
+
                     ob.PerID = Guid.NewGuid();
-                    if (new PermisstionBCL().GetJoin().Any(q => q.UserId == ob.UserId && q.FeaId.Trim().ToUpper() == ob.FeaId.Trim().ToUpper()))
+                    var i = new PermisstionBCL().GetJoinCheck((Guid)ob.UserId,ob.FeaId);
+                    if (i.Count >0)
                     {
                         ModelState.AddModelError("", "Người dùng đã tồn tại quyền này");
                     }

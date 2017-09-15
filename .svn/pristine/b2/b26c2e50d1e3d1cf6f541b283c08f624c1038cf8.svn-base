@@ -1,0 +1,135 @@
+﻿@model WCF.BussinessObject.Objects.CoursesJournalObjects
+@using WCF.BussinessObject.Objects;
+@using WCF.BussinessController.BCL;
+
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle">
+
+            </i>
+            Thêm nhật kí giảng dạy
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm("Create", "CoursesJournal"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.CJId)
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.Label("Chọn lớp tạo Nhật kí", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.CoId, new SelectList(new CoursesBCL().GetAll().Where(q => q.Status != true), "CoId", "CourseId", ViewBag.Coursesid), "Chọn một lớp học", new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.CoursesJoin.CourseName, "", new { @class = "text-danger" })
+                    </div>
+                    @if (ViewBag.Coursesid != null)
+                    {
+                        <input value="@ViewBag.Coursesid" id="CoId" name="CoId" style="display:none" />
+                        <input value="1" id="IsOption" name="IsOption" style="display:none" />
+                    }
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ngày GD", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.DayOf, new { @class = "form-control", type = "date", required = "required", value = DateTime.Now.ToString("yyyy/MM/dd") })
+                        @Html.ValidationMessageFor(model => model.DayOf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <script>
+                    var now = new Date();
+                    var day = ("0" + now.getDate()).slice(-2);
+                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    $('#DayOf').val(today);
+                </script>
+                <div class="form-group">
+                    @Html.Label("Nội dung GD", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Contents, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.Contents, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @{
+                        List<StudentDetailtObjects> lstStudent = (List<StudentDetailtObjects>)ViewBag.LisStudent;
+                    }
+                    @Html.Label("Điểm danh", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="Lis col-md-10">
+                        <img id="img-loader" src="~/Content/img/ajax-loader.gif" height="20" style="display: none" />
+                        <div id="dsvang"><h4 id="checkCount">Chọn một lớp học để điểm danh.</h4></div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm mới" id="btnSubmit" class="btn btn-success" />
+                        @if (ViewBag.Coursesid != null)
+                        {
+                            @Html.ActionLink("Đóng", "Edit", "Courses", new { ID = ViewBag.Coursesid }, new { @class = "btn btn-default" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Đóng", "Index", new { }, new { @class = "btn btn-default" })
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script>
+    function load_dsvang(value) {
+        if (!value) return;
+        $('#img-loader').show();
+        $('#dsvang').empty();
+        data = {
+            Coursesid: value,
+            CJId: $('#CJId').val()
+        }
+        $.ajax({
+            url: '@Url.Action("ListudenAjax")',
+            data: data,
+            type: 'post',
+            success: function (d) {
+                $('#dsvang').html(d);
+                $('#img-loader').hide();
+            }
+        })
+    }
+
+    $('#CoId').change(function () {
+        if (!$(this).val()) $('#dsvang').html('<h4 id="checkCount">Chọn một lớp học để điểm danh.</h4>')
+        else load_dsvang($(this).val());
+    });
+
+    //sunmit form con
+    $('#btnSubmit').click(function () {
+        if ($('#CoId').val() && $('#DayOf').val() && $('#Contents').val()) {
+            $('._pv').each(function () {
+                $.ajax({
+                    type: "POST",
+                    url: $(this).attr('action'),
+                    data: $(this).serialize()
+                });
+            })
+        } else new Error("Value post is null " + $('#CoId').val() + " - " + $('#DayOf').val() + " - " + $('#Contents').val());
+    });
+
+    load_dsvang('@ViewBag.Coursesid');
+</script>

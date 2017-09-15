@@ -35,7 +35,7 @@
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.CoId)
-                        @Html.HiddenFor(model => model.Status)
+                      
 
                         <div class="form-group">
                             @Html.Label("Mã lớp học", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -80,7 +80,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2" style="padding-top:0px">Trạng thái lớp học</label>
                             <div class="col-md-10">
-                                @Html.CheckBoxFor(model => model.Status, new { @class = "form-control " })<label for="Status">Đã hoàn thành?</label>
+                                @Html.CheckBoxFor(model => model.Status, new { @class = "form-control " })<label for="Status1">Đã hoàn thành?</label>
 
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                             </div>

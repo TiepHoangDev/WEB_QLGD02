@@ -1422,5 +1422,31 @@ namespace DataAccessLayer.DataModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_tbl_S07_StudentDetailt_GetByStdId1_Result>("sp_tbl_S07_StudentDetailt_GetByStdId1", stdIdParameter);
         }
+    
+        public virtual ObjectResult<CoursesStudentDetailt_Check_Result> CoursesStudentDetailt_Check(Nullable<System.Guid> cJId, Nullable<System.DateTime> date)
+        {
+            var cJIdParameter = cJId.HasValue ?
+                new ObjectParameter("CJId", cJId) :
+                new ObjectParameter("CJId", typeof(System.Guid));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("Date", date) :
+                new ObjectParameter("Date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CoursesStudentDetailt_Check_Result>("CoursesStudentDetailt_Check", cJIdParameter, dateParameter);
+        }
+    
+        public virtual ObjectResult<WEB_QLGD01_sp_Permission_GetJoinCheck_Result> WEB_QLGD01_sp_Permission_GetJoinCheck(Nullable<System.Guid> userID, string feaId)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("userID", userID) :
+                new ObjectParameter("userID", typeof(System.Guid));
+    
+            var feaIdParameter = feaId != null ?
+                new ObjectParameter("FeaId", feaId) :
+                new ObjectParameter("FeaId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WEB_QLGD01_sp_Permission_GetJoinCheck_Result>("WEB_QLGD01_sp_Permission_GetJoinCheck", userIDParameter, feaIdParameter);
+        }
     }
 }

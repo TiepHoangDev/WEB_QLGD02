@@ -72,7 +72,26 @@ namespace DataAccessLayer.Dao
             }
             return lst;
         }
+        public List<CoursesStudentDetailtObject> Check(Guid CJID,DateTime Date)
+        {
 
+            List<CoursesStudentDetailtObject> lst = new List<CoursesStudentDetailtObject>();
+            var db = new eTrainingScheduleEntities();
+            var list = db.CoursesStudentDetailt_Check(CJID,Date);
+            foreach (var item in list)
+            {
+                CoursesStudentDetailtObject ob = new CoursesStudentDetailtObject();
+                ob.ScsId = item.ScsId; ob.StudetId = item.StudetId; ob.CJId = item.CJId; ob.Description = item.Description;
+                ob.CoursesJournalJoin = new CoursesJournalObjects()
+                {
+                  
+                    DayOf = item.DayOf
+                    
+                };
+                lst.Add(ob);
+            }
+            return lst;
+        }
         public CoursesStudentDetailtObject GetByScsId(Guid ID)
         {
             var db = new eTrainingScheduleEntities();

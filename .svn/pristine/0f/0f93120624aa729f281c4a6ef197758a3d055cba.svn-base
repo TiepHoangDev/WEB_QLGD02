@@ -1,0 +1,115 @@
+﻿@model WCF.BussinessObject.Objects.SchedulersObjects
+@using WCF.BussinessController.BCL
+@using WCF.BussinessObject.Objects
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listShift = new ShiftDayBCL().GetAll();
+    var listWeekday = new WeekdaysBCL().GetAll();
+    var listCourse = new CoursesBCL().GetAll().Where(q => q.Status == false).ToList();
+
+    var selectShift = new List<SelectListItem>();
+    var selectWeekday = new List<SelectListItem>();
+    var selectCourse = new List<SelectListItem>();
+
+    foreach (var item in listShift)
+    {
+        selectShift.Add(new SelectListItem()
+        {
+            Value = item.ShiftId.ToString(),
+            Text = item.ShiftName,
+
+            Selected = item.ShiftId == Model.ShiftId
+        });
+    }
+
+    foreach (var item in listWeekday)
+    {
+        selectWeekday.Add(new SelectListItem()
+        {
+            Value = item.WeId.ToString(),
+            Text = item.WeName,
+            Selected = item.WeId == Model.WeId
+        });
+    }
+
+    foreach (var item in listCourse)
+    {
+        selectCourse.Add(new SelectListItem()
+        {
+            Value = item.CoId.ToString(),
+            Text = item.CourseId,
+            Selected = item.CoId == Model.CoId
+        });
+    }
+}
+
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus-circle">
+            </i>
+            Chỉnh sửa lịch học
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ScId);
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Thời gian", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.WeId, selectWeekday, new { @class = "form-control" })
+                        @*<p>
+                            @Html.ActionLink("Thêm mới Thời gian", "Create", "Weekday", new { }, new { })
+                        </p>*@
+                        @Html.ValidationMessageFor(model => model.WeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ca học", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.ShiftId, selectShift, new { @class = "form-control" })
+                        @*<p>
+                            @Html.ActionLink("Thêm mới Ca học", "Create", "ShiftDay", new { }, new { })
+                        </p>*@
+                        @Html.ValidationMessageFor(model => model.ShiftId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Khóa học", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.CoId, selectCourse, new { @class = "form-control" })
+                        @*<p>
+                            @Html.ActionLink("Thêm mới Khóa học", "Create", "Courses", new { }, new { })
+                        </p>*@
+                        @Html.ValidationMessageFor(model => model.CoId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control " })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Cập nhật" class="btn btn-success" />
+                        @Html.ActionLink("Đóng", "Index", new { }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

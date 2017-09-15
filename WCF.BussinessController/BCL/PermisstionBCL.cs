@@ -41,5 +41,9 @@ namespace WCF.BussinessController.BCL
         {
             return new PermisstionDao().GetJoin();
         }
+         public List<PermisstionObject> GetJoinCheck(Guid UserID, string FeaID)
+        {
+            return new PermisstionDao().GetJoinCheck(UserID, FeaID);
+        }
     }
 }
